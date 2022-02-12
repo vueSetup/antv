@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "repository": "https://github.com/vueSetup/antv",
+  "license": "MIT",
+  "scripts": {
+    "commit": "git-cz",
+    "start": "pnpm start --filter playground"
+  },
+  "dependencies": {
+    "vue": "^3.2.30",
+    "ant-design-vue": "^3.0.0-beta.9"
+  },
+  "devDependencies": {
+    "commitizen": "^4.2.4",
+    "typescript": "^4.5.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}

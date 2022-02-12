@@ -1,0 +1,8 @@
+{
+    "name": "@antv/x6-vue-components",
+    "version": "1.0.0",
+    "license": "MIT",    
+    "peerDependencies": {
+        "ant-design-vue": ">=3.0.0"
+    }
+}
