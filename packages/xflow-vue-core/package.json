@@ -1,0 +1,19 @@
+{
+    "name": "@antv/xflow-vue-core",
+    "version": "1.0.32",
+    "license": "MIT",
+    "dependencies": {
+        "uuid": "^8.3.2"
+    },
+    "devDependencies": {
+        "@ant-design/icons-vue": "^6.0.1",
+        "@antv/layout": "^0.1.31",
+        "@antv/x6": "^1.30.0",
+        "@types/uuid": "^8.3.4"
+    },
+    "peerDependencies": {
+        "@ant-design/icons-vue": ">=6.0.0",
+        "@antv/layout": ">=0.1.0",
+        "@antv/x6": ">=1.30.0"
+    }
+}
