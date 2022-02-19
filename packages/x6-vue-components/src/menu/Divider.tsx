@@ -1,10 +1,12 @@
-import { defineComponent, FunctionalComponent } from "vue"
+import { defineComponent, computed } from 'vue'
+import { useMenuContext } from './context'
 
-const MenuDivider = defineComponent({
+export const MenuDivider = defineComponent({
     setup() {
-        const prefixCls = "x6-menu"
-        return () => <div class={`${prefixCls}-item ${prefixCls}-item-divider`} />
+        const context = useMenuContext()
+        const baseClassName = computed(() => `${context.prefixCls}-item`)
+        const className = computed(() => [baseClassName.value, `${baseClassName.value}-divider`])
+
+        return () => <div class={className.value} />
     }
 })
-
-export default MenuDivider

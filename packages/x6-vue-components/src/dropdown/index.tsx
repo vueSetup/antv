@@ -1,37 +1,41 @@
-import { defineComponent, cloneVNode } from 'vue'
-import { Dropdown } from 'ant-design-vue'
-import { DropdownProps } from 'ant-design-vue/es/dropdown'
-import './style'
+import { defineComponent, computed, cloneVNode } from 'vue'
+import type { ExtractPropTypes } from 'vue'
+import { Dropdown as AntdvDropdown } from 'ant-design-vue'
+import { dropdownProps } from 'ant-design-vue/es/dropdown/props'
 
+const props = {
+    ...dropdownProps(),
+    prefixCls: {
+        type: String,
+        default: 'x6'
+    }
+}
 
-export const DropDown = defineComponent({
-    props: DropdownProps,
-    render() {
-        const { prefixCls = 'x6', trigger, disabled, overlay, ...others } = this.$props
-        const baseCls = `${prefixCls}-dropdown`
+export type DropdownProps = ExtractPropTypes<typeof props>
 
-        const triggers = disabled
-            ? []
-            : Array.isArray(trigger)
-                ? trigger
-                : [trigger]
+export const Dropdown = defineComponent({
+    props,
+    setup(props, { slots }) {
+        const prefixCls = computed(() => `${props.prefixCls}-dropdown`)
 
-        const children = this.$slots.default?.()
-        const dropdownTrigger = cloneVNode(children[0], {
-            class: `${prefixCls}-trigger`,
-            disabled
-        })
-        const fixedOverlay = <div class={`${baseCls}-overlay`}>{overlay}</div>
+        const children = slots.default?.()
+        const child = children?.length && children.length === 1 ? children[0] : null
+        if (!child) {
+            throw Error(`Vue.Children.only`)
+        }
 
-        return (
-            <Dropdown
-                {...others}
-                prefixCls={baseCls}
-                overlay={fixedOverlay}
-                trigger={triggers}
-            >
-                {dropdownTrigger}
-            </Dropdown>
+        const dropdownTrigger = () =>
+            cloneVNode(child, {
+                className: `${prefixCls}-trigger`,
+                disabled: props.disabled
+            })
+
+        const fixedOverlay = () => <div class={`${prefixCls.value}-overlay`}>{props.overlay}</div>
+
+        return () => (
+            <AntdvDropdown {...props} prefixCls={prefixCls.value} overlay={fixedOverlay()}>
+                {dropdownTrigger()}
+            </AntdvDropdown>
         )
     }
 })

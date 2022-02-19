@@ -1,55 +1,62 @@
-import { FunctionalComponent, VNode } from "vue"
-import ToolbarContextProvider from "./context"
-// import ToolbarItem from './item'
-// import ToolbarGroup from './group'
-import './style'
+import { computed, defineComponent, reactive } from 'vue'
+import type { PropType, VNodeChild } from 'vue'
+import { ToolbarContextProvider } from './context'
+import { ToolbarItem } from './item'
+import { ToolbarGroup } from './group'
 
-export interface ToolBarProps {
-    prefixCls?: string
-    className?: string
-    extra?: VNode
-    size?: 'small' | 'big'
-    rtl?: boolean
-    hoverEffect?: boolean
-    align?: 'left' | 'right'
-    onClick?: (name: string, value?: any) => void
+const props = {
+    prefixCls: {
+        type: String,
+        default: 'x6'
+    },
+    extra: [Object, Array] as PropType<VNodeChild>,
+    size: String as PropType<'small' | 'big'>,
+    hoverEffect: Boolean,
+    align: String as PropType<'left' | 'right'>,
+    onClick: Function as PropType<(name: string, value?: any) => void>
 }
 
-export const ToolBar: FunctionalComponent<ToolBarProps> = (props, { slots, emit }) => {
-    const { prefixCls = "x6", extra, size, rtl, hoverEffect, align, onClick } = props
-    const children = slots.default?.()
+const Toolbar = defineComponent({
+    props,
+    setup(props, { slots, emit }) {
+        const baseClassName = computed(() => `${props.prefixCls}-toolbar`)
 
-    const baseCls = `${prefixCls}-toolbar`
-    const classNames = {
-        [baseCls]: true,
-        [`${baseCls}-${size}`]: size,
-        [`${baseCls}-align-right`]: align === 'right',
-        [`${baseCls}-hover-effect`]: hoverEffect,
-    }
+        const className = computed(() => [
+            baseClassName.value,
+            {
+                [`${baseClassName}-${props.size}`]: props.size,
+                [`${baseClassName}-align-right`]: props.align === 'right',
+                [`${baseClassName}-hover-effect`]: props.hoverEffect
+            }
+        ])
 
-    const contents = [
-        <div class={`${baseCls}-content-inner`}>
-            <ToolbarContextProvider
-                value={{
-                    prefixCls: baseCls,
-                    onClick: onClick,
-                }}
-            >
-                {children}
-            </ToolbarContextProvider>
-        </div>,
-        <div class={`${baseCls}-content-extras`}>{extra}</div>
-    ]
+        const onClick = (name: string, value?: any) => {
+            emit('click', name, value)
+        }
 
-    if (rtl) {
-        contents.reverse()
-    }
-
-    return (
-        <div class={classNames}>
-            <div class={`${baseCls}-content`}>
-                {contents}
+        return () => (
+            <div class={className.value}>
+                <div class={`${baseClassName.value}-content`}>
+                    <div class={`${baseClassName.value}-content-inner`}>
+                        <ToolbarContextProvider
+                            value={{
+                                prefixCls: baseClassName.value,
+                                onClick
+                            }}
+                        >
+                            {slots.default?.()}
+                        </ToolbarContextProvider>
+                    </div>
+                    {props.extra && (
+                        <div class={`${baseClassName.value}-content-extras`}>{props.extra}</div>
+                    )}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
+})
+
+export default Toolbar as typeof Toolbar & {
+    readonly Item: typeof ToolbarItem
+    readonly Group: typeof ToolbarGroup
 }

@@ -1,29 +1,21 @@
-import { defineComponent, isVNode, PropType, VNode, VNodeChild } from "vue"
-import MenuItem from './Item'
+import { computed, defineComponent } from 'vue'
+import { MenuItem, props } from './Item'
+import { useMenuContext } from './context'
 
-const MenuSubMenuProps = {
-    text: [String, Object] as PropType<String | VNode>,
-    icon: Object as PropType<VNode>,
-}
-
-const MenuSubMenu = defineComponent({
-    props: MenuSubMenuProps,
+export const MenuSubMenu = defineComponent({
+    props,
     setup(props, { slots }) {
-        const children = slots.default?.()
-        const prefixCls = "x6-menu"
+        const context = useMenuContext()
+
+        const baseClassName = computed(() => `${context.prefixCls}-submenu`)
+
         return () => (
-            <MenuItem
-                class={`${prefixCls}-submenu`}
-                innerExtra={
-                    <span class={`${prefixCls}-submenu-arrow`} />
-                }
-                outerExtra={
-                    <div class={`${prefixCls}-submenu-menu`}>{children}</div>
-                }
-                {...props}
-            />
+            <MenuItem {...props} class={baseClassName.value}>
+                {{
+                    innerExtra: <span class={`${baseClassName.value}-arrow`} />,
+                    outerExtra: <div class={`${baseClassName.value}-menu`}>{slots.default?.()}</div>
+                }}
+            </MenuItem>
         )
     }
 })
-
-export default MenuSubMenu

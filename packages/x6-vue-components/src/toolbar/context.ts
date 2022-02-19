@@ -1,17 +1,15 @@
-import { InjectionKey, ExtractPropTypes } from 'vue'
-import { createContext, useContext } from './useContext'
+import type { InjectionKey } from "vue"
+import { createContext, useContext } from "../composables";
 
-interface ContextTypes {
-    prefixCls: String
-    onClick?: (name: string, value?: any) => void
+export interface IToolbarContext {
+    prefixCls: string
+    onClick: (key: string, value?: any) => void
 }
 
-const contextKey: InjectionKey<ContextTypes> = Symbol()
+const contextKey: InjectionKey<IToolbarContext> = Symbol('Toolbar')
 
-const createToolbarContext = () =>
-    createContext<ContextTypes>(contextKey, 'ToolbarContext.Provider')
+export const ToolbarContextProvider =
+    createContext<IToolbarContext>(contextKey, 'ToolbarContextProvider')
 
 export const useToolbarContext = () =>
-    useContext<Required<ContextTypes>>(contextKey)
-
-export default createToolbarContext()
+    useContext<IToolbarContext>(contextKey, {})

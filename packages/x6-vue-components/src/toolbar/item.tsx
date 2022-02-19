@@ -1,15 +1,14 @@
-import { defineComponent, toRefs, isVNode, ExtractPropTypes, FunctionalComponent, cloneVNode, VNode, PropType } from "vue"
-import { useToolbarContext } from "./context"
-import Tooltip, { TooltipProps } from "ant-design-vue/es/tooltip/Tooltip"
-import { DropdownProps } from "ant-design-vue/es/dropdown/dropdown"
-import { DropDown } from '../dropdown'
-import Menu from '../menu'
-import './style'
+import { defineComponent, computed, isVNode, cloneVNode } from 'vue'
+import type { PropType, VNode } from 'vue'
+import { Tooltip, TooltipProps, Menu } from 'ant-design-vue'
+import 'ant-design-vue/es/tooltip/style/index'
+import { Dropdown, DropdownProps } from '../dropdown'
+import { useToolbarContext } from './context'
 
-export const ToolbarItemProps = {
+const props = {
     name: String,
     icon: Object as PropType<VNode>,
-    text: [String, Object] as PropType<String | VNode>,
+    text: [String, Object] as PropType<string | VNode>,
     hidden: Boolean,
     disabled: Boolean,
     active: Boolean,
@@ -18,132 +17,101 @@ export const ToolbarItemProps = {
     tooltipAsTitle: Boolean,
     dropdown: Object as PropType<VNode>,
     dropdownArrow: Boolean,
-    dropdownProps: Object as PropType<ExtractPropTypes<typeof DropdownProps>>,
+    dropdownProps: Object as PropType<DropdownProps>,
     onClick: Function as PropType<(name?: string) => void>
 }
 
 export const ToolbarItem = defineComponent({
-    props: ToolbarItemProps,
-    setup() {
+    props,
+    setup(props, { slots, emit }) {
+        const children = slots.default?.()
+
         const context = useToolbarContext()
-        return { ...toRefs(context) }
-    },
-    render() {
-        const {
-            name,
-            hidden,
-            disabled,
-            active,
-            icon,
-            text,
-            dropdown,
-            dropdownArrow,
-            dropdownProps,
-            tooltip,
-            tooltipProps,
-            tooltipAsTitle,
-            onClick
-        } = this.$props
-        const children = this.$slots.default?.()
 
+        const baseClassName = computed(() => `${context.prefixCls}-item`)
 
-        const handleClick = () => {
-            processClick(name, dropdown)
-        }
-
-        const handleDropdownItemClick = (name?: string) => {
-            processClick(name, false)
-        }
-
-        const processClick = (name, dropdown) => {
-            if (!disabled && !dropdown) {
-                if (name) {
-                    this.onClick(name)
-                }
-
-                if (onClick) {
-                    onClick(name)
-                }
+        const className = computed(() => [
+            baseClassName.value,
+            {
+                [`${baseClassName.value}-hidden`]: props.hidden,
+                [`${baseClassName.value}-active`]: props.active,
+                [`${baseClassName.value}-disabled`]: props.disabled,
+                [`${baseClassName.value}-dropdown`]: props.dropdown
             }
+        ])
+
+        const processClick = (name = props.name, dropdown = props.dropdown) => {
+            if (!props.disabled && !dropdown) {
+                if (name) {
+                    context.onClick(name)
+                }
+                emit('click', name)
+            }
+        }
+
+        const onDropdownItemClick = (name?: string) => {
+            processClick(name, undefined)
         }
 
         const renderButton = () => {
-            const baseCls = `${this.prefixCls}-item`
-            const classNames = {
-                [baseCls]: true,
-                [`${baseCls}-hidden`]: hidden,
-                [`${baseCls}-active`]: active,
-                [`${baseCls}-disabled`]: disabled,
-                [`${baseCls}-dropdown`]: dropdown,
-            }
-            //TO DO:className
-
-            const buttonProps: Record<string, any> = {
-                class: classNames,
-                // onClick: (payload: MouseEvent) => { }
-                onClick: handleClick
-            }
-
-            if (tooltip && tooltipAsTitle) {
-                buttonProps.title = tooltip
-            }
-
             const button = (
-                <button type="button" {...buttonProps}>
-                    {icon && isVNode(icon) && (
-                        <span class={`${baseCls}-icon`}>{icon}</span>
+                <button type="button" class={className.value} onClick={() => processClick()}>
+                    {props.icon && isVNode(props.icon) && (
+                        <span class={`${baseClassName.value}-icon`}>{props.icon}</span>
                     )}
-                    {(text || children) && (
-                        <span class={`${baseCls}-text`}>{text || children}</span>
+                    {(props.text || children) && (
+                        <span class={`${baseClassName.value}-text`}>{props.text || children}</span>
                     )}
-                    {dropdown && dropdownArrow && (
-                        <span class={`${baseCls}-dropdown-arrow`} />
+                    {props.dropdown && props.dropdownArrow && (
+                        <span class={`${baseClassName.value}-dropdown-arrow`} />
                     )}
                 </button>
             )
 
-            if (tooltip && !tooltipAsTitle && !disabled) {
+            if (props.tooltip && !props.tooltipAsTitle && !props.disabled) {
                 return (
                     <Tooltip
-                        title={tooltip}
+                        title={props.tooltip}
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
-                        {...tooltipProps}
+                        {...props.tooltipProps}
                     >
                         {button}
                     </Tooltip>
                 )
             }
+
             return button
         }
 
-        const content = renderButton()
+        return () => {
+            const content = renderButton()
 
-        // TODO :: dropdown
-        if (dropdown != null && !disabled) {
-            const overlay = (
-                <div>
-                    {dropdown.type === Menu
-                        ? cloneVNode(dropdown, {
-                            onClick: handleDropdownItemClick,
-                        })
-                        : dropdown}
-                </div>
-            )
+            if (props.dropdown != null && !props.disabled) {
+                const overlay = (
+                    <div>
+                        {props.dropdown.type === Menu
+                            ? cloneVNode(props.dropdown, {
+                                  onClick: onDropdownItemClick
+                              })
+                            : props.dropdown}
+                    </div>
+                )
 
-            const props = {
-                trigger: ['click'],
-                ...dropdownProps,
-                disabled,
-                overlay,
-            } as ExtractPropTypes<typeof DropdownProps>
+                const dropdownProps = {
+                    ...props.dropdownProps,
+                    disabled: props.disabled,
+                    overlay
+                }
 
-            return <DropDown {...props}>{content}</DropDown>
+                return (
+                    <Dropdown trigger="click" {...dropdownProps}>
+                        {content}
+                    </Dropdown>
+                )
+            }
+            return content
         }
-
-        return content
     }
 })
-
-// export default ToolbarItem

@@ -1,7 +1,11 @@
 {
     "name": "@antv/x6-vue-components",
     "version": "1.0.0",
-    "license": "MIT",    
+    "license": "MIT",
+    "main": "./src/index.ts",
+    "devDependencies": {
+        "ant-design-vue": "^3.0.0-beta.10"
+    },
     "peerDependencies": {
         "ant-design-vue": ">=3.0.0"
     }

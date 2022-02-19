@@ -1,7 +1,17 @@
-import { defineComponent, FunctionalComponent, isVNode, onMounted, onBeforeUnmount, PropType, VNodeChild, VNode } from "vue"
+import {
+    defineComponent,
+    computed,
+    onMounted,
+    onUnmounted,
+    reactive,
+    watchEffect,
+    toRefs,
+    isVNode
+} from 'vue'
+import type { PropType, VNode, ExtractPropTypes } from 'vue'
+import { useMenuContext } from './context'
 
-export const MenuItemProps = {
-    class: String,
+export const props = {
     name: String,
     text: [String, Object] as PropType<String | VNode>,
     icon: Object as PropType<VNode>,
@@ -9,55 +19,68 @@ export const MenuItemProps = {
     active: Boolean,
     hidden: Boolean,
     disabled: Boolean,
-    innerExtra: Object as PropType<JSX.Element>,
-    outerExtra: Object as PropType<JSX.Element>,
-    onClick: Function as PropType<(e?: MouseEvent) => void>,
-    registerHotkey: Function as PropType<(hotkey: string, handler: () => void) => void>,
-    unregisterHotkey: Function as PropType<(hotkey: string, handler: () => void) => void>
+    onClick: Function as PropType<(e?: MouseEvent) => void>
 }
 
-const MenuItem = defineComponent({
-    props: MenuItemProps,
-    setup(props, { slots }) {
-        const prefixCls = "x6-menu"
-        const { class: propsClassName, hotkey } = props
-        const children = slots.default?.()
+export type MenuItemProps = ExtractPropTypes<typeof props>
 
-        const baseClassName = `${prefixCls}-item`
-        const classNames = {
-            [baseClassName]: true,
-            [propsClassName]: propsClassName,
-            [`${baseClassName}-active`]: props.active,
-            [`${baseClassName}-hidden`]: props.hidden,
-            [`${baseClassName}-disabled`]: props.disabled,
+export const MenuItem = defineComponent({
+    props,
+    setup(props, { slots, emit }) {
+        const context = useMenuContext()
+
+        const baseClassName = computed(() => `${context.prefixCls}-item`)
+
+        const className = computed(() => [
+            baseClassName.value,
+            {
+                [`${baseClassName.value}-active`]: props.active,
+                [`${baseClassName.value}-hidden`]: props.hidden,
+                [`${baseClassName.value}-disabled`]: props.disabled
+            }
+        ])
+
+        const triggerHandler = (e?: MouseEvent) => {
+            if (!props.disabled && !props.hidden) {
+                if (props.name) {
+                    context.onClick(props.name, e)
+                }
+                emit('click', e)
+            }
         }
 
+        const onHotkey = () => triggerHandler()
+
+        const onClick = (e: MouseEvent) => triggerHandler(e)
+
         onMounted(() => {
-            if (hotkey && props.registerHotkey) {
-                props.registerHotkey(hotkey, props.onClick)
+            if (props.hotkey) {
+                context.registerHotkey(props.hotkey, onHotkey)
             }
         })
 
-        onBeforeUnmount(() => {
-            if (hotkey && props.unregisterHotkey) {
-                props.unregisterHotkey(hotkey, props.onClick)
+        onUnmounted(() => {
+            if (props.hotkey) {
+                context.unregisterHotkey(props.hotkey, onHotkey)
             }
         })
 
-        return () => (
-            <div class={classNames}>
-                <button type="button" class={`${baseClassName}-button`} onClick={props.onClick}>
+        return (
+            <div class={className}>
+                <button type="button" class={`${baseClassName.value}-button`} onClick={onClick}>
                     {props.icon && isVNode(props.icon) && (
-                        <span class={`${baseClassName}-icon`}>{props.icon}</span>
+                        <span class={`${baseClassName.value}-icon`}>{props.icon}</span>
                     )}
-                    <span class={`${baseClassName}-text`}>{props.text || children}</span>
-                    {props.hotkey && <span class={`${baseClassName}-hotkey`}>{props.hotkey}</span>}
-                    {props.innerExtra}
+                    <span class={`${baseClassName.value}-text`}>
+                        {props.text || slots.default?.()}
+                    </span>
+                    {props.hotkey && (
+                        <span class={`${baseClassName.value}-hotkey`}>{props.hotkey}</span>
+                    )}
+                    {slots.innerExtra?.()}
                 </button>
-                {props.outerExtra}
+                {slots.outerExtra?.()}
             </div>
         )
     }
 })
-
-export default MenuItem

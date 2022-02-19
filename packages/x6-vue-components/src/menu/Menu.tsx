@@ -1,10 +1,15 @@
-import { defineComponent, PropType, Plugin } from "vue"
-import MenuItem from './Item'
-import MenuSubMenu from './SubMenu'
-import MenuDivider from './Divider'
+import { defineComponent, computed } from 'vue'
+import type { PropType } from 'vue'
+import { MenuItem } from './item'
+import { MenuDivider } from './divider'
+import { MenuContextProvider } from './context'
+import { MenuSubMenu } from './submenu'
 
-export const MenuProps = {
-    prefixCls: String,
+const props = {
+    prefixCls: {
+        type: String,
+        default: 'x6'
+    },
     hasIcon: Boolean,
     stopPropagation: Boolean,
     onClick: Function as PropType<(e: MouseEvent) => void>,
@@ -13,24 +18,41 @@ export const MenuProps = {
 }
 
 const Menu = defineComponent({
-    props: MenuProps,
-    setup(props, { slots }) {
-        const { prefixCls = "x6", hasIcon } = props;
-        const baseClassName = `${prefixCls}-menu`
-        const classNames = { [baseClassName]: true, [`${baseClassName}-has-icon`]: hasIcon }
+    props,
+    setup(props, { slots, emit }) {
+        const baseClassName = computed(() => `${props.prefixCls}-item`)
+        
+        const className = computed(() => [
+            baseClassName.value,
+            { [`${baseClassName.value}-has-icon`]: props.hasIcon }
+        ])
 
-        const children = slots.default?.()
-        return () => <div class={classNames}>{children}</div>
+        const onClick = (name: string, e?: MouseEvent) => {
+            if (props.stopPropagation && e) {
+                e.stopPropagation()
+            }
+            emit('click', name)
+        }
+
+        return () => (
+            <div class={className}>
+                <MenuContextProvider
+                    value={{
+                        prefixCls: baseClassName.value,
+                        onClick,
+                        registerHotkey: props.registerHotkey,
+                        unregisterHotkey: props.unregisterHotkey
+                    }}
+                >
+                    {slots.default?.()}
+                </MenuContextProvider>
+            </div>
+        )
     }
 })
 
-Menu.Item = MenuItem
-Menu.SubMenu = MenuSubMenu
-Menu.Divider = MenuDivider
-
-export default Menu as typeof Menu &
-    Plugin & {
-        readonly Item: typeof MenuItem
-        readonly SubMenu: typeof MenuSubMenu
-        readonly Divider: typeof MenuDivider
-    }
+export default Menu as typeof Menu & {
+    readonly Item: typeof MenuItem
+    readonly Divider: typeof MenuDivider
+    readonly SubMenu: typeof MenuSubMenu
+}

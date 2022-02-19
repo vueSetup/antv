@@ -1,21 +1,14 @@
-import { defineComponent, toRefs, VNode } from "vue"
-import { useToolbarContext } from "./context"
-import './style'
+import { FunctionalComponent } from 'vue'
+import { useToolbarContext } from './context'
 
-export const ToolbarGroup = defineComponent({
-    setup() {
-        const context = useToolbarContext()
-        return { ...toRefs(context) }
-    },
-    render() {
-        const children = this.$slots.default?.()
-        
-        return (
-            <div class={`${this.prefixCls}-group`}>
-                {children}
-            </div>
-        )
+export namespace ToolbarGroup {
+    export interface Props {
+        className?: string
     }
-})
+}
 
-// export default ToolbarGroup
+export const ToolbarGroup: FunctionalComponent<ToolbarGroup.Props> = (props, { slots }) => {
+    const context = useToolbarContext()
+    const classNames = [`${context.prefixCls}-group`, props.className]
+    return <div class={classNames}>{slots.default?.()}</div>
+}

@@ -1,13 +1,6 @@
-import {
-    defineComponent,
-    provide,
-    inject,
-    readonly,
-    DefineComponent,
-    VNode,
-    InjectionKey,
-    PropType
-} from 'vue'
+// https://github.com/vueComponent/pro-layout/blob/next/src/hooks/context/index.ts
+import { defineComponent, provide, inject, readonly } from 'vue'
+import type { DefineComponent, VNode, InjectionKey, PropType } from "vue"
 
 export type ContextType<T> = any
 
@@ -26,8 +19,8 @@ export const createContext = <T>(
             },
         },
         setup(props: { value: ContextType<T> }, { slots }) {
-            // provide(contextKey, readonly(props.value))
-            provide(contextKey, props.value)
+            provide(contextKey, readonly(props.value))
+            // provide(contextKey, props.value)
             return () => slots.default?.()
         },
     })
