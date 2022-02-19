@@ -1,10 +1,10 @@
-import { computed, defineComponent, reactive } from 'vue'
-import type { PropType, VNodeChild } from 'vue'
+import { computed, defineComponent } from 'vue'
+import type { PropType, VNodeChild, ExtractPropTypes } from 'vue'
 import { ToolbarContextProvider } from './context'
 import { ToolbarItem } from './item'
 import { ToolbarGroup } from './group'
 
-const props = {
+const toolbarProps = {
     prefixCls: {
         type: String,
         default: 'x6'
@@ -16,8 +16,10 @@ const props = {
     onClick: Function as PropType<(name: string, value?: any) => void>
 }
 
+export type ToolbarProps = ExtractPropTypes<typeof toolbarProps>
+
 const Toolbar = defineComponent({
-    props,
+    props: toolbarProps,
     setup(props, { slots, emit }) {
         const baseClassName = computed(() => `${props.prefixCls}-toolbar`)
 

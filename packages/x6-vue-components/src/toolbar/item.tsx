@@ -1,11 +1,11 @@
 import { defineComponent, computed, isVNode, cloneVNode } from 'vue'
-import type { PropType, VNode } from 'vue'
+import type { PropType, VNode, ExtractPropTypes } from 'vue'
 import { Tooltip, TooltipProps, Menu } from 'ant-design-vue'
 import 'ant-design-vue/es/tooltip/style/index'
 import { Dropdown, DropdownProps } from '../dropdown'
 import { useToolbarContext } from './context'
 
-const props = {
+const toolbarItemProps = {
     name: String,
     icon: Object as PropType<VNode>,
     text: [String, Object] as PropType<string | VNode>,
@@ -21,8 +21,10 @@ const props = {
     onClick: Function as PropType<(name?: string) => void>
 }
 
+export type ToolbarItemProps = ExtractPropTypes<typeof toolbarItemProps>
+
 export const ToolbarItem = defineComponent({
-    props,
+    props: toolbarItemProps,
     setup(props, { slots, emit }) {
         const children = slots.default?.()
 

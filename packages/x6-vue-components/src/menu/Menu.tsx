@@ -1,11 +1,11 @@
 import { defineComponent, computed } from 'vue'
-import type { PropType } from 'vue'
+import type { PropType, ExtractPropTypes } from 'vue'
 import { MenuItem } from './item'
 import { MenuDivider } from './divider'
 import { MenuContextProvider } from './context'
 import { MenuSubMenu } from './submenu'
 
-const props = {
+export const menuProps = {
     prefixCls: {
         type: String,
         default: 'x6'
@@ -17,11 +17,13 @@ const props = {
     unregisterHotkey: Function as PropType<(hotkey: string, handler: () => void) => void>
 }
 
+export type MenuProps = ExtractPropTypes<typeof menuProps>
+
 const Menu = defineComponent({
-    props,
+    props: menuProps,
     setup(props, { slots, emit }) {
         const baseClassName = computed(() => `${props.prefixCls}-item`)
-        
+
         const className = computed(() => [
             baseClassName.value,
             { [`${baseClassName.value}-has-icon`]: props.hasIcon }

@@ -1,20 +1,20 @@
 import { defineComponent, computed, cloneVNode } from 'vue'
 import type { ExtractPropTypes } from 'vue'
 import { Dropdown as AntdvDropdown } from 'ant-design-vue'
-import { dropdownProps } from 'ant-design-vue/es/dropdown/props'
+import { dropdownProps as props } from 'ant-design-vue/es/dropdown/props'
 
-const props = {
-    ...dropdownProps(),
+export const dropdownProps = {
+    ...props(),
     prefixCls: {
         type: String,
         default: 'x6'
     }
 }
 
-export type DropdownProps = ExtractPropTypes<typeof props>
+export type DropdownProps = ExtractPropTypes<typeof dropdownProps>
 
 export const Dropdown = defineComponent({
-    props,
+    props: dropdownProps,
     setup(props, { slots }) {
         const prefixCls = computed(() => `${props.prefixCls}-dropdown`)
 

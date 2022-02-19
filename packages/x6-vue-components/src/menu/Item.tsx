@@ -11,7 +11,7 @@ import {
 import type { PropType, VNode, ExtractPropTypes } from 'vue'
 import { useMenuContext } from './context'
 
-export const props = {
+export const menuItemProps = {
     name: String,
     text: [String, Object] as PropType<String | VNode>,
     icon: Object as PropType<VNode>,
@@ -22,10 +22,10 @@ export const props = {
     onClick: Function as PropType<(e?: MouseEvent) => void>
 }
 
-export type MenuItemProps = ExtractPropTypes<typeof props>
+export type MenuItemProps = ExtractPropTypes<typeof menuItemProps>
 
 export const MenuItem = defineComponent({
-    props,
+    props: menuItemProps,
     setup(props, { slots, emit }) {
         const context = useMenuContext()
 

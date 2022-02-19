@@ -1,9 +1,9 @@
 import { computed, defineComponent } from 'vue'
-import { MenuItem, props } from './Item'
+import { MenuItem, menuItemProps } from './Item'
 import { useMenuContext } from './context'
 
 export const MenuSubMenu = defineComponent({
-    props,
+    props: menuItemProps,
     setup(props, { slots }) {
         const context = useMenuContext()
 
