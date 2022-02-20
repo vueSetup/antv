@@ -18,24 +18,25 @@ export const Dropdown = defineComponent({
     setup(props, { slots }) {
         const prefixCls = computed(() => `${props.prefixCls}-dropdown`)
 
-        const children = slots.default?.()
-        const child = children?.length && children.length === 1 ? children[0] : null
-        if (!child) {
-            throw Error(`Vue.Children.only`)
-        }
+        return () => {
+            const children = slots.default?.() || []
+            const child = children.length === 1 ? children[0] : null
+            if (!child) {
+                throw Error(`Vue.Children.only`)
+            }
 
-        const dropdownTrigger = () =>
-            cloneVNode(child, {
-                className: `${prefixCls}-trigger`,
+            const fixedOverlay = <div class={`${prefixCls.value}-overlay`}>{props.overlay}</div>
+
+            const dropdownTrigger = cloneVNode(child, {
+                className: `${prefixCls.value}-trigger`,
                 disabled: props.disabled
             })
 
-        const fixedOverlay = () => <div class={`${prefixCls.value}-overlay`}>{props.overlay}</div>
-
-        return () => (
-            <AntdvDropdown {...props} prefixCls={prefixCls.value} overlay={fixedOverlay()}>
-                {dropdownTrigger()}
-            </AntdvDropdown>
-        )
+            return (
+                <AntdvDropdown {...props} prefixCls={prefixCls.value} overlay={fixedOverlay}>
+                    {dropdownTrigger}
+                </AntdvDropdown>
+            )
+        }
     }
 })
