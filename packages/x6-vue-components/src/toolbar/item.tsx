@@ -1,5 +1,5 @@
 import { defineComponent, computed, isVNode, cloneVNode } from 'vue'
-import type { PropType, VNodeChild, ExtractPropTypes } from 'vue'
+import type { PropType, VNode, VNodeChild, ExtractPropTypes } from 'vue'
 import { Tooltip, TooltipProps, Menu } from 'ant-design-vue'
 import 'ant-design-vue/es/tooltip/style/index'
 import { Dropdown, DropdownProps } from '../dropdown'
@@ -15,7 +15,7 @@ const toolbarItemProps = {
     tooltip: String,
     tooltipProps: Object as PropType<TooltipProps>,
     tooltipAsTitle: Boolean,
-    dropdown: Object as PropType<VNodeChild>,
+    dropdown: Object as PropType<VNode>,
     dropdownArrow: Boolean,
     dropdownProps: Object as PropType<DropdownProps>,
     onClick: Function as PropType<(name?: string) => void>

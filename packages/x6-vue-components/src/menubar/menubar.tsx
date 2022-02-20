@@ -1,5 +1,5 @@
 import { defineComponent, computed, reactive } from 'vue'
-import type { PropType, VNode, ExtractPropTypes } from 'vue'
+import type { PropType, VNodeChild, ExtractPropTypes } from 'vue'
 import { MenubarContextProvider } from './context'
 
 export const menubarProps = {
@@ -7,7 +7,7 @@ export const menubarProps = {
         type: String,
         default: 'x6'
     },
-    extra: Object as PropType<VNode>
+    extra: [String, Object] as PropType<VNodeChild>
 }
 
 export type MenubarProps = ExtractPropTypes<typeof menubarProps>
