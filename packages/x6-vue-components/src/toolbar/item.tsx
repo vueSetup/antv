@@ -95,8 +95,8 @@ export const ToolbarItem = defineComponent({
                     <div>
                         {props.dropdown.type === Menu
                             ? cloneVNode(props.dropdown, {
-                                  onClick: onDropdownItemClick
-                              })
+                                onClick: onDropdownItemClick
+                            })
                             : props.dropdown}
                     </div>
                 )

@@ -65,8 +65,8 @@ export const MenuItem = defineComponent({
             }
         })
 
-        return (
-            <div class={className}>
+        return () => (
+            <div class={className.value}>
                 <button type="button" class={`${baseClassName.value}-button`} onClick={onClick}>
                     {props.icon && isVNode(props.icon) && (
                         <span class={`${baseClassName.value}-icon`}>{props.icon}</span>

@@ -7,6 +7,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@ant-design/icons-vue": "^6.0.1",
         "@antv/x6-vue-components": "workspace:*"
     },
     "devDependencies": {

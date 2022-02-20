@@ -37,7 +37,7 @@ const Menu = defineComponent({
         }
 
         return () => (
-            <div class={className}>
+            <div class={className.value}>
                 <MenuContextProvider
                     value={{
                         prefixCls: baseClassName.value,
