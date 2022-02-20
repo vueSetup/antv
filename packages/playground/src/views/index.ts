@@ -1,3 +1,5 @@
 export { default as TestMenu } from './menu'
 export { default as TestDropdown } from './dropdown'
 export { default as TestToolbar } from './toolbar'
+export { default as TestContextMenu } from './context-menu'
+export { default as TestMenubar } from './menubar'

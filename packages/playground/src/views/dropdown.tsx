@@ -1,11 +1,11 @@
 import { defineComponent } from 'vue'
 import { Dropdown } from '@antv/x6-vue-components'
-import '@antv/x6-vue-components/src/dropdown/style'
+import '@antv/x6-vue-components/src/dropdown/style/index.less'
 import { Menu } from '@antv/x6-vue-components'
 import { MenuItem } from '@antv/x6-vue-components/src/menu/Item'
 import { MenuDivider as Divider } from '@antv/x6-vue-components/src/menu/divider'
 import { MenuSubMenu as SubMenu } from '@antv/x6-vue-components/src/menu/submenu'
-import '@antv/x6-vue-components/src/menu/style'
+import '@antv/x6-vue-components/src/menu/style/index.less'
 
 export default defineComponent({
     setup() {
@@ -17,14 +17,18 @@ export default defineComponent({
             </Menu>
         )
         return () => (
-            <>
-                <Dropdown overlay={menu}>
-                    <a href="#">Hover me</a>
-                </Dropdown>
-                <Dropdown overlay={menu} trigger={['contextmenu']}>
-                    <span style={{ userSelect: 'none' }}>Right Click on Me</span>
-                </Dropdown>
-            </>
+            <div style={{ padding: '24px 0 120px 24px' }}>
+                <div>
+                    <Dropdown overlay={menu}>
+                        <a href="#anchor">Hover me</a>
+                    </Dropdown>
+                </div>
+                <div style={{ marginTop: 24 }}>
+                    <Dropdown overlay={menu} trigger={'contextmenu'}>
+                        <span style={{ userSelect: 'none' }}>Right Click on Me</span>
+                    </Dropdown>
+                </div>
+            </div>
         )
     }
 })

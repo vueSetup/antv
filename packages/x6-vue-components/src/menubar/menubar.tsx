@@ -27,7 +27,7 @@ const Menubar = defineComponent({
             state.active = true
         }
 
-        return (
+        return () => (
             <div class={baseClassName.value}>
                 <div class={`${baseClassName.value}-content`}>
                     <div class={`${baseClassName.value}-content-inner`}>

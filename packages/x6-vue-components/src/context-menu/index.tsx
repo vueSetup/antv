@@ -12,7 +12,7 @@ export type ContextMenuProps = ExtractPropTypes<typeof contextMenuProps>
 export const ContextMenu = defineComponent({
     props: contextMenuProps,
     setup(props, { slots }) {
-        return (
+        return () => (
             <Dropdown {...props} overlay={props.menu || props.overlay} trigger="contextmenu">
                 {slots.default?.()}
             </Dropdown>

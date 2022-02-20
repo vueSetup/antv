@@ -4,12 +4,12 @@ import "ant-design-vue/es/message/style"
 import Toolbar from '@antv/x6-vue-components/src/toolbar/toolbar'
 import { ToolbarGroup as Group } from '@antv/x6-vue-components/src/toolbar/group'
 import { ToolbarItem as Item } from '@antv/x6-vue-components/src/toolbar/item'
-import '@antv/x6-vue-components/src/toolbar/style'
+import '@antv/x6-vue-components/src/toolbar/style/index.less'
 import Menu from '@antv/x6-vue-components/src/menu/menu'
 import { MenuItem } from '@antv/x6-vue-components/src/menu/Item'
 import { MenuDivider as Divider } from '@antv/x6-vue-components/src/menu/divider'
 import { MenuSubMenu as SubMenu } from '@antv/x6-vue-components/src/menu/submenu'
-import '@antv/x6-vue-components/src/menu/style'
+import '@antv/x6-vue-components/src/menu/style/index.less'
 import {
     ZoomInOutlined,
     ZoomOutOutlined,
