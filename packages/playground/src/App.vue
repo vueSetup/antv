@@ -2,7 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import { ref } from 'vue'
-import { TestToolbar, TestMenu, TestDropdown } from './test'
+import { TestMenu, TestDropdown, TestToolbar } from './views'
 
 const count = ref(0)
 
@@ -13,7 +13,7 @@ const onClick = () => {
 
 <template>
     <button @click="onClick">{{ count }}</button>
-    <test-menu />
+    <test-toolbar />
 </template>
 
 <style>
