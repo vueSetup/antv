@@ -8,13 +8,13 @@ import {
     toRefs,
     isVNode
 } from 'vue'
-import type { PropType, VNode, ExtractPropTypes } from 'vue'
+import type { PropType, VNodeChild, ExtractPropTypes } from 'vue'
 import { useMenuContext } from './context'
 
 export const menuItemProps = {
     name: String,
-    text: [String, Object] as PropType<String | VNode>,
-    icon: Object as PropType<VNode>,
+    text: [String, Object] as PropType<String | VNodeChild>,
+    icon: [String, Object] as PropType<VNodeChild>,
     hotkey: String,
     active: Boolean,
     hidden: Boolean,
