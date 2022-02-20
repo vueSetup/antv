@@ -1,5 +1,5 @@
 import { defineComponent, computed } from 'vue'
-import type { PropType, ExtractPropTypes } from 'vue'
+import type { PropType, ExtractPropTypes, Plugin } from 'vue'
 import { MenuItem } from './item'
 import { MenuDivider } from './divider'
 import { MenuContextProvider } from './context'
@@ -22,12 +22,20 @@ export type MenuProps = ExtractPropTypes<typeof menuProps>
 const Menu = defineComponent({
     props: menuProps,
     setup(props, { slots, emit }) {
-        const baseClassName = computed(() => `${props.prefixCls}-item`)
+        const baseClassName = computed(() => `${props.prefixCls}-menu`)
 
         const className = computed(() => [
             baseClassName.value,
             { [`${baseClassName.value}-has-icon`]: props.hasIcon }
         ])
+
+        const registerHotkey = (hotkey: string, handler: () => any) => {
+            props.registerHotkey && props.registerHotkey(hotkey, handler)
+        }
+
+        const unregisterHotkey = (hotkey: string, handler: () => any) => {
+            props.unregisterHotkey && props.unregisterHotkey(hotkey, handler)
+        }
 
         const onClick = (name: string, e?: MouseEvent) => {
             if (props.stopPropagation && e) {
@@ -42,8 +50,8 @@ const Menu = defineComponent({
                     value={{
                         prefixCls: baseClassName.value,
                         onClick,
-                        registerHotkey: props.registerHotkey,
-                        unregisterHotkey: props.unregisterHotkey
+                        registerHotkey,
+                        unregisterHotkey
                     }}
                 >
                     {slots.default?.()}

@@ -77,7 +77,9 @@ export const MenuItem = defineComponent({
                     {props.hotkey && (
                         <span class={`${baseClassName.value}-hotkey`}>{props.hotkey}</span>
                     )}
+                    {slots.innerExtra?.()}
                 </button>
+                {slots.outerExtra?.()}
             </div>
         )
     }
