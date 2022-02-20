@@ -26,9 +26,9 @@ const Toolbar = defineComponent({
         const className = computed(() => [
             baseClassName.value,
             {
-                [`${baseClassName}-${props.size}`]: props.size,
-                [`${baseClassName}-align-right`]: props.align === 'right',
-                [`${baseClassName}-hover-effect`]: props.hoverEffect
+                [`${baseClassName.value}-${props.size}`]: props.size,
+                [`${baseClassName.value}-align-right`]: props.align === 'right',
+                [`${baseClassName.value}-hover-effect`]: props.hoverEffect
             }
         ])
 
