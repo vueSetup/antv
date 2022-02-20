@@ -7,10 +7,10 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@ant-design/icons-vue": "^6.0.1",
         "@antv/x6-vue-components": "workspace:*"
     },
     "devDependencies": {
+        "ant-design-vue": "^3.0.0-beta.10",
         "@vitejs/plugin-vue": "^2.2.2",
         "@vitejs/plugin-vue-jsx": "^1.3.7",
         "vite": "^2.8.4",
