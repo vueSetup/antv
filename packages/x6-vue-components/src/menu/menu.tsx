@@ -1,8 +1,8 @@
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, reactive, watchEffect } from 'vue'
 import type { PropType, ExtractPropTypes, Plugin } from 'vue'
 import { MenuItem } from './item'
 import { MenuDivider } from './divider'
-import { MenuContextProvider } from './context'
+import { IMenuContext, MenuContextProvider } from './context'
 import { MenuSubMenu } from './submenu'
 
 export const menuProps = {
@@ -44,18 +44,22 @@ const Menu = defineComponent({
             emit('click', name)
         }
 
+        const context = reactive<IMenuContext>({
+            prefixCls: baseClassName.value,
+            onClick,
+            registerHotkey,
+            unregisterHotkey
+        })
+
+        watchEffect(() => {
+            Object.assign(context, {
+                prefixCls: baseClassName.value
+            })
+        })
+
         return () => (
             <div class={className.value}>
-                <MenuContextProvider
-                    value={{
-                        prefixCls: baseClassName.value,
-                        onClick,
-                        registerHotkey,
-                        unregisterHotkey
-                    }}
-                >
-                    {slots.default?.()}
-                </MenuContextProvider>
+                <MenuContextProvider value={context}>{slots.default?.()}</MenuContextProvider>
             </div>
         )
     }

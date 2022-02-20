@@ -1,6 +1,6 @@
-import { defineComponent, computed, reactive } from 'vue'
+import { defineComponent, computed, reactive, watchEffect } from 'vue'
 import type { PropType, VNodeChild, ExtractPropTypes } from 'vue'
-import { MenubarContextProvider } from './context'
+import { IMenubarContext, MenubarContextProvider } from './context'
 
 export const menubarProps = {
     prefixCls: {
@@ -27,17 +27,24 @@ const Menubar = defineComponent({
             state.active = true
         }
 
+        const context = reactive<IMenubarContext>({
+            prefixCls: baseClassName.value,
+            menubarActived: state.active === true,
+            activeMenubar
+        })
+
+        watchEffect(() => {
+            Object.assign(context, {
+                prefixCls: baseClassName.value,
+                menubarActived: state.active === true
+            })
+        })
+
         return () => (
             <div class={baseClassName.value}>
                 <div class={`${baseClassName.value}-content`}>
                     <div class={`${baseClassName.value}-content-inner`}>
-                        <MenubarContextProvider
-                            value={{
-                                prefixCls: props.prefixCls,
-                                activeMenubar: activeMenubar,
-                                menubarActived: state.active === true
-                            }}
-                        >
+                        <MenubarContextProvider value={context}>
                             {slots.default?.()}
                         </MenubarContextProvider>
                     </div>

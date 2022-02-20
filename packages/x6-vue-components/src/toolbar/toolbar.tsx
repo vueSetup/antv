@@ -1,6 +1,6 @@
-import { computed, defineComponent } from 'vue'
+import { defineComponent, computed, reactive, watchEffect } from 'vue'
 import type { PropType, VNodeChild, ExtractPropTypes } from 'vue'
-import { ToolbarContextProvider } from './context'
+import { IToolbarContext, ToolbarContextProvider } from './context'
 import { ToolbarItem } from './item'
 import { ToolbarGroup } from './group'
 
@@ -36,16 +36,22 @@ const Toolbar = defineComponent({
             emit('click', name, value)
         }
 
+        const context = reactive<IToolbarContext>({
+            prefixCls: baseClassName.value,
+            onClick
+        })
+
+        watchEffect(() => {
+            Object.assign(context, {
+                prefixCls: baseClassName.value
+            })
+        })
+
         return () => (
             <div class={className.value}>
                 <div class={`${baseClassName.value}-content`}>
                     <div class={`${baseClassName.value}-content-inner`}>
-                        <ToolbarContextProvider
-                            value={{
-                                prefixCls: baseClassName.value,
-                                onClick
-                            }}
-                        >
+                        <ToolbarContextProvider value={context}>
                             {slots.default?.()}
                         </ToolbarContextProvider>
                     </div>

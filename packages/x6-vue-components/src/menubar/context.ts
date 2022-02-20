@@ -3,8 +3,8 @@ import { createContext, useContext } from "../composables";
 
 export interface IMenubarContext {
     prefixCls: string
-    activeMenubar: () => void
     menubarActived: boolean
+    activeMenubar: () => void
 }
 
 const contextKey: InjectionKey<IMenubarContext> = Symbol('Menubar')

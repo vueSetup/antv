@@ -1,4 +1,4 @@
-import { defineComponent, computed, reactive } from 'vue'
+import { defineComponent, computed, reactive, watchEffect } from 'vue'
 import type { ExtractPropTypes } from 'vue'
 import { useMenubarContext } from './context'
 
@@ -21,6 +21,10 @@ export const MenubarItem = defineComponent({
         })
 
         const context = useMenubarContext()
+
+        watchEffect(() => {
+            console.log('useMenubarContext', context)
+        })
 
         const currentMenuActived = computed(() => context.menubarActived && state.active)
 
@@ -55,9 +59,11 @@ export const MenubarItem = defineComponent({
             const childNodes = currentTarget.parentElement!.childNodes
             for (let i = 0, l = childNodes.length; i < l; i += 1) {
                 const child = childNodes[i] as HTMLDivElement
-                const popupElem = child.querySelector(`.${popupClassName.value}`)!
-                if (popupElem.contains(toElement)) {
-                    return true
+                if (child.querySelector) {
+                    const popupElem = child.querySelector(`.${popupClassName.value}`)!
+                    if (popupElem.contains(toElement)) {
+                        return true
+                    }
                 }
             }
 
