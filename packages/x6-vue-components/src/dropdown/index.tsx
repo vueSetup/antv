@@ -28,9 +28,9 @@ export const Dropdown = defineComponent({
             const fixedOverlay = <div class={`${prefixCls.value}-overlay`}>{props.overlay}</div>
 
             const dropdownTrigger = cloneVNode(child, {
-                className: `${prefixCls.value}-trigger`,
+                class: `${prefixCls.value}-trigger`,
                 disabled: props.disabled
-            })
+            }, true)
 
             return (
                 <AntdvDropdown {...props} prefixCls={prefixCls.value} overlay={fixedOverlay}>
