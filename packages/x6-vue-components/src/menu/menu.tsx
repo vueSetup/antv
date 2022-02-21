@@ -11,16 +11,17 @@ export const menuProps = {
         default: 'x6'
     },
     hasIcon: Boolean,
-    stopPropagation: Boolean,
-    onClick: Function as PropType<(name: string) => void>,
+    stopPropagation: Boolean,    
     registerHotkey: Function as PropType<(hotkey: string, handler: () => void) => void>,
-    unregisterHotkey: Function as PropType<(hotkey: string, handler: () => void) => void>
+    unregisterHotkey: Function as PropType<(hotkey: string, handler: () => void) => void>,
+    onClick: Function as PropType<(name: string) => void>
 }
 
 export type MenuProps = ExtractPropTypes<typeof menuProps>
 
 const Menu = defineComponent({
     props: menuProps,
+    emits: ['click'],
     setup(props, { slots, emit }) {
         const baseClassName = computed(() => `${props.prefixCls}-menu`)
 

@@ -26,6 +26,7 @@ export type MenuItemProps = ExtractPropTypes<typeof menuItemProps>
 
 export const MenuItem = defineComponent({
     props: menuItemProps,
+    emits: ['click'],
     setup(props, { slots, emit }) {
         const context = useMenuContext()
 

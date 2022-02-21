@@ -25,6 +25,7 @@ export type ToolbarItemProps = ExtractPropTypes<typeof toolbarItemProps>
 
 export const ToolbarItem = defineComponent({
     props: toolbarItemProps,
+    emits: ['click'],
     setup(props, { slots, emit }) {
         const context = useToolbarContext()
 

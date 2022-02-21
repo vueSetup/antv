@@ -20,6 +20,7 @@ export type ToolbarProps = ExtractPropTypes<typeof toolbarProps>
 
 const Toolbar = defineComponent({
     props: toolbarProps,
+    emits: ['click'],
     setup(props, { slots, emit }) {
         const baseClassName = computed(() => `${props.prefixCls}-toolbar`)
 
