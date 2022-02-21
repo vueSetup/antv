@@ -1,4 +1,4 @@
-import { defineComponent, computed, reactive, watchEffect } from 'vue'
+import { defineComponent, computed, reactive, watchEffect, watch } from 'vue'
 import type { PropType, VNodeChild, ExtractPropTypes } from 'vue'
 import { IMenubarContext, MenubarContextProvider } from './context'
 
@@ -23,14 +23,10 @@ const Menubar = defineComponent({
 
         const baseClassName = computed(() => `${props.prefixCls}-menubar`)
 
-        const activeMenubar = () => {
-            state.active = true
-        }
-
         const context = reactive<IMenubarContext>({
-            prefixCls: baseClassName.value,
-            menubarActived: state.active === true,
-            activeMenubar
+            activeMenubar: () => {
+                state.active = true
+            }
         })
 
         watchEffect(() => {

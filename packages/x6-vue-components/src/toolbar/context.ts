@@ -2,7 +2,7 @@ import type { InjectionKey } from "vue"
 import { createContext, useContext } from "../composables";
 
 export interface IToolbarContext {
-    prefixCls: string
+    prefixCls?: string
     onClick: (key: string, value?: any) => void
 }
 

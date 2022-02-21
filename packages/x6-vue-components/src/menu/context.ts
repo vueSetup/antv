@@ -2,7 +2,7 @@ import type { InjectionKey } from "vue"
 import { createContext, useContext } from "../composables";
 
 export interface IMenuContext {
-    prefixCls: string
+    prefixCls?: string
     onClick: (name: string, e?: MouseEvent) => void
     registerHotkey: (hotkey: string, handler: () => any) => void
     unregisterHotkey: (hotkey: string, handler: () => any) => void

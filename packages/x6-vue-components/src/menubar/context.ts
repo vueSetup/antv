@@ -2,8 +2,8 @@ import type { InjectionKey } from "vue"
 import { createContext, useContext } from "../composables";
 
 export interface IMenubarContext {
-    prefixCls: string
-    menubarActived: boolean
+    prefixCls?: string
+    menubarActived?: boolean
     activeMenubar: () => void
 }
 

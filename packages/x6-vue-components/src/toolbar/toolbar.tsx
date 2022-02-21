@@ -37,14 +37,11 @@ const Toolbar = defineComponent({
         }
 
         const context = reactive<IToolbarContext>({
-            prefixCls: baseClassName.value,
             onClick
         })
 
         watchEffect(() => {
-            Object.assign(context, {
-                prefixCls: baseClassName.value
-            })
+            context.prefixCls = baseClassName.value
         })
 
         return () => (

@@ -45,16 +45,13 @@ const Menu = defineComponent({
         }
 
         const context = reactive<IMenuContext>({
-            prefixCls: baseClassName.value,
             onClick,
             registerHotkey,
             unregisterHotkey
         })
 
         watchEffect(() => {
-            Object.assign(context, {
-                prefixCls: baseClassName.value
-            })
+            context.prefixCls = baseClassName.value
         })
 
         return () => (

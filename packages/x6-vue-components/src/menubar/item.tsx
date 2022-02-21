@@ -22,10 +22,6 @@ export const MenubarItem = defineComponent({
 
         const context = useMenubarContext()
 
-        watchEffect(() => {
-            console.log('useMenubarContext', context)
-        })
-
         const currentMenuActived = computed(() => context.menubarActived && state.active)
 
         const baseClassName = computed(() => `${context.prefixCls}-item`)
