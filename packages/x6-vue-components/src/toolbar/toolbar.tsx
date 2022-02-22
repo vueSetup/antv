@@ -22,17 +22,6 @@ const Toolbar = defineComponent({
     props: toolbarProps,
     emits: ['click'],
     setup(props, { slots, emit }) {
-        const baseClassName = computed(() => `${props.prefixCls}-toolbar`)
-
-        const className = computed(() => [
-            baseClassName.value,
-            {
-                [`${baseClassName.value}-${props.size}`]: props.size,
-                [`${baseClassName.value}-align-right`]: props.align === 'right',
-                [`${baseClassName.value}-hover-effect`]: props.hoverEffect
-            }
-        ])
-
         const onClick = (name: string, value?: any) => {
             emit('click', name, value)
         }
@@ -42,23 +31,36 @@ const Toolbar = defineComponent({
         })
 
         watchEffect(() => {
-            context.prefixCls = baseClassName.value
+            context.prefixCls = `${props.prefixCls}-toolbar`
         })
 
-        return () => (
-            <div class={className.value}>
-                <div class={`${baseClassName.value}-content`}>
-                    <div class={`${baseClassName.value}-content-inner`}>
-                        <ToolbarContextProvider value={context}>
-                            {slots.default?.()}
-                        </ToolbarContextProvider>
+        return () => {
+            const baseClassName = `${props.prefixCls}-toolbar`
+
+            const className = [
+                baseClassName,
+                {
+                    [`${baseClassName}-${props.size}`]: props.size,
+                    [`${baseClassName}-align-right`]: props.align === 'right',
+                    [`${baseClassName}-hover-effect`]: props.hoverEffect
+                }
+            ]
+
+            return (
+                <div class={className}>
+                    <div class={`${baseClassName}-content`}>
+                        <div class={`${baseClassName}-content-inner`}>
+                            <ToolbarContextProvider value={context}>
+                                {slots.default?.()}
+                            </ToolbarContextProvider>
+                        </div>
+                        {props.extra && (
+                            <div class={`${baseClassName}-content-extras`}>{props.extra}</div>
+                        )}
                     </div>
-                    {props.extra && (
-                        <div class={`${baseClassName.value}-content-extras`}>{props.extra}</div>
-                    )}
                 </div>
-            </div>
-        )
+            )
+        }
     }
 })
 

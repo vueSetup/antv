@@ -29,18 +29,6 @@ export const ToolbarItem = defineComponent({
     setup(props, { slots, emit }) {
         const context = useToolbarContext()
 
-        const baseClassName = computed(() => `${context.prefixCls}-item`)
-
-        const className = computed(() => [
-            baseClassName.value,
-            {
-                [`${baseClassName.value}-hidden`]: props.hidden,
-                [`${baseClassName.value}-active`]: props.active,
-                [`${baseClassName.value}-disabled`]: props.disabled,
-                [`${baseClassName.value}-dropdown`]: props.dropdown
-            }
-        ])
-
         const processClick = (name = props.name, dropdown = props.dropdown) => {
             if (!props.disabled && !dropdown) {
                 if (name) {
@@ -50,26 +38,38 @@ export const ToolbarItem = defineComponent({
             }
         }
 
+        const onClick = () => processClick()
+
         const onDropdownItemClick = (name?: string) => {
             processClick(name, undefined)
         }
 
         return () => {
+            const baseClassName = `${context.prefixCls}-item`
+
+            const className = [
+                baseClassName,
+                {
+                    [`${baseClassName}-hidden`]: props.hidden,
+                    [`${baseClassName}-active`]: props.active,
+                    [`${baseClassName}-disabled`]: props.disabled,
+                    [`${baseClassName}-dropdown`]: props.dropdown
+                }
+            ]
+
             const children = slots.default?.()
 
             const renderButton = () => {
                 const button = (
-                    <button type="button" class={className.value} onClick={() => processClick()}>
+                    <button type="button" class={className} onClick={onClick}>
                         {props.icon && isVNode(props.icon) && (
-                            <span class={`${baseClassName.value}-icon`}>{props.icon}</span>
+                            <span class={`${baseClassName}-icon`}>{props.icon}</span>
                         )}
                         {(props.text || children) && (
-                            <span class={`${baseClassName.value}-text`}>
-                                {props.text || children}
-                            </span>
+                            <span class={`${baseClassName}-text`}>{props.text || children}</span>
                         )}
                         {props.dropdown && props.dropdownArrow && (
-                            <span class={`${baseClassName.value}-dropdown-arrow`} />
+                            <span class={`${baseClassName}-dropdown-arrow`} />
                         )}
                     </button>
                 )

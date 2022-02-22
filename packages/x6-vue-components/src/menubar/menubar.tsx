@@ -21,8 +21,6 @@ const Menubar = defineComponent({
             active: false
         })
 
-        const baseClassName = computed(() => `${props.prefixCls}-menubar`)
-
         const context = reactive<IMenubarContext>({
             activeMenubar: () => {
                 state.active = true
@@ -31,25 +29,29 @@ const Menubar = defineComponent({
 
         watchEffect(() => {
             Object.assign(context, {
-                prefixCls: baseClassName.value,
+                prefixCls: `${props.prefixCls}-menubar`,
                 menubarActived: state.active === true
             })
         })
 
-        return () => (
-            <div class={baseClassName.value}>
-                <div class={`${baseClassName.value}-content`}>
-                    <div class={`${baseClassName.value}-content-inner`}>
-                        <MenubarContextProvider value={context}>
-                            {slots.default?.()}
-                        </MenubarContextProvider>
+        return () => {
+            const baseClassName = `${props.prefixCls}-menubar`
+
+            return (
+                <div class={baseClassName}>
+                    <div class={`${baseClassName}-content`}>
+                        <div class={`${baseClassName}-content-inner`}>
+                            <MenubarContextProvider value={context}>
+                                {slots.default?.()}
+                            </MenubarContextProvider>
+                        </div>
+                        {props.extra && (
+                            <div class={`${baseClassName}-content-extras`}>{props.extra}</div>
+                        )}
                     </div>
-                    {props.extra && (
-                        <div class={`${baseClassName.value}-content-extras`}>{props.extra}</div>
-                    )}
                 </div>
-            </div>
-        )
+            )
+        }
     }
 })
 

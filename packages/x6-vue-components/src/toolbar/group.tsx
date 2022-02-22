@@ -5,8 +5,10 @@ export const ToolbarGroup = defineComponent({
     setup(props, { slots }) {
         const context = useToolbarContext()
 
-        const className = computed(() => [`${context.prefixCls}-group`])
+        return () => {
+            const className = [`${context.prefixCls}-group`]
 
-        return () => <div class={className.value}>{slots.default?.()}</div>
+            return <div class={className}>{slots.default?.()}</div>
+        }
     }
 })

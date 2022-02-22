@@ -11,7 +11,7 @@ export const menuProps = {
         default: 'x6'
     },
     hasIcon: Boolean,
-    stopPropagation: Boolean,    
+    stopPropagation: Boolean,
     registerHotkey: Function as PropType<(hotkey: string, handler: () => void) => void>,
     unregisterHotkey: Function as PropType<(hotkey: string, handler: () => void) => void>,
     onClick: Function as PropType<(name: string) => void>
@@ -23,13 +23,6 @@ const Menu = defineComponent({
     props: menuProps,
     emits: ['click'],
     setup(props, { slots, emit }) {
-        const baseClassName = computed(() => `${props.prefixCls}-menu`)
-
-        const className = computed(() => [
-            baseClassName.value,
-            { [`${baseClassName.value}-has-icon`]: props.hasIcon }
-        ])
-
         const registerHotkey = (hotkey: string, handler: () => any) => {
             props.registerHotkey && props.registerHotkey(hotkey, handler)
         }
@@ -52,14 +45,20 @@ const Menu = defineComponent({
         })
 
         watchEffect(() => {
-            context.prefixCls = baseClassName.value
+            context.prefixCls = `${props.prefixCls}-menu`
         })
 
-        return () => (
-            <div class={className.value}>
-                <MenuContextProvider value={context}>{slots.default?.()}</MenuContextProvider>
-            </div>
-        )
+        return () => {
+            const baseClassName = `${props.prefixCls}-menu`
+
+            const className = [baseClassName, { [`${baseClassName}-has-icon`]: props.hasIcon }]
+
+            return (
+                <div class={className}>
+                    <MenuContextProvider value={context}>{slots.default?.()}</MenuContextProvider>
+                </div>
+            )
+        }
     }
 })
 

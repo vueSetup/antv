@@ -30,17 +30,6 @@ export const MenuItem = defineComponent({
     setup(props, { slots, emit }) {
         const context = useMenuContext()
 
-        const baseClassName = computed(() => `${context.prefixCls}-item`)
-
-        const className = computed(() => [
-            baseClassName.value,
-            {
-                [`${baseClassName.value}-active`]: props.active,
-                [`${baseClassName.value}-hidden`]: props.hidden,
-                [`${baseClassName.value}-disabled`]: props.disabled
-            }
-        ])
-
         const triggerHandler = (e?: MouseEvent) => {
             if (!props.disabled && !props.hidden) {
                 if (props.name) {
@@ -66,22 +55,35 @@ export const MenuItem = defineComponent({
             }
         })
 
-        return () => (
-            <div class={className.value}>
-                <button type="button" class={`${baseClassName.value}-button`} onClick={onClick}>
-                    {props.icon && isVNode(props.icon) && (
-                        <span class={`${baseClassName.value}-icon`}>{props.icon}</span>
-                    )}
-                    <span class={`${baseClassName.value}-text`}>
-                        {props.text || slots.default?.()}
-                    </span>
-                    {props.hotkey && (
-                        <span class={`${baseClassName.value}-hotkey`}>{props.hotkey}</span>
-                    )}
-                    {slots.innerExtra?.()}
-                </button>
-                {slots.outerExtra?.()}
-            </div>
-        )
+        return () => {
+            const baseClassName = `${context.prefixCls}-item`
+            
+            const className = [
+                baseClassName,
+                {
+                    [`${baseClassName}-active`]: props.active,
+                    [`${baseClassName}-hidden`]: props.hidden,
+                    [`${baseClassName}-disabled`]: props.disabled
+                }
+            ]
+
+            return (
+                <div class={className}>
+                    <button type="button" class={`${baseClassName}-button`} onClick={onClick}>
+                        {props.icon && isVNode(props.icon) && (
+                            <span class={`${baseClassName}-icon`}>{props.icon}</span>
+                        )}
+                        <span class={`${baseClassName}-text`}>
+                            {props.text || slots.default?.()}
+                        </span>
+                        {props.hotkey && (
+                            <span class={`${baseClassName}-hotkey`}>{props.hotkey}</span>
+                        )}
+                        {slots.innerExtra?.()}
+                    </button>
+                    {slots.outerExtra?.()}
+                </div>
+            )
+        }
     }
 })

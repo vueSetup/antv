@@ -16,24 +16,27 @@ export type DropdownProps = ExtractPropTypes<typeof dropdownProps>
 export const Dropdown = defineComponent({
     props: dropdownProps,
     setup(props, { slots }) {
-        const prefixCls = computed(() => `${props.prefixCls}-dropdown`)
-
         return () => {
+            const prefixCls = `${props.prefixCls}-dropdown`
+
+            const fixedOverlay = <div class={`${prefixCls}-overlay`}>{props.overlay}</div>
+
             const children = slots.default?.() || []
+
             const child = children.length === 1 ? children[0] : null
+
             if (!child) {
+                // TODO :: React.Children.only
                 throw Error(`Vue.Children.only`)
             }
-
-            const fixedOverlay = <div class={`${prefixCls.value}-overlay`}>{props.overlay}</div>
-
+            
             const dropdownTrigger = cloneVNode(child, {
-                class: `${prefixCls.value}-trigger`,
+                class: `${prefixCls}-trigger`,
                 disabled: props.disabled
             }, true)
 
             return (
-                <AntdvDropdown {...props} prefixCls={prefixCls.value} overlay={fixedOverlay}>
+                <AntdvDropdown {...props} prefixCls={prefixCls} overlay={fixedOverlay}>
                     {dropdownTrigger}
                 </AntdvDropdown>
             )

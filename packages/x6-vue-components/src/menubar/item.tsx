@@ -24,30 +24,11 @@ export const MenubarItem = defineComponent({
 
         const currentMenuActived = computed(() => context.menubarActived && state.active)
 
-        const baseClassName = computed(() => `${context.prefixCls}-item`)
-
-        const className = computed(() => [
-            baseClassName.value,
-            {
-                [`${baseClassName.value}-hidden`]: props.hidden,
-                [`${baseClassName.value}-hover`]: context.menubarActived,
-                [`${baseClassName.value}-active`]: currentMenuActived.value
-            }
-        ])
-
-        const textClassName = computed(() => [
-            `${baseClassName.value}-text`,
-            {
-                [`${baseClassName.value}-text-active`]: currentMenuActived.value
-            }
-        ])
-
-        const popupClassName = computed(() => `${context.prefixCls}-item-dropdown`)
-
         const isPrevMenuHiddening = (e: MouseEvent) => {
+            // TODO :: popupClassName
             // @ts-ignore
             const toElement = e.toElement
-            if (toElement && toElement.className === popupClassName.value) {
+            if (toElement && toElement.className === `${context.prefixCls}-item-dropdown`) {
                 return true
             }
 
@@ -56,8 +37,9 @@ export const MenubarItem = defineComponent({
             for (let i = 0, l = childNodes.length; i < l; i += 1) {
                 const child = childNodes[i] as HTMLDivElement
                 if (child.querySelector) {
-                    const popupElem = child.querySelector(`.${popupClassName.value}`)!
-                    if (popupElem.contains(toElement)) {
+                    // TODO :: popupClassName
+                    const popupElem = child.querySelector(`${context.prefixCls}-item-dropdown`)!
+                    if (popupElem?.contains(toElement)) {
                         return true
                     }
                 }
@@ -142,13 +124,35 @@ export const MenubarItem = defineComponent({
             active()
         }
 
-        return () => (
-            <div class={className.value} onMouseenter={onMouseEnter} onMouseleave={onMouseLeave}>
-                <div class={textClassName.value} onClick={onClick}>
-                    {props.text}
+        return () => {
+            const baseClassName = `${context.prefixCls}-item`
+
+            const className = [
+                baseClassName,
+                {
+                    [`${baseClassName}-hidden`]: props.hidden,
+                    [`${baseClassName}-hover`]: context.menubarActived,
+                    [`${baseClassName}-active`]: currentMenuActived.value
+                }
+            ]
+
+            const textClassName = [
+                `${baseClassName}-text`,
+                {
+                    [`${baseClassName}-text-active`]: currentMenuActived.value
+                }
+            ]
+
+            const popupClassName = `${baseClassName}-dropdown`
+
+            return (
+                <div class={className} onMouseenter={onMouseEnter} onMouseleave={onMouseLeave}>
+                    <div class={textClassName} onClick={onClick}>
+                        {props.text}
+                    </div>
+                    <div class={popupClassName}>{slots.default?.()}</div>
                 </div>
-                <div class={popupClassName.value}>{slots.default?.()}</div>
-            </div>
-        )
+            )
+        }
     }
 })
