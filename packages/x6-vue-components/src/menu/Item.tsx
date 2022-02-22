@@ -56,29 +56,27 @@ export const MenuItem = defineComponent({
         })
 
         return () => {
+            const { active, disabled, hidden, text, icon, hotkey } = props
+
             const baseClassName = `${context.prefixCls}-item`
-            
+
             const className = [
                 baseClassName,
                 {
-                    [`${baseClassName}-active`]: props.active,
-                    [`${baseClassName}-hidden`]: props.hidden,
-                    [`${baseClassName}-disabled`]: props.disabled
+                    [`${baseClassName}-active`]: active,
+                    [`${baseClassName}-hidden`]: hidden,
+                    [`${baseClassName}-disabled`]: disabled
                 }
             ]
 
             return (
                 <div class={className}>
                     <button type="button" class={`${baseClassName}-button`} onClick={onClick}>
-                        {props.icon && isVNode(props.icon) && (
-                            <span class={`${baseClassName}-icon`}>{props.icon}</span>
+                        {icon && isVNode(icon) && (
+                            <span class={`${baseClassName}-icon`}>{icon}</span>
                         )}
-                        <span class={`${baseClassName}-text`}>
-                            {props.text || slots.default?.()}
-                        </span>
-                        {props.hotkey && (
-                            <span class={`${baseClassName}-hotkey`}>{props.hotkey}</span>
-                        )}
+                        <span class={`${baseClassName}-text`}>{text || slots.default?.()}</span>
+                        {hotkey && <span class={`${baseClassName}-hotkey`}>{hotkey}</span>}
                         {slots.innerExtra?.()}
                     </button>
                     {slots.outerExtra?.()}

@@ -8,15 +8,13 @@ export const MenuSubMenu = defineComponent({
         const context = useMenuContext()
 
         return () => {
-            const baseClassName = `${context.prefixCls}-submenu`
-
-            const children = slots.default?.()
+            const className = `${context.prefixCls}-submenu`
 
             return (
-                <MenuItem {...props} class={baseClassName}>
+                <MenuItem {...props} class={className}>
                     {{
-                        innerExtra: () => <span class={`${baseClassName}-arrow`} />,
-                        outerExtra: () => <div class={`${baseClassName}-menu`}>{children}</div>
+                        innerExtra: () => <span class={`${className}-arrow`} />,
+                        outerExtra: () => <div class={`${className}-menu`}>{slots.default?.()}</div>
                     }}
                 </MenuItem>
             )

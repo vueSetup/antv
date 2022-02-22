@@ -35,14 +35,16 @@ const Toolbar = defineComponent({
         })
 
         return () => {
-            const baseClassName = `${props.prefixCls}-toolbar`
+            const { prefixCls, size, align, hoverEffect, extra } = props
+
+            const baseClassName = `${prefixCls}-toolbar`
 
             const className = [
                 baseClassName,
                 {
-                    [`${baseClassName}-${props.size}`]: props.size,
-                    [`${baseClassName}-align-right`]: props.align === 'right',
-                    [`${baseClassName}-hover-effect`]: props.hoverEffect
+                    [`${baseClassName}-${size}`]: size,
+                    [`${baseClassName}-align-right`]: align === 'right',
+                    [`${baseClassName}-hover-effect`]: hoverEffect
                 }
             ]
 
@@ -54,9 +56,7 @@ const Toolbar = defineComponent({
                                 {slots.default?.()}
                             </ToolbarContextProvider>
                         </div>
-                        {props.extra && (
-                            <div class={`${baseClassName}-content-extras`}>{props.extra}</div>
-                        )}
+                        {extra && <div class={`${baseClassName}-content-extras`}>{extra}</div>}
                     </div>
                 </div>
             )

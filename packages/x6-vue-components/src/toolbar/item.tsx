@@ -45,15 +45,29 @@ export const ToolbarItem = defineComponent({
         }
 
         return () => {
+            const {
+                hidden,
+                active,
+                disabled,
+                dropdown,
+                dropdownArrow,
+                dropdownProps,
+                icon,
+                text,
+                tooltip,
+                tooltipAsTitle,
+                tooltipProps
+            } = props
+
             const baseClassName = `${context.prefixCls}-item`
 
             const className = [
                 baseClassName,
                 {
-                    [`${baseClassName}-hidden`]: props.hidden,
-                    [`${baseClassName}-active`]: props.active,
-                    [`${baseClassName}-disabled`]: props.disabled,
-                    [`${baseClassName}-dropdown`]: props.dropdown
+                    [`${baseClassName}-hidden`]: hidden,
+                    [`${baseClassName}-active`]: active,
+                    [`${baseClassName}-disabled`]: disabled,
+                    [`${baseClassName}-dropdown`]: dropdown
                 }
             ]
 
@@ -62,26 +76,26 @@ export const ToolbarItem = defineComponent({
             const renderButton = () => {
                 const button = (
                     <button type="button" class={className} onClick={onClick}>
-                        {props.icon && isVNode(props.icon) && (
-                            <span class={`${baseClassName}-icon`}>{props.icon}</span>
+                        {icon && isVNode(icon) && (
+                            <span class={`${baseClassName}-icon`}>{icon}</span>
                         )}
-                        {(props.text || children) && (
-                            <span class={`${baseClassName}-text`}>{props.text || children}</span>
+                        {(text || children) && (
+                            <span class={`${baseClassName}-text`}>{text || children}</span>
                         )}
-                        {props.dropdown && props.dropdownArrow && (
+                        {dropdown && dropdownArrow && (
                             <span class={`${baseClassName}-dropdown-arrow`} />
                         )}
                     </button>
                 )
 
-                if (props.tooltip && !props.tooltipAsTitle && !props.disabled) {
+                if (tooltip && !tooltipAsTitle && !disabled) {
                     return (
                         <Tooltip
-                            title={props.tooltip}
+                            title={tooltip}
                             placement="bottom"
                             mouseEnterDelay={0}
                             mouseLeaveDelay={0}
-                            {...props.tooltipProps}
+                            {...tooltipProps}
                         >
                             {button}
                         </Tooltip>
@@ -93,25 +107,26 @@ export const ToolbarItem = defineComponent({
 
             const content = renderButton()
 
-            if (props.dropdown != null && !props.disabled) {
+            if (dropdown != null && !disabled) {
                 const overlay = (
                     <div>
-                        {props.dropdown.type === Menu
-                            ? cloneVNode(props.dropdown, {
+                        {dropdown.type === Menu
+                            ? cloneVNode(dropdown, {
                                   onClick: onDropdownItemClick
                               })
-                            : props.dropdown}
+                            : dropdown}
                     </div>
                 )
 
-                const dropdownProps = {
-                    ...props.dropdownProps,
-                    disabled: props.disabled,
-                    overlay
-                }
-
                 return (
-                    <Dropdown trigger="click" {...dropdownProps}>
+                    <Dropdown
+                        trigger="click"
+                        {...{
+                            ...dropdownProps,
+                            disabled: disabled,
+                            overlay
+                        }}
+                    >
                         {content}
                     </Dropdown>
                 )

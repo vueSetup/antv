@@ -49,9 +49,11 @@ const Menu = defineComponent({
         })
 
         return () => {
-            const baseClassName = `${props.prefixCls}-menu`
+            const { prefixCls, hasIcon } = props
 
-            const className = [baseClassName, { [`${baseClassName}-has-icon`]: props.hasIcon }]
+            const baseClassName = `${prefixCls}-menu`
+
+            const className = [baseClassName, { [`${baseClassName}-has-icon`]: hasIcon }]
 
             return (
                 <div class={className}>

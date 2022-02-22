@@ -1,4 +1,4 @@
-import { defineComponent, computed, reactive, watchEffect } from 'vue'
+import { defineComponent, computed, reactive } from 'vue'
 import type { ExtractPropTypes } from 'vue'
 import { useMenubarContext } from './context'
 
@@ -125,12 +125,14 @@ export const MenubarItem = defineComponent({
         }
 
         return () => {
+            const { hidden, text } = props
+
             const baseClassName = `${context.prefixCls}-item`
 
             const className = [
                 baseClassName,
                 {
-                    [`${baseClassName}-hidden`]: props.hidden,
+                    [`${baseClassName}-hidden`]: hidden,
                     [`${baseClassName}-hover`]: context.menubarActived,
                     [`${baseClassName}-active`]: currentMenuActived.value
                 }
@@ -148,7 +150,7 @@ export const MenubarItem = defineComponent({
             return (
                 <div class={className} onMouseenter={onMouseEnter} onMouseleave={onMouseLeave}>
                     <div class={textClassName} onClick={onClick}>
-                        {props.text}
+                        {text}
                     </div>
                     <div class={popupClassName}>{slots.default?.()}</div>
                 </div>

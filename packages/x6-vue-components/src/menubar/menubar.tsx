@@ -35,19 +35,19 @@ const Menubar = defineComponent({
         })
 
         return () => {
-            const baseClassName = `${props.prefixCls}-menubar`
+            const { prefixCls, extra } = props
+
+            const className = `${prefixCls}-menubar`
 
             return (
-                <div class={baseClassName}>
-                    <div class={`${baseClassName}-content`}>
-                        <div class={`${baseClassName}-content-inner`}>
+                <div class={className}>
+                    <div class={`${className}-content`}>
+                        <div class={`${className}-content-inner`}>
                             <MenubarContextProvider value={context}>
                                 {slots.default?.()}
                             </MenubarContextProvider>
                         </div>
-                        {props.extra && (
-                            <div class={`${baseClassName}-content-extras`}>{props.extra}</div>
-                        )}
+                        {extra && <div class={`${className}-content-extras`}>{extra}</div>}
                     </div>
                 </div>
             )
