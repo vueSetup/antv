@@ -58,6 +58,8 @@ export const MenuItem = defineComponent({
         return () => {
             const { active, disabled, hidden, text, icon, hotkey } = props
 
+            const children = slots.default?.()
+
             const baseClassName = `${context.prefixCls}-item`
 
             const className = [
@@ -75,7 +77,7 @@ export const MenuItem = defineComponent({
                         {icon && isVNode(icon) && (
                             <span class={`${baseClassName}-icon`}>{icon}</span>
                         )}
-                        <span class={`${baseClassName}-text`}>{text || slots.default?.()}</span>
+                        <span class={`${baseClassName}-text`}>{text || children}</span>
                         {hotkey && <span class={`${baseClassName}-hotkey`}>{hotkey}</span>}
                         {slots.innerExtra?.()}
                     </button>
