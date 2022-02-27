@@ -59,6 +59,8 @@ export const ToolbarItem = defineComponent({
                 tooltipProps
             } = props
 
+            const children = slots.default?.()
+
             const baseClassName = `${context.prefixCls}-item`
 
             const className = [
@@ -70,8 +72,6 @@ export const ToolbarItem = defineComponent({
                     [`${baseClassName}-dropdown`]: dropdown
                 }
             ]
-
-            const children = slots.default?.()
 
             const renderButton = () => {
                 const button = (

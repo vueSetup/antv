@@ -127,6 +127,8 @@ export const MenubarItem = defineComponent({
         return () => {
             const { hidden, text } = props
 
+            const children = slots.default?.()
+
             const baseClassName = `${context.prefixCls}-item`
 
             const className = [
@@ -152,7 +154,7 @@ export const MenubarItem = defineComponent({
                     <div class={textClassName} onClick={onClick}>
                         {text}
                     </div>
-                    <div class={popupClassName}>{slots.default?.()}</div>
+                    <div class={popupClassName}>{children}</div>
                 </div>
             )
         }

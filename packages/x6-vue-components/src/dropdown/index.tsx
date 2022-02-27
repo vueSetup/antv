@@ -19,11 +19,11 @@ export const Dropdown = defineComponent({
         return () => {
             const { prefixCls, disabled, overlay } = props
 
+            const children = slots.default?.() || []
+
             const baseClassName = `${prefixCls}-dropdown`
 
             const fixedOverlay = <div class={`${baseClassName}-overlay`}>{overlay}</div>
-
-            const children = slots.default?.() || []
 
             const child = children.length === 1 ? children[0] : null
 

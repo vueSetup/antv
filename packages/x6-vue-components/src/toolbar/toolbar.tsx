@@ -37,6 +37,8 @@ const Toolbar = defineComponent({
         return () => {
             const { prefixCls, size, align, hoverEffect, extra } = props
 
+            const children = slots.default?.()
+
             const baseClassName = `${prefixCls}-toolbar`
 
             const className = [
@@ -53,7 +55,7 @@ const Toolbar = defineComponent({
                     <div class={`${baseClassName}-content`}>
                         <div class={`${baseClassName}-content-inner`}>
                             <ToolbarContextProvider value={context}>
-                                {slots.default?.()}
+                                {children}
                             </ToolbarContextProvider>
                         </div>
                         {extra && <div class={`${baseClassName}-content-extras`}>{extra}</div>}

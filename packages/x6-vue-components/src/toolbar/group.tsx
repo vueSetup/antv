@@ -6,9 +6,11 @@ export const ToolbarGroup = defineComponent({
         const context = useToolbarContext()
 
         return () => {
-            const className = [`${context.prefixCls}-group`]
+            const children = slots.default?.()
 
-            return <div class={className}>{slots.default?.()}</div>
+            const baseClassName = [`${context.prefixCls}-group`]
+
+            return <div class={baseClassName}>{children}</div>
         }
     }
 })

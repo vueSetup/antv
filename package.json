@@ -1,13 +1,12 @@
 {
   "private": true,
-  "repository": "https://github.com/vueSetup/antv",
   "license": "MIT",
   "scripts": {
     "commit": "git-cz",
     "start": "pnpm --filter playground start"
   },
   "dependencies": {
-    "vue": "^3.2.30"
+    "vue": "^3.2.31"
   },
   "devDependencies": {
     "commitizen": "^4.2.4",
@@ -17,5 +16,13 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vueSetup/antv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vueSetup/antv/issues"
+  },
+  "homepage": "https://github.com/vueSetup/antv#readme"
 }

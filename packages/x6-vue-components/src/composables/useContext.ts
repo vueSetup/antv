@@ -20,7 +20,6 @@ export const createContext = <T>(
         },
         setup(props: { value: ContextType<T> }, { slots }) {
             provide(contextKey, readonly(props.value))
-            // provide(contextKey, props.value)
             return () => slots.default?.()
         },
     })
