@@ -8,5 +8,8 @@
     },
     "peerDependencies": {
         "ant-design-vue": ">=3.0.0"
+    },
+    "dependencies": {
+        "clamp": "^1.0.1"
     }
 }
