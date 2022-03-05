@@ -3,8 +3,8 @@ import { message } from 'ant-design-vue'
 import 'ant-design-vue/es/message/style'
 import { Menu } from '@antv/x6-vue-components'
 import { MenuItem } from '@antv/x6-vue-components/src/menu/Item'
-import { MenuDivider as Divider } from '@antv/x6-vue-components/src/menu/divider'
-import { MenuSubMenu as SubMenu } from '@antv/x6-vue-components/src/menu/submenu'
+import { MenuDivider as Divider } from '@antv/x6-vue-components/src/menu/Divider'
+import { MenuSubMenu as SubMenu } from '@antv/x6-vue-components/src/menu/SubMenu'
 import '@antv/x6-vue-components/src/menu/style/index.less'
 
 import {

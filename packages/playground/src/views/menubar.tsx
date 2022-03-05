@@ -3,18 +3,22 @@ import { message } from 'ant-design-vue'
 import 'ant-design-vue/es/message/style'
 
 import { Menubar, Menu } from '@antv/x6-vue-components'
-import { MenubarItem } from '@antv/x6-vue-components/src/menubar/item'
+import { MenubarItem } from '@antv/x6-vue-components/src/menubar/Item'
 import { MenuItem } from '@antv/x6-vue-components/src/menu/Item'
-import { MenuDivider as Divider } from '@antv/x6-vue-components/src/menu/divider'
-import { MenuSubMenu as SubMenu } from '@antv/x6-vue-components/src/menu/submenu'
+import { MenuDivider as Divider } from '@antv/x6-vue-components/src/menu/Divider'
+import { MenuSubMenu as SubMenu } from '@antv/x6-vue-components/src/menu/SubMenu'
 import '@antv/x6-vue-components/src/menubar/style/index.less'
 import '@antv/x6-vue-components/src/menu/style/index.less'
 
 export default defineComponent({
-    setup() {
+    props:{
+        prefixCls:String,
+    },
+    setup(props) {
         const onMenuClick = (name: string) => {
             message.success(`${name} clicked`, 10)
         }
+        
         return () => (
             <div style={{ height: '240px', padding: '32px' }}>
                 <div
@@ -27,7 +31,7 @@ export default defineComponent({
                         margin: '-24px -24px 0 -24px'
                     }}
                 >
-                    <Menubar extra={<div>Extra Component</div>}>
+                    <Menubar prefixCls={props.prefixCls} extra={<div>Extra Component</div>}>
                         <MenubarItem text="File">
                             <Menu onClick={onMenuClick}>
                                 <MenuItem name="newFile" hotkey="Cmd+N">

@@ -5,10 +5,10 @@ import Toolbar from '@antv/x6-vue-components/src/toolbar/toolbar'
 import { ToolbarGroup as Group } from '@antv/x6-vue-components/src/toolbar/group'
 import { ToolbarItem as Item } from '@antv/x6-vue-components/src/toolbar/item'
 import '@antv/x6-vue-components/src/toolbar/style/index.less'
-import Menu from '@antv/x6-vue-components/src/menu/menu'
+import Menu from '@antv/x6-vue-components/src/menu/Menu'
 import { MenuItem } from '@antv/x6-vue-components/src/menu/Item'
-import { MenuDivider as Divider } from '@antv/x6-vue-components/src/menu/divider'
-import { MenuSubMenu as SubMenu } from '@antv/x6-vue-components/src/menu/submenu'
+import { MenuDivider as Divider } from '@antv/x6-vue-components/src/menu/Divider'
+import { MenuSubMenu as SubMenu } from '@antv/x6-vue-components/src/menu/SubMenu'
 import '@antv/x6-vue-components/src/menu/style/index.less'
 import {
     ZoomInOutlined,

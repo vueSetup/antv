@@ -5,14 +5,20 @@ import { ref } from 'vue'
 import { TestMenu, TestDropdown, TestToolbar, TestContextMenu, TestMenubar } from './views'
 
 const count = ref(0)
+const prefixCls = ref('x6')
 
 const onClick = () => {
     count.value += 1
+    prefixCls.value = prefixCls.value === 'x6' ? 'antdv' : 'x6'
 }
 </script>
 
 <template>
     <button @click="onClick">{{ count }}</button>
+    <test-menu />
+    <test-dropdown />
+    <test-toolbar />
+    <test-context-menu />
     <test-menubar />
 </template>
 
