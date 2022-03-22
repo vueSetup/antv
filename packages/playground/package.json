@@ -9,6 +9,7 @@
     "dependencies": {
         "@ant-design/icons-vue": "^6.0.1",
         "@antv/x6-vue-components": "workspace:*",
+        "@antv/f2-vue": "workspace:*",
         "ant-design-vue": "^3.0.0-beta.10"
     },
     "devDependencies": {

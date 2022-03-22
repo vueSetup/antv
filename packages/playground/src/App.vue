@@ -2,7 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import { ref } from 'vue'
-import { TestMenu, TestDropdown, TestToolbar, TestContextMenu, TestMenubar } from './views'
+import { X6Menu, X6Dropdown, X6Toolbar, X6ContextMenu, X6Menubar, F2Vue } from './views'
 
 const count = ref(0)
 const prefixCls = ref('x6')
@@ -15,11 +15,12 @@ const onClick = () => {
 
 <template>
     <button @click="onClick">{{ count }}</button>
-    <test-menu />
-    <test-dropdown />
-    <test-toolbar />
-    <test-context-menu />
-    <test-menubar />
+    <f2-vue />
+    <!-- <x6-menu />
+    <x6-dropdown />
+    <x6-toolbar />
+    <x6-context-menu />
+    <x6-menubar /> -->
 </template>
 
 <style>

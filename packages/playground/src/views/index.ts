@@ -1,5 +1,7 @@
-export { default as TestMenu } from './menu'
-export { default as TestDropdown } from './dropdown'
-export { default as TestToolbar } from './toolbar'
-export { default as TestContextMenu } from './context-menu'
-export { default as TestMenubar } from './menubar'
+export { default as X6Menu } from './x6/menu'
+export { default as X6Dropdown } from './x6/dropdown'
+export { default as X6Toolbar } from './x6/toolbar'
+export { default as X6ContextMenu } from './x6/context-menu'
+export { default as X6Menubar } from './x6/menubar'
+
+export { default as F2Vue } from './f2/vue'
