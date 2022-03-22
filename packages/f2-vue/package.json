@@ -1,0 +1,12 @@
+{
+    "name": "@antv/f2-vue",
+    "version": "1.0.0",
+    "license": "MIT",
+    "main": "./src/index.ts",
+    "dependencies": {
+        "@antv/f2": "^4.0.9"
+    },
+    "peerDependencies": {
+        "vue": ">=3.2.0"
+    }
+}
