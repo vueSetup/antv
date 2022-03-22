@@ -8,7 +8,7 @@ export default defineComponent({
     props: {
         showTooltipMarker: Boolean
     },
-    setup(props, { slots }) {
+    setup(props) {
         watchEffect(() => {
             const component = jsx(Tooltip, { ...props })
             const { push } = inject<CanvasContext>(canvasContextKey, {
@@ -17,6 +17,6 @@ export default defineComponent({
             })
             push(component)
         })
-        return () => <>{slots.default?.()}</>
+        return () => null
     }
 })

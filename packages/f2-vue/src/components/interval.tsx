@@ -11,7 +11,7 @@ export default defineComponent({
         color: String,
         adjust: [String, Object]
     },
-    setup(props, { slots }) {
+    setup(props) {
         watchEffect(() => {
             const component = jsx(Interval, { ...props })
             const { push } = inject<CanvasContext>(canvasContextKey, {
@@ -20,6 +20,6 @@ export default defineComponent({
             })
             push(component)
         })
-        return () => <>{slots.default?.()}</>
+        return () => null
     }
 })

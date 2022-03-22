@@ -5,7 +5,7 @@ import { LegendProps } from '@antv/f2/es/components/legend/withLegend'
 import { canvasContextKey, type CanvasContext } from '../context'
 
 export default defineComponent({
-    setup(props, { slots }) {
+    setup(props) {
         watchEffect(() => {
             const component = jsx(Legend, { ...props })
             const { push } = inject<CanvasContext>(canvasContextKey, {
@@ -14,6 +14,6 @@ export default defineComponent({
             })
             push(component)
         })
-        return () => <>{slots.default?.()}</>
+        return () => null
     }
 })
