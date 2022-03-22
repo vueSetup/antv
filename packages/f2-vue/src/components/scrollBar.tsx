@@ -1,16 +1,16 @@
 import { defineComponent, watchEffect, inject } from 'vue'
 import { jsx } from '@antv/f2/jsx-runtime'
-import { Tooltip, withTooltip, TooltipView } from '@antv/f2'
-import { LegendProps } from '@antv/f2/es/components/legend/withLegend'
+import { ScrollBar, withScrollBar, ScrollBarView } from '@antv/f2'
+import { AxisProps } from '@antv/f2/es/components/axis/types'
 import { canvasContextKey, type CanvasContext } from '../context'
 
 export default defineComponent({
     props: {
-        showTooltipMarker: Boolean
+        field: String
     },
     setup(props) {
         watchEffect(() => {
-            const component = jsx(Tooltip, { ...props })
+            const component = jsx(ScrollBar, { ...props })
             const { push } = inject<CanvasContext>(canvasContextKey, {
                 children: [],
                 push: () => {}
@@ -21,4 +21,4 @@ export default defineComponent({
     }
 })
 
-export { withTooltip, TooltipView }
+export { withScrollBar, ScrollBarView }

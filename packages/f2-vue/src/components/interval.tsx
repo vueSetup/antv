@@ -1,6 +1,6 @@
 import { defineComponent, watchEffect, inject } from 'vue'
 import { jsx } from '@antv/f2/jsx-runtime'
-import { Interval } from '@antv/f2'
+import { Interval, withInterval, IntervalView } from '@antv/f2'
 import { GeometryProps } from '@antv/f2/es/components/geometry/interface'
 import { canvasContextKey, type CanvasContext } from '../context'
 
@@ -23,3 +23,5 @@ export default defineComponent({
         return () => null
     }
 })
+
+export { withInterval, IntervalView }

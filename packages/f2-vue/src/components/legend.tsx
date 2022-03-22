@@ -1,6 +1,6 @@
 import { defineComponent, watchEffect, inject } from 'vue'
 import { jsx } from '@antv/f2/jsx-runtime'
-import { Legend } from '@antv/f2'
+import { Legend, withLegend, LegendView } from '@antv/f2'
 import { LegendProps } from '@antv/f2/es/components/legend/withLegend'
 import { canvasContextKey, type CanvasContext } from '../context'
 
@@ -17,3 +17,5 @@ export default defineComponent({
         return () => null
     }
 })
+
+export { withLegend, LegendView }
