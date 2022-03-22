@@ -1,4 +1,6 @@
+import Canvas from './canvas'
+import Chart from './chart'
+import Timeline from './timeline'
+
 export * from './components'
-export { default as Chart } from './chart'
-export { default as Timeline } from './timeline'
-export { default as Canvas } from './canvas'
+export { Timeline, Canvas, Chart }
