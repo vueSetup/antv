@@ -7,7 +7,8 @@ import { canvasContextKey, type CanvasContext } from './context'
 export default defineComponent({
     props: {
         data: Array as PropType<Record<string, any>[]>,
-        coord: Object
+        coord: Object,
+        scale: Object
     },
     setup(props, { slots }) {
         const context: CanvasContext = {

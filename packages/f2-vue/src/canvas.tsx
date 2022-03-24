@@ -16,7 +16,8 @@ export const canvasProps = {
     width: [Number, String],
     height: [Number, String],
     padding: Array as PropType<number | string | (number | string)[]>,
-    animate: Boolean
+    animate: Boolean,
+    theme: Object
 }
 
 export type CanvasProps = ExtractPropTypes<typeof canvasProps>

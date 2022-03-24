@@ -6,7 +6,10 @@ import { canvasContextKey, type CanvasContext } from '../context'
 
 export default defineComponent({
     props: {
-        field: String
+        x: String,
+        y: String,
+        shape: Object,
+        color: String
     },
     setup(props) {
         watchEffect(() => {
