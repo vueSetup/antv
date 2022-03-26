@@ -7,13 +7,10 @@
         "jsx": "preserve",
         "strict": true,
         "lib": ["esnext", "dom"],
-        "resolveJsonModule": true,
-        // Vite :: TypeScript Compiler Options
-        // https://vitejs.dev/guide/features.html#typescript-compiler-options
-        // "isolatedModules": true,
-        "useDefineForClassFields": true,
+        "resolveJsonModule": true,        
         "paths": {
             "@antdv/components": ["./packages/components/src/index.ts"]
         }
-    }
+    },
+    "exclude": ["scripts", "node_modules", "**/test/**/*.ts", "**/test/**/*.tsx"]
 }

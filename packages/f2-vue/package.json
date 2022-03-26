@@ -3,11 +3,17 @@
     "version": "1.0.0",
     "license": "MIT",
     "main": "src/index.ts",
+    "scripts": {
+        "test": "jest"
+    },
     "dependencies": {
         "vue-demi": "*"
     },
     "devDependencies": {
         "@antv/f2": "^4.0.9",
+        "@babel/preset-env": "^7.16.11",
+        "@babel/preset-typescript": "^7.16.7",
+        "@vue/babel-plugin-jsx": "^1.1.1",
         "@vue/test-utils": "^2.0.0-rc.17",
         "@vue/vue2-jest": "^27.0.0-alpha.4",
         "@vue/vue3-jest": "^27.0.0-alpha.4"

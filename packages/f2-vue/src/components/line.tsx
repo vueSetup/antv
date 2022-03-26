@@ -9,7 +9,7 @@ export default defineComponent({
         x: String,
         y: String,
         adjust: String,
-        shape: Object,
+        shape: [String, Object],
         color: String
     },
     setup(props) {

@@ -13,8 +13,14 @@ import { type CanvasContext, canvasContextKey } from './context'
 
 export const canvasProps = {
     pixelRatio: Number,
-    width: [Number, String],
-    height: [Number, String],
+    width: {
+        type: [Number, String],
+        default: 300
+    },
+    height: {
+        type: [Number, String],
+        default: 225
+    },
     padding: Array as PropType<number | string | (number | string)[]>,
     animate: Boolean,
     theme: Object
@@ -59,8 +65,8 @@ export default defineComponent({
             // resizeObserver.observe(container.parentElement!)
 
             const {
-                pixelRatio = window.devicePixelRatio,
-                width = container.parentElement?.clientWidth
+                pixelRatio = window.devicePixelRatio
+                // width = container.parentElement?.clientWidth
             } = props
 
             console.log('children', context.children)
@@ -68,7 +74,7 @@ export default defineComponent({
             state.canvas = new Canvas({
                 ...props,
                 pixelRatio,
-                width,
+                // width,
                 children: context.children,
                 context: container.getContext('2d') ?? undefined
             })

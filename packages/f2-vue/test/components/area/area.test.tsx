@@ -46,8 +46,7 @@ function formatterPercent(value: number) {
 describe('面积图', () => {
     describe('基础面积图', () => {
         it('基础面积图', async () => {
-            const context = createContext('基础面积图')
-            const canvas = (
+            const App = (
                 <Canvas pixelRatio={1}>
                     <Chart
                         data={data}
@@ -68,14 +67,12 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
-            const wrapper = mount(canvas)
-            console.log(wrapper)
+            const context = createContext(App)
             await delay(1000)
             expect(context).toMatchImageSnapshot()
         })
 
         it('带负值面积图', async () => {
-            const context = createContext('带负值面积图')
             const data = [
                 {
                     month: 'Jan.',
@@ -110,7 +107,7 @@ describe('面积图', () => {
                     value: 60.32
                 }
             ]
-            const canvas = (
+            const App = (
                 <Canvas pixelRatio={1}>
                     <Chart
                         data={data}
@@ -133,14 +130,12 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
-            const wrapper = mount(canvas)
-
+            const context = createContext(App)
             await delay(1000)
             expect(context).toMatchImageSnapshot()
         })
 
         it('带负值面积图(x基线不为0)', async () => {
-            const context = createContext('带负值面积图(x基线不为0)')
             const data = [
                 {
                     month: 'Jan.',
@@ -175,7 +170,7 @@ describe('面积图', () => {
                     value: 60.32
                 }
             ]
-            const canvas = (
+            const App = (
                 <Canvas pixelRatio={1}>
                     <Chart
                         data={data}
@@ -195,14 +190,12 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
-            const wrapper = mount(canvas)
-
+            const context = createContext(App)
             await delay(1000)
             expect(context).toMatchImageSnapshot()
         })
 
         it('渐变填充面积图', async () => {
-            const context = createContext('渐变填充面积图')
             const data = [
                 {
                     time: '2016-08-08 00:00:00',
@@ -241,7 +234,7 @@ describe('面积图', () => {
                     tem: 12
                 }
             ]
-            const canvas = (
+            const App = (
                 <Canvas pixelRatio={1}>
                     <Chart
                         data={data}
@@ -262,8 +255,7 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
-            const wrapper = mount(canvas)
-
+            const context = createContext(App)
             await delay(1000)
             expect(context).toMatchImageSnapshot()
         })
@@ -271,7 +263,6 @@ describe('面积图', () => {
 
     describe('层叠面积图', () => {
         it('层叠面积图', async () => {
-            const context = createContext('层叠面积图')
             // const areaRef = { current: null }
             const data = [
                 {
@@ -770,7 +761,7 @@ describe('面积图', () => {
                     date: '2011-11-02'
                 }
             ]
-            const canvas = (
+            const App = (
                 <Canvas pixelRatio={1}>
                     <Chart
                         data={data}
@@ -795,8 +786,7 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
-            const wrapper = mount(canvas)
-
+            const context = createContext(App)
             await delay(1000)
             expect(context).toMatchImageSnapshot()
         })
@@ -806,8 +796,7 @@ describe('面积图', () => {
                 'https://gw.alipayobjects.com/os/antfincdn/RJW3vmCf7v/area-none.json'
             )
             const data = await res.json()
-            const context = createContext('区域图(存在空值)')
-            const canvas = (
+            const App = (
                 <Canvas pixelRatio={1}>
                     <Chart
                         data={data}
@@ -825,14 +814,12 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
-            const wrapper = mount(canvas)
-
+            const context = createContext(App)
             await delay(1000)
             expect(context).toMatchImageSnapshot()
         })
 
         it('百分比层叠面积图', async () => {
-            const context = createContext('百分比层叠面积图')
             const data = [
                 {
                     country: 'Asia',
@@ -961,7 +948,7 @@ describe('面积图', () => {
                     percent: 0.08196293395980161
                 }
             ]
-            const canvas = (
+            const App = (
                 <Canvas pixelRatio={1}>
                     <Chart
                         data={data}
@@ -970,7 +957,7 @@ describe('面积图', () => {
                                 range: [0, 1]
                             },
                             percent: {
-                                formatter: (val) => formatterPercent(val),
+                                formatter: (value: number) => formatterPercent(value),
                                 alias: 'percent(%)'
                             }
                         }}
@@ -983,8 +970,7 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
-            const wrapper = mount(canvas)
-
+            const context = createContext(App)
             await delay(1000)
             expect(context).toMatchImageSnapshot()
         })
