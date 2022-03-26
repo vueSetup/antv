@@ -23,13 +23,9 @@ export const canvasProps = {
 export type CanvasProps = ExtractPropTypes<typeof canvasProps>
 
 export default defineComponent({
-    props: {
-        ...canvasProps,
-        children: Array as PropType<JSX.Element[]>
-    },
-    setup(props, { slots, emit }) {
+    props: canvasProps,
+    setup(props, { slots, expose }) {
         const containerRef = shallowRef<HTMLCanvasElement>()
-
         const state = shallowReactive<{ canvas: Canvas | null }>({
             canvas: null
         })
@@ -40,6 +36,7 @@ export default defineComponent({
                 context.children.push(component)
             }
         }
+
         provide(canvasContextKey, context)
 
         // const resizeObserver = new ResizeObserver(

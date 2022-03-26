@@ -10,7 +10,7 @@
         "resolveJsonModule": true,
         // Vite :: TypeScript Compiler Options
         // https://vitejs.dev/guide/features.html#typescript-compiler-options
-        "isolatedModules": true,
+        // "isolatedModules": true,
         "useDefineForClassFields": true,
         "paths": {
             "@antdv/components": ["./packages/components/src/index.ts"]

@@ -8,6 +8,7 @@ export default defineComponent({
     props: {
         x: String,
         y: String,
+        adjust: String,
         shape: Object,
         color: String
     },
