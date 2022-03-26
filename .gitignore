@@ -1,5 +1,6 @@
 # Build
 dist
+__diff_output__
 
 # Config
 .npmrc
