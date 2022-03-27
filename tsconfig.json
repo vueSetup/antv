@@ -9,7 +9,7 @@
         "jsx": "preserve",
         "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
         // @antv/f2:tsconfig.json
-        // "declaration": true,
+        "declaration": true,
         // "skipLibCheck": false,
         // "useDefineForClassFields": false
     },

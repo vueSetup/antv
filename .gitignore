@@ -1,5 +1,7 @@
 # Build
 dist
+es
+lib
 __diff_output__
 
 # Config
