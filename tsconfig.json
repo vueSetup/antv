@@ -4,13 +4,10 @@
         "module": "esnext",
         "moduleResolution": "node",
         "esModuleInterop": true,
-        "jsx": "preserve",
         "strict": true,
-        "lib": ["esnext", "dom"],
-        "resolveJsonModule": true,        
-        "paths": {
-            "@antdv/components": ["./packages/components/src/index.ts"]
-        }
+        "resolveJsonModule": true,
+        "jsx": "preserve",
+        "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
     },
     "exclude": ["scripts", "node_modules", "**/test/**/*.ts", "**/test/**/*.tsx"]
 }

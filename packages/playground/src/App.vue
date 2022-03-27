@@ -24,7 +24,7 @@ const onClick = () => {
 
 <template>
     <button @click="onClick">{{ count }}</button>
-    <f2-line />
+    <f2-vue />
     <!-- <x6-menu />
     <x6-dropdown />
     <x6-toolbar />
