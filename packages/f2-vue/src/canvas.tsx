@@ -6,8 +6,8 @@ import {
     onBeforeUnmount,
     watch,
     provide
-} from 'vue'
-import type { PropType, ExtractPropTypes } from 'vue'
+} from 'vue-demi'
+import type { PropType, ExtractPropTypes } from 'vue-demi'
 import { Canvas } from '@antv/f2'
 import { type CanvasContext, canvasContextKey } from './context'
 

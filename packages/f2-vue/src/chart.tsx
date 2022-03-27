@@ -1,4 +1,4 @@
-import { defineComponent, watchEffect, provide, inject, type PropType } from 'vue'
+import { defineComponent, watchEffect, provide, inject, type PropType } from 'vue-demi'
 import { jsxs } from '@antv/f2/jsx-runtime'
 import { Chart } from '@antv/f2'
 import { Props as ChartProps } from '@antv/f2/es/chart'

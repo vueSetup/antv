@@ -1,4 +1,4 @@
-import { defineComponent, watchEffect, inject } from 'vue'
+import { defineComponent, watchEffect, inject } from 'vue-demi'
 import { jsx } from '@antv/f2/jsx-runtime'
 import { RectGuide } from '@antv/f2'
 import { LegendProps } from '@antv/f2/es/components/legend/withLegend'

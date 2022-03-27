@@ -1,4 +1,4 @@
-import { defineComponent, watchEffect, inject } from 'vue'
+import { defineComponent, watchEffect, inject } from 'vue-demi'
 import { jsx } from '@antv/f2/jsx-runtime'
 import { Interval, withInterval, IntervalView } from '@antv/f2'
 import { GeometryProps } from '@antv/f2/es/components/geometry/interface'
