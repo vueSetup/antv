@@ -13,6 +13,9 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     define: {
       'process.env.BASE_URL': JSON.stringify(env.VITE_BASE_URL)
     },
+    optimizeDeps: {
+      exclude: ['vue-demi']
+    },
     plugins: [vue(), vuejsx()],
     resolve: {
       alias: {
