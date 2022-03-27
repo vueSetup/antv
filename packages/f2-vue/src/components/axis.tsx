@@ -6,7 +6,15 @@ import { canvasContextKey, type CanvasContext } from '../context'
 
 export default defineComponent({
     props: {
-        field: String
+        field: String,
+        min: Number,
+        max: Number,
+        style: Object,
+        formatter: Function,
+        visible: {
+            type: Boolean,
+            default: true
+        }
     },
     setup(props) {
         watchEffect(() => {

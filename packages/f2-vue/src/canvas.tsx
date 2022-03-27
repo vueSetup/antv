@@ -69,7 +69,7 @@ export default defineComponent({
                 // width = container.parentElement?.clientWidth
             } = props
 
-            console.log('children', context.children)
+            // console.log('children', context.children)
 
             state.canvas = new Canvas({
                 ...props,

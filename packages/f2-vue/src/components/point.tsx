@@ -6,6 +6,9 @@ import { canvasContextKey, type CanvasContext } from '../context'
 
 export default defineComponent({
     props: {
+        x: String,
+        y: String,
+        color: String,
         field: String
     },
     setup(props) {

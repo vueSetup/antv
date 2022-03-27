@@ -8,8 +8,9 @@ export default defineComponent({
     props: {
         x: String,
         y: String,
-        color: String,
-        adjust: [String, Object]
+        color: [String, Object],
+        adjust: [String, Object],
+        startOnZero: Boolean
     },
     setup(props) {
         watchEffect(() => {
