@@ -5,16 +5,16 @@ import { LegendProps } from '@antv/f2/es/components/legend/withLegend'
 import { canvasContextKey, type CanvasContext } from '../context'
 
 export default defineComponent({
-    props:{
-        center:Object,
-        startAngle:Number,
-        endAngle:Number,
-        percent:Number,
-        r:String,
-        tickCount:Number,
-        tickOffset:String,
-        tickLength:String
-    }
+    props: {
+        center: Object,
+        startAngle: Number,
+        endAngle: Number,
+        percent: Number,
+        r: String,
+        tickCount: Number,
+        tickOffset: String,
+        tickLength: String
+    },
     setup(props) {
         watchEffect(() => {
             const component = jsx(Gauge, { ...props })
