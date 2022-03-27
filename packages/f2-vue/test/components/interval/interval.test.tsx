@@ -1,7 +1,6 @@
 import { ref } from 'vue'
 import { Canvas, Chart, Interval, Axis } from '../../../src'
 import { createContext, delay } from '../../util'
-const context = createContext()
 
 const data = [
     { genre: 'Sports', sold: 275 },
@@ -51,6 +50,7 @@ describe('Interval', () => {
                 </Chart>
             </Canvas>
         )
+
         const context = createContext(App)
         await delay(1000)
         expect(context).toMatchImageSnapshot()
@@ -103,8 +103,8 @@ describe('Interval', () => {
                 </Chart>
             </Canvas>
         )
-        const context = createContext(App)
 
+        const context = createContext(App)
         const timeScale = chartRef.value.scale.getScale('time')
         const { range } = timeScale
         expect(range[0]).toBeGreaterThan(0)

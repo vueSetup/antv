@@ -1,9 +1,6 @@
-import { jsx } from '../../../../src'
-import { Polar, Rect } from '../../../../src/coord'
 import { Canvas, Chart } from '../../../../src'
 import { Interval, Axis, Legend, Tooltip } from '../../../../src/components'
 import { createContext, delay } from '../../../util'
-import { ref } from 'vue'
 
 describe('柱状图示例', () => {
     // 基础

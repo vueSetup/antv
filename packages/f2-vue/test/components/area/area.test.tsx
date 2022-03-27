@@ -67,6 +67,7 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
+            
             const context = createContext(App)
             await delay(1000)
             expect(context).toMatchImageSnapshot()
@@ -130,8 +131,9 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
+
             const context = createContext(App)
-            await delay(1000)
+            await delay(2000)
             expect(context).toMatchImageSnapshot()
         })
 
@@ -190,6 +192,7 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
+
             const context = createContext(App)
             await delay(1000)
             expect(context).toMatchImageSnapshot()
@@ -255,8 +258,9 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
+
             const context = createContext(App)
-            await delay(1000)
+            await delay(2000)
             expect(context).toMatchImageSnapshot()
         })
     })
@@ -786,8 +790,9 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
+            
             const context = createContext(App)
-            await delay(1000)
+            await delay(2000)
             expect(context).toMatchImageSnapshot()
         })
 
@@ -814,6 +819,7 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
+
             const context = createContext(App)
             await delay(1000)
             expect(context).toMatchImageSnapshot()
@@ -970,8 +976,9 @@ describe('面积图', () => {
                     </Chart>
                 </Canvas>
             )
+
             const context = createContext(App)
-            await delay(1000)
+            await delay(2000)
             expect(context).toMatchImageSnapshot()
         })
     })

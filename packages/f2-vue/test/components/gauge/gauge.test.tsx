@@ -1,6 +1,5 @@
 import { Canvas, Gauge } from '../../../src';
 import { createContext, delay } from '../../util';
-const context = createContext();
 
 describe('Gauge', () => {
   it('render', async () => {
