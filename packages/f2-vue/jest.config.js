@@ -1,6 +1,5 @@
 const config = require('../../jest.config')
 
-/** @type {import('ts-jest').InitialOptionsTsJest} */
 module.exports = {
     ...config,
     setupFilesAfterEnv: ['../../jest-setup.js'],
