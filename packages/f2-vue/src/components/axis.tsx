@@ -9,6 +9,7 @@ export default defineComponent({
         field: String,
         min: Number,
         max: Number,
+        tickCount: Number,
         style: Object,
         formatter: Function,
         visible: {

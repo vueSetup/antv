@@ -5,6 +5,11 @@ import { LegendProps } from '@antv/f2/es/components/legend/withLegend'
 import { canvasContextKey, type CanvasContext } from '../context'
 
 export default defineComponent({
+    props: {
+        x: String,
+        y: String,
+        color: [String, Array]
+    },
     setup(props) {
         watchEffect(() => {
             const component = jsx(Legend, { ...props })

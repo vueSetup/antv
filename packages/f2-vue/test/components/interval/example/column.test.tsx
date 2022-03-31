@@ -50,7 +50,7 @@ describe('柱状图示例', () => {
         )
 
         const context = createContext(App)
-        await delay(1000)
+        await delay(2000)
         expect(context).toMatchImageSnapshot()
     })
 
@@ -98,7 +98,7 @@ describe('柱状图示例', () => {
         )
 
         const context = createContext(App)
-        await delay(1000)
+        await delay(2000)
         expect(context).toMatchImageSnapshot()
     })
 
@@ -141,7 +141,7 @@ describe('柱状图示例', () => {
         )
 
         const context = createContext(App)
-        await delay(1000)
+        await delay(2000)
         expect(context).toMatchImageSnapshot()
     })
 
@@ -247,7 +247,7 @@ describe('柱状图示例', () => {
         )
 
         const context = createContext(App)
-        await delay(1000)
+        await delay(2000)
         expect(context).toMatchImageSnapshot()
     })
 
@@ -368,7 +368,7 @@ describe('柱状图示例', () => {
         )
 
         const context = createContext(App)
-        await delay(1000)
+        await delay(2000)
         expect(context).toMatchImageSnapshot()
     })
 
@@ -466,7 +466,7 @@ describe('柱状图示例', () => {
         )
 
         const context = createContext(App)
-        await delay(1000)
+        await delay(2000)
         expect(context).toMatchImageSnapshot()
     })
 
@@ -580,7 +580,7 @@ describe('柱状图示例', () => {
         )
 
         const context = createContext(App)
-        await delay(1000)
+        await delay(2000)
         expect(context).toMatchImageSnapshot()
     })
 

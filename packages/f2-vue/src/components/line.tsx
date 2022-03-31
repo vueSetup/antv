@@ -10,7 +10,8 @@ export default defineComponent({
         y: String,
         adjust: String,
         shape: [String, Object],
-        color: String
+        color: String,
+        lineWidth: String
     },
     setup(props) {
         watchEffect(() => {
