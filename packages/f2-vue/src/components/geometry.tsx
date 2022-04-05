@@ -29,7 +29,7 @@ export type SelectionProps = ExtractPropTypes<typeof selectionProps>
 
 export const geometryProps = {
     ...selectionProps,
-    adjust: Object as PropType<AdjustConfig>,
+    adjust: [String, Object] as PropType<AdjustConfig>,
     chart: Object as PropType<typeof Chart>,
     coord: Object as PropType<typeof Coord>,
     startOnZero: Boolean,
