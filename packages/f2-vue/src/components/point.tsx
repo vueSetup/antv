@@ -1,17 +1,17 @@
-import { defineComponent, watchEffect, inject } from 'vue-demi'
+import { defineComponent, watchEffect, inject, type ExtractPropTypes } from 'vue-demi'
 import { jsx } from '@antv/f2/jsx-runtime'
 import { Point, withPoint, PointView } from '@antv/f2'
-import { AxisProps } from '@antv/f2/es/components/axis/types'
+import { geometryProps } from './geometry'
 import { canvasContextKey, type CanvasContext } from '../context'
 
+export const pointProps = {
+    ...geometryProps
+}
+
+export type PointProps = ExtractPropTypes<typeof pointProps>
+
 export default defineComponent({
-    props: {
-        x: String,
-        y: String,
-        color: [String, Object],
-        field: String,
-        size: [String, Object]
-    },
+    props: pointProps,
     setup(props) {
         watchEffect(() => {
             const component = jsx(Point, { ...props })

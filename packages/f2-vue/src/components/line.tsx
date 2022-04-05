@@ -10,7 +10,7 @@ import { Line, withLine, LineView } from '@antv/f2'
 import { geometryProps } from './geometry'
 import { canvasContextKey, type CanvasContext } from '../context'
 
-const lineProps = {
+export const lineProps = {
     ...geometryProps,
     connectNulls: Boolean,
     endView: Function as PropType<(origin: any) => JSX.Element>

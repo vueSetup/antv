@@ -9,10 +9,7 @@ import { jsx } from '@antv/f2/jsx-runtime'
 import { Legend, withLegend, LegendView, type Types } from '@antv/f2'
 import { canvasContextKey, type CanvasContext } from '../context'
 
-/**
- * import type { LegendProps } from '@antv/f2/es/components/legend/withLegend'
- */
-export interface LegendItem {
+interface LegendItem {
     /**
      * 标记颜色。
      */
@@ -51,6 +48,7 @@ export const legendProps = {
     itemFormatter: Function as PropType<(value: string) => string>
 }
 
+// import type { LegendProps } from '@antv/f2/es/components/legend/withLegend'
 export type LegendProps = ExtractPropTypes<typeof legendProps>
 
 export default defineComponent({
