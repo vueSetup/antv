@@ -36,7 +36,12 @@ export const geometryProps = {
     style: Object as PropType<Record<string, any>>,
     animation: Object as PropType<AnimationCycle>,
     x: String,
-    y: String
+    y: String,
+    shape: [String, Object],
+    lineWidth: String,
+    color: [String, Object],
+    size: String,
+    connectNulls: Boolean
 }
 
 // import type { GeometryProps } from '@antv/f2/es/components/geometry/interface'
