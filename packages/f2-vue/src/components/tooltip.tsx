@@ -6,7 +6,15 @@ import { canvasContextKey, type CanvasContext } from '../context'
 
 export default defineComponent({
     props: {
-        showTooltipMarker: Boolean
+        alwaysShow: Boolean,
+        showTooltipMarker: Boolean,
+        snap: Boolean,
+        showCrosshairs: Boolean,
+        defaultItem: Object,
+        onChange: Function,
+        crosshairsType: String,
+        showXTip: Boolean,
+        showYTip: Boolean
     },
     setup(props) {
         watchEffect(() => {

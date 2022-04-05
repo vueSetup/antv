@@ -9,7 +9,8 @@ export default defineComponent({
         x: String,
         y: String,
         color: String,
-        field: String
+        field: String,
+        size: [String, Object]
     },
     setup(props) {
         watchEffect(() => {
