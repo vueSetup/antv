@@ -1,18 +1,26 @@
-import { defineComponent, watchEffect, inject } from 'vue-demi'
+import {
+    defineComponent,
+    watchEffect,
+    inject,
+    type PropType,
+    type ExtractPropTypes
+} from 'vue-demi'
 import { jsx } from '@antv/f2/jsx-runtime'
 import { Line, withLine, LineView } from '@antv/f2'
-import { AxisProps } from '@antv/f2/es/components/axis/types'
+import { geometryProps } from './geometry'
 import { canvasContextKey, type CanvasContext } from '../context'
 
+const lineProps = {
+    ...geometryProps,
+    connectNulls: Boolean,
+    endView: Function as PropType<(origin: any) => JSX.Element>
+}
+
+// import { LineProps } from "@antv/f2/es/components/line/types"
+export type LineProps = ExtractPropTypes<typeof lineProps>
+
 export default defineComponent({
-    props: {
-        x: String,
-        y: String,
-        adjust: String,
-        shape: [String, Object],
-        color: String,
-        lineWidth: String
-    },
+    props: geometryProps,
     setup(props) {
         watchEffect(() => {
             const component = jsx(Line, { ...props })
