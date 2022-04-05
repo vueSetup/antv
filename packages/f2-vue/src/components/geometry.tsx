@@ -13,15 +13,42 @@ import Coord from '../coord'
 import { canvasContextKey, type CanvasContext } from '../context'
 
 type StyleType = (record: any) => Types.ShapeAttrs
+
 export const selectionProps = {
-    selection: Object as PropType<{
-        triggerOn?: 'click' | 'press' | string
-        type?: 'single' | 'multiple'
-        defaultSelected?: any[]
-        selectedStyle?: Types.ShapeAttrs | StyleType
-        unSelectedStyle?: Types.ShapeAttrs | StyleType
-        cancelable?: boolean
-    }>
+    selection: {
+        type: Object as PropType<{
+            /**
+             * 设置单选/多选， 默认为 single（单选），可选值： 'single' | 'multiple'
+             */
+            type: 'single' | 'multiple'
+            /**
+             * 触发的事件，默认为 click，可选 'click' | 'press'
+             */
+            triggerOn: 'click' | 'press' | string
+            /**
+             * 默认的选中项，可设置多个
+             */
+            defaultSelected: Record<string, any>[]
+            /**
+             * 选中的样式，可设置图形属性或者函数
+             */
+            selectedStyle?: Types.ShapeAttrs | StyleType
+            /**
+             * 非选中的样式，可设置图形属性或者函数
+             */
+            unSelectedStyle?: Types.ShapeAttrs | StyleType
+            /**
+             * 是否可取消，单选下表现为选择和反选，默认为 true
+             */
+            cancelable: boolean
+        }>,
+        default: {
+            type: 'single',
+            triggerOn: 'click',
+            defaultSelected: [],
+            cancelable: true
+        }
+    }
 }
 
 // import type { SelectionProps } from "@antv/f2/es/components/geometry/selection"
@@ -29,19 +56,21 @@ export type SelectionProps = ExtractPropTypes<typeof selectionProps>
 
 export const geometryProps = {
     ...selectionProps,
+    // TODO :: DATA ??
+    data: Array as PropType<Record<string, any>>,
     adjust: Object as PropType<AdjustConfig>,
-    chart: Object as PropType<typeof Chart>,
-    coord: Object as PropType<typeof Coord>,
     startOnZero: Boolean,
     style: Object as PropType<Record<string, any>>,
     animation: Object as PropType<AnimationCycle>,
+    coord: Object as PropType<typeof Coord>,
+    chart: Object as PropType<typeof Chart>,
+    // TODO :: ??
     x: String,
     y: String,
-    shape: [String, Object],
-    lineWidth: String,
-    color: [String, Object],
     size: String,
-    connectNulls: Boolean
+    color: [String, Object],
+    shape: [String, Object],
+    lineWidth: String
 }
 
 // import type { GeometryProps } from '@antv/f2/es/components/geometry/interface'

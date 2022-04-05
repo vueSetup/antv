@@ -1,18 +1,18 @@
-import { defineComponent, watchEffect, inject } from 'vue-demi'
+import { defineComponent, watchEffect, inject, type ExtractPropTypes } from 'vue-demi'
 import { jsx } from '@antv/f2/jsx-runtime'
 import { Area, withArea, AreaView } from '@antv/f2'
-import { AxisProps } from '@antv/f2/es/components/axis/types'
+import { geometryProps } from './geometry'
 import { canvasContextKey, type CanvasContext } from '../context'
 
+export const areaProps = {
+    ...geometryProps,
+    connectNulls: Boolean
+}
+
+export type AreaProps = ExtractPropTypes<typeof areaProps>
+
 export default defineComponent({
-    props: {
-        x: String,
-        y: String,
-        color: [String, Array],
-        adjust: String,
-        shape: String,
-        startOnZero: Boolean
-    },
+    props: areaProps,
     setup(props) {
         watchEffect(() => {
             const component = jsx(Area, { ...props })

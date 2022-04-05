@@ -1,17 +1,21 @@
-import { defineComponent, watchEffect, inject } from 'vue-demi'
+import { defineComponent, watchEffect, inject, type ExtractPropTypes } from 'vue-demi'
 import { jsx } from '@antv/f2/jsx-runtime'
 import { Interval, withInterval, IntervalView } from '@antv/f2'
-import { GeometryProps } from '@antv/f2/es/components/geometry/interface'
+import { geometryProps } from './geometry'
 import { canvasContextKey, type CanvasContext } from '../context'
 
+const intervalProps = {
+    ...geometryProps,
+    /**
+     * 大小比例，范围 [0, 1], 比如柱状图默认为 0.5, 表示柱子和空白处各占 50%
+     */
+    sizeRatio: Number
+}
+
+export type IntervalProps = ExtractPropTypes<typeof intervalProps>
+
 export default defineComponent({
-    props: {
-        x: String,
-        y: String,
-        color: [String, Object],
-        adjust: [String, Object],
-        startOnZero: Boolean
-    },
+    props: intervalProps,
     setup(props) {
         watchEffect(() => {
             const component = jsx(Interval, { ...props })
