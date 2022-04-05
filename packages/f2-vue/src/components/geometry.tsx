@@ -58,7 +58,7 @@ export const geometryProps = {
     ...selectionProps,
     // TODO :: DATA ??
     data: Array as PropType<Record<string, any>>,
-    adjust: Object as PropType<AdjustConfig>,
+    adjust: [String, Object] as PropType<AdjustConfig>,
     startOnZero: Boolean,
     style: Object as PropType<Record<string, any>>,
     animation: Object as PropType<AnimationCycle>,
@@ -67,7 +67,7 @@ export const geometryProps = {
     // TODO :: ??
     x: String,
     y: String,
-    size: String,
+    size: [String, Object] as PropType<string | Record<string, any>>,
     color: [String, Object],
     shape: [String, Object],
     lineWidth: String
