@@ -1,6 +1,5 @@
 import { defineComponent, watchEffect, inject, type ExtractPropTypes } from 'vue-demi'
-import { jsx } from '@antv/f2/jsx-runtime'
-import { Interval, withInterval, IntervalView } from '@antv/f2'
+import { Interval, withInterval, IntervalView, jsx } from '@antv/f2'
 import { geometryProps } from './geometry'
 import { canvasContextKey, type CanvasContext } from '../context'
 

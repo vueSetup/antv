@@ -1,18 +1,16 @@
-import { defineComponent, watchEffect, inject } from 'vue-demi'
-import { jsx } from '@antv/f2/jsx-runtime'
-import { PointGuide } from '@antv/f2'
-import { LegendProps } from '@antv/f2/es/components/legend/withLegend'
+import { defineComponent, watchEffect, inject, type ExtractPropTypes } from 'vue-demi'
+import { PointGuide, jsx } from '@antv/f2'
 import { canvasContextKey, type CanvasContext } from '../../context'
 
+export const pointGuideProps = {
+    offsetX: Number,
+    offsetY: Number
+}
+
+export type PointGuideProps = ExtractPropTypes<typeof pointGuideProps>
+
 export default defineComponent({
-    props: {
-        records: Array,
-        onClick: Function,
-        content: String,
-        attrs: Object,
-        offsetX: Number,
-        offsetY: Number
-    },
+    props: pointGuideProps,
     setup(props) {
         watchEffect(() => {
             const component = jsx(PointGuide, { ...props })

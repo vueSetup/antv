@@ -1,7 +1,5 @@
 import { defineComponent, watchEffect, inject } from 'vue-demi'
-import { jsx } from '@antv/f2/jsx-runtime'
-import { Gauge, withGauge, GaugeView } from '@antv/f2'
-import { LegendProps } from '@antv/f2/es/components/legend/withLegend'
+import { Gauge, withGauge, GaugeView, jsx } from '@antv/f2'
 import { canvasContextKey, type CanvasContext } from '../context'
 
 export default defineComponent({

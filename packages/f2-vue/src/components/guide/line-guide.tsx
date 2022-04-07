@@ -1,7 +1,5 @@
 import { defineComponent, watchEffect, inject } from 'vue-demi'
-import { jsx } from '@antv/f2/jsx-runtime'
-import { LineGuide } from '@antv/f2'
-import { LegendProps } from '@antv/f2/es/components/legend/withLegend'
+import { LineGuide, jsx } from '@antv/f2'
 import { canvasContextKey, type CanvasContext } from '../../context'
 
 export default defineComponent({

@@ -5,8 +5,7 @@ import {
     type PropType,
     type ExtractPropTypes
 } from 'vue-demi'
-import { jsx } from '@antv/f2/jsx-runtime'
-import { Chart, Axis, withAxis, AxisView } from '@antv/f2'
+import { Axis, withAxis, AxisView, Chart, jsx } from '@antv/f2'
 import Coord from '../coord'
 import type { StyleProps } from '@antv/f2/es/components/axis/types'
 import { canvasContextKey, type CanvasContext } from '../context'

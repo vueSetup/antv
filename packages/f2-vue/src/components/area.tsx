@@ -1,6 +1,5 @@
 import { defineComponent, watchEffect, inject, type ExtractPropTypes } from 'vue-demi'
-import { jsx } from '@antv/f2/jsx-runtime'
-import { Area, withArea, AreaView } from '@antv/f2'
+import { Area, withArea, AreaView, jsx } from '@antv/f2'
 import { geometryProps } from './geometry'
 import { canvasContextKey, type CanvasContext } from '../context'
 

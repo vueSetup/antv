@@ -1,7 +1,5 @@
 import { defineComponent, watchEffect, inject } from 'vue-demi'
-import { jsx } from '@antv/f2/jsx-runtime'
-import { ScrollBar, withScrollBar, ScrollBarView } from '@antv/f2'
-import { AxisProps } from '@antv/f2/es/components/axis/types'
+import { ScrollBar, withScrollBar, ScrollBarView, jsx } from '@antv/f2'
 import { canvasContextKey, type CanvasContext } from '../context'
 
 export default defineComponent({
