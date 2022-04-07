@@ -1,16 +1,23 @@
 import { defineComponent, watchEffect, inject } from 'vue-demi'
-import { jsx } from '@antv/f2/jsx-runtime'
-import { Guide, withGuide } from '@antv/f2'
-import { LegendProps } from '@antv/f2/es/components/legend/withLegend'
+import type { PropType, CSSProperties, ExtractPropTypes } from 'vue-demi'
+import { Guide, withGuide, jsx } from '@antv/f2'
 import { canvasContextKey, type CanvasContext } from '../../context'
 
+export const guideProps = {
+    records: Array as PropType<Record<string, any>[]>,
+    style: Object as PropType<CSSProperties>
+}
+
+export type GuideProps = ExtractPropTypes<typeof guideProps>
+
 export default defineComponent({
+    props: guideProps,
     setup(props) {
         watchEffect(() => {
             const component = jsx(Guide, { ...props })
             const { push } = inject<CanvasContext>(canvasContextKey, {
                 children: [],
-                push: () => {}
+                push: () => { }
             })
             push(component)
         })

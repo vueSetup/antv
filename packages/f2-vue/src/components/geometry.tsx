@@ -5,8 +5,7 @@ import {
     type PropType,
     type ExtractPropTypes
 } from 'vue-demi'
-import { jsx } from '@antv/f2/jsx-runtime'
-import { Chart, Types, Legend } from '@antv/f2'
+import { Chart, Types, Legend, jsx } from '@antv/f2'
 import type { AdjustConfig } from '@antv/f2/es/components/geometry/interface'
 import type { AnimationCycle } from '@antv/f2/es/canvas/animation/interface'
 import Coord from '../coord'

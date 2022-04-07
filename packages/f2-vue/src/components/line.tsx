@@ -5,8 +5,7 @@ import {
     type PropType,
     type ExtractPropTypes
 } from 'vue-demi'
-import { jsx } from '@antv/f2/jsx-runtime'
-import { Line, withLine, LineView } from '@antv/f2'
+import { Line, withLine, LineView, jsx } from '@antv/f2'
 import { geometryProps } from './geometry'
 import { canvasContextKey, type CanvasContext } from '../context'
 

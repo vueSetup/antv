@@ -5,8 +5,7 @@ import {
     type PropType,
     type ExtractPropTypes
 } from 'vue-demi'
-import { jsx } from '@antv/f2/jsx-runtime'
-import { Legend, withLegend, LegendView, type Types } from '@antv/f2'
+import { Legend, withLegend, LegendView, jsx, type Types } from '@antv/f2'
 import { canvasContextKey, type CanvasContext } from '../context'
 
 interface LegendItem {

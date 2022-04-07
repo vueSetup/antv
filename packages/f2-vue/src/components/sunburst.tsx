@@ -1,7 +1,5 @@
 import { defineComponent, watchEffect, inject } from 'vue-demi'
-import { jsx } from '@antv/f2/jsx-runtime'
-import { Sunburst, withSunburst, SunburstView } from '@antv/f2'
-import { LegendProps } from '@antv/f2/es/components/legend/withLegend'
+import { Sunburst, withSunburst, SunburstView, jsx } from '@antv/f2'
 import { canvasContextKey, type CanvasContext } from '../context'
 
 export default defineComponent({
