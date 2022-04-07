@@ -8,7 +8,8 @@ export default defineComponent({
     props: {
         data: Array as PropType<Record<string, any>[]>,
         coord: [String, Object],
-        scale: Object
+        scale: Object,
+        theme: Object
     },
     setup(props, { slots }) {
         const context: CanvasContext = {
