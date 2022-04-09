@@ -8,7 +8,8 @@ const intervalProps = {
     /**
      * 大小比例，范围 [0, 1], 比如柱状图默认为 0.5, 表示柱子和空白处各占 50%
      */
-    sizeRatio: Number
+    sizeRatio: Number,
+    selection: Object
 }
 
 export type IntervalProps = ExtractPropTypes<typeof intervalProps>

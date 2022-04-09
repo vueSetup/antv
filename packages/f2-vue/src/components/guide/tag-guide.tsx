@@ -9,7 +9,8 @@ export default defineComponent({
         content: String,
         attrs: Object,
         offsetX: Number,
-        offsetY: Number
+        offsetY: Number,
+        direct: String
     },
     setup(props) {
         watchEffect(() => {

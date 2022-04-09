@@ -4,7 +4,10 @@ import { canvasContextKey, type CanvasContext } from '../../context'
 
 export const pointGuideProps = {
     offsetX: Number,
-    offsetY: Number
+    offsetY: Number,
+    records: Array,
+    content: String,
+    style: Object
 }
 
 export type PointGuideProps = ExtractPropTypes<typeof pointGuideProps>
