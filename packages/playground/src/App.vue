@@ -10,7 +10,12 @@ import {
     X6Menubar,
     F2Vue,
     F2Line,
-    F2Donut
+    F2Donut,
+    F2GuideText,
+    F2PieSelect,
+    F2AxisGrid,
+    F2Gauge,
+    F2LineConnectNull
 } from './views'
 
 const count = ref(0)
@@ -24,7 +29,11 @@ const onClick = () => {
 
 <template>
     <button @click="onClick">{{ count }}</button>
-    <f2-vue />
+    <f2-line-connect-null />
+    <!-- <f2-gauge /> -->
+    <!-- <f2-axis-grid /> -->
+    <!-- <f2-pie-select /> -->
+    <!-- <f2-guide-text /> -->
     <!-- <x6-menu />
     <x6-dropdown />
     <x6-toolbar />

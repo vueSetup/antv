@@ -116,7 +116,7 @@ describe('Guide ', () => {
         await delay(50)
         expect(context).toMatchImageSnapshot()
     })
-    it('tag', () => {})
+    it('tag', () => { })
 
     it('使用min、max、median', async () => {
         const App = (

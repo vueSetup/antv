@@ -9,14 +9,15 @@ export default defineComponent({
         content: String,
         attrs: Object,
         offsetX: Number,
-        offsetY: [Number, Array]
+        offsetY: [Number, Array],
+        style: Object
     },
     setup(props) {
         watchEffect(() => {
             const component = jsx(LineGuide, { ...props })
             const { push } = inject<CanvasContext>(canvasContextKey, {
                 children: [],
-                push: () => {}
+                push: () => { }
             })
             push(component)
         })
