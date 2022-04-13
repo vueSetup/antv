@@ -15,7 +15,9 @@ import {
     F2PieSelect,
     F2AxisGrid,
     F2Gauge,
-    F2LineConnectNull
+    F2LineConnectNull,
+    F2TooltipDodgeColumn1,
+    F2TooltipDodgeColumn2
 } from './views'
 
 const count = ref(0)
@@ -29,7 +31,8 @@ const onClick = () => {
 
 <template>
     <button @click="onClick">{{ count }}</button>
-    <f2-line-connect-null />
+    <f2-tooltip-dodge-column2 />
+    <!-- <f2-line-connect-null /> -->
     <!-- <f2-gauge /> -->
     <!-- <f2-axis-grid /> -->
     <!-- <f2-pie-select /> -->
