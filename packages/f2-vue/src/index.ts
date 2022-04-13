@@ -6,5 +6,6 @@ import Timeline from './timeline'
 import Component from './base'
 
 export * from './components'
+export * from './coord'
 
 export { Types, createElement, jsx, render, renderShape, Timeline, Canvas, Chart, Component }

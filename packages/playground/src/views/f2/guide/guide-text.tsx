@@ -8,7 +8,7 @@ const data = [
     { genre: 'Shooter', sold: 350, type: 'a' },
     { genre: 'Other', sold: 150, type: 'a' }
 ]
-
+// issue:柱形不对，由坐标轴起始值不同引起
 export default defineComponent({
     setup() {
         return () => (

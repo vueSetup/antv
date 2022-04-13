@@ -31,7 +31,7 @@ const data = [
         value: 900
     }
 ]
-
+// issues:空值未连接
 export default defineComponent({
     setup() {
         const lineRef = ref(null)

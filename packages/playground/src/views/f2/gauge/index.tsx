@@ -8,7 +8,7 @@ const data = [
     { genre: 'Shooter', sold: 350, type: 'a' },
     { genre: 'Other', sold: 150, type: 'a' }
 ]
-
+//issues:木有标蓝部分
 export default defineComponent({
     setup() {
         return () => (

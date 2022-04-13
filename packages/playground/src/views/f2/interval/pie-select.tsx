@@ -8,7 +8,7 @@ const data = [
     { a: '1', genre: 'Shooter', sold: 350 },
     { a: '1', genre: 'Other', sold: 110 }
 ]
-
+// issue:test时没有选中状态，demo可以，可能test未成功触发点击事件
 export default defineComponent({
     setup() {
         return () => (

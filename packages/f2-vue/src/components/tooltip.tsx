@@ -19,7 +19,7 @@ export default defineComponent({
             const component = jsx(Tooltip, { ...props })
             const { push } = inject<CanvasContext>(canvasContextKey, {
                 children: [],
-                push: () => {}
+                push: () => { }
             })
             push(component)
         })
