@@ -8,7 +8,7 @@
     "build": "pnpm --filter @antv/f2-vue build"
   },
   "dependencies": {
-    "vue": "^3.2.31"
+    "vue": "^3.2.33"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",

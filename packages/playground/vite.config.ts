@@ -1,5 +1,4 @@
-import { loadEnv, searchForWorkspaceRoot } from 'vite'
-import type { ConfigEnv, UserConfig } from "vite";
+import { loadEnv, searchForWorkspaceRoot, type ConfigEnv, type UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vuejsx from '@vitejs/plugin-vue-jsx'
 import { join } from 'path'
