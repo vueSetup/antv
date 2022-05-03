@@ -1,5 +1,10 @@
 import { computed, defineComponent, PropType, reactive, ref, watchEffect } from 'vue'
-import clamp from 'clamp'
+
+const clamp = (value:number, min:number, max:number)=> {
+    return min < max
+      ? (value < min ? min : value > max ? max : value)
+      : (value < max ? max : value > min ? min : value)
+}
 
 export const scrollbarProps = {
     prefixCls: {
