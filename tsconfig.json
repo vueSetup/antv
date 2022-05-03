@@ -3,13 +3,13 @@
         "target": "esnext",
         "module": "esnext",
         "moduleResolution": "node",
-        "esModuleInterop": true,
-        "strict": true,
-        "resolveJsonModule": true,
         "jsx": "preserve",
-        "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+        "strict": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "lib": ["esnext", "dom"],
         // @antv/f2:tsconfig.json
-        "declaration": true,
+        "declaration": true
         // "skipLibCheck": false,
         // "useDefineForClassFields": false
     },
