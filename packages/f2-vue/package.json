@@ -2,9 +2,7 @@
     "name": "@antv/f2-vue",
     "version": "4.0.7",
     "description": "F2 for Vue.js",
-    "main": "lib/index.js",
-    "module": "es/index.js",
-    "types": "es/index.d.ts",
+    "main": "./src/index.ts",
     "keywords": [
         "antv",
         "f2",
