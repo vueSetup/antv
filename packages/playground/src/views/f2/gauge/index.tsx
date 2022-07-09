@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
-import { Canvas, Gauge } from '@antv/f2-vue'
+import Canvas from '@antv/f2-vue'
+import { Gauge } from '@antv/f2'
 
 const data = [
     { genre: 'Sports', sold: 275, type: 'a' },

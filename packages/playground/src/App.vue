@@ -13,7 +13,7 @@ import {
     F2Donut,
     F2GuideText,
     F2PieSelect,
-    F2AxisGrid,
+    // F2AxisGrid,
     F2Gauge,
     F2LineCompare,
     F2LineAnchor,
@@ -31,7 +31,8 @@ const onClick = () => {
 
 <template>
     <button @click="onClick">{{ count }}</button>
-    <f2-line-compare />
+    <f2-vue />
+    <!-- <f2-line-compare /> -->
     <!-- <f2-line-anchor /> -->
     <!-- <f2-line-connect-null /> -->
     <!-- <f2-gauge /> -->

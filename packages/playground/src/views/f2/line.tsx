@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
-import { Canvas, Chart, Line, Legend, Axis } from '@antv/f2-vue'
+import Canvas from '@antv/f2-vue'
+import { Chart, Line, Legend, Axis } from '@antv/f2'
 
 const data = [
     {

@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-
-createApp(App).mount('#app')
+import { Group, Text } from "@antv/f2-vue"
+createApp(App)
+    .mount('#app')
