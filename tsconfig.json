@@ -7,11 +7,7 @@
         "strict": true,
         "esModuleInterop": true,
         "resolveJsonModule": true,
-        "lib": ["esnext", "dom"],
-        // @antv/f2:tsconfig.json
-        "declaration": true
-        // "skipLibCheck": false,
-        // "useDefineForClassFields": false
-    },
-    "exclude": ["scripts", "node_modules", "**/test/**/*.ts", "**/test/**/*.tsx"]
+        "skipLibCheck": true,
+        "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    }    
 }

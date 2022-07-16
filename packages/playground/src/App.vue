@@ -2,23 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import { ref } from 'vue'
-import {
-    X6Menu,
-    X6Dropdown,
-    X6Toolbar,
-    X6ContextMenu,
-    X6Menubar,
-    F2Vue,
-    F2Line,
-    F2Donut,
-    F2GuideText,
-    F2PieSelect,
-    // F2AxisGrid,
-    F2Gauge,
-    F2LineCompare,
-    F2LineAnchor,
-    F2LineConnectNull
-} from './views'
+import { F2Vue } from './views'
 
 const count = ref(0)
 const prefixCls = ref('x6')
@@ -30,8 +14,17 @@ const onClick = () => {
 </script>
 
 <template>
+    <div>
+        <a href="https://vitejs.dev" target="_blank">
+            <img src="./assets/vite.svg" class="logo" alt="Vite logo" />
+        </a>
+        <a href="https://vuejs.org/" target="_blank">
+            <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+        </a>
+    </div>
     <button @click="onClick">{{ count }}</button>
-    <f2-vue />
+
+    <f2-vue class="container" />
     <!-- <f2-line-compare /> -->
     <!-- <f2-line-anchor /> -->
     <!-- <f2-line-connect-null /> -->
@@ -46,15 +39,16 @@ const onClick = () => {
     <x6-menubar /> -->
 </template>
 
-<style>
-#app {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-        'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-        'Noto Color Emoji';
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+<style scoped>
+.logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+}
+.logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vue:hover {
+    filter: drop-shadow(0 0 2em #42b883aa);
 }
 </style>

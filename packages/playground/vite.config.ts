@@ -1,7 +1,9 @@
 import { loadEnv, searchForWorkspaceRoot, type ConfigEnv, type UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vuejsx from '@vitejs/plugin-vue-jsx'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import { join } from 'path'
+
+const shape = ['rect', 'line', 'text', 'circle', 'marker', 'group']
 
 // https://vitejs.dev/config/
 export default ({ mode }: ConfigEnv): UserConfig => {
@@ -15,7 +17,12 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     optimizeDeps: {
       exclude: ['vue-demi']
     },
-    plugins: [vue(), vuejsx()],
+    plugins: [
+      vue(),
+      vueJsx({
+        isCustomElement: (tagName: string) =>
+          ['group', 'rect', 'circle', 'line', 'polygon', 'polyline', 'arc', 'sector', 'text', 'custom', 'marker', 'image'].includes(tagName)
+      })],
     resolve: {
       alias: {
         '@': join(__dirname, './src')
