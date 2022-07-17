@@ -4,6 +4,8 @@
 // export { default as X6ContextMenu } from './x6/context-menu'
 // export { default as X6Menubar } from './x6/menubar'
 
+export { default as F2CanvasTheme } from './f2/canvas/theme'
+export { default as F2CanvasGraphic } from './f2/canvas/graphic'
 export { default as F2Vue } from './f2/f2.vue'
 export { default as F2Line } from './f2/line'
 export { default as F2Donut } from './f2/donut'

@@ -2,7 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import { ref } from 'vue'
-import { F2Vue } from './views'
+import { F2Vue, F2CanvasGraphic } from './views'
 
 const count = ref(0)
 const prefixCls = ref('x6')
@@ -23,8 +23,8 @@ const onClick = () => {
         </a>
     </div>
     <button @click="onClick">{{ count }}</button>
-
-    <f2-vue class="container" />
+    <!-- <F2Vue /> -->
+    <F2CanvasGraphic/>
     <!-- <f2-line-compare /> -->
     <!-- <f2-line-anchor /> -->
     <!-- <f2-line-connect-null /> -->
