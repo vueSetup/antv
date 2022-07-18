@@ -23,8 +23,8 @@ const onClick = () => {
         </a>
     </div>
     <button @click="onClick">{{ count }}</button>
-    <!-- <F2Vue /> -->
-    <F2CanvasGraphic/>
+    <F2Vue />
+    <!-- <F2CanvasGraphic/> -->
     <!-- <f2-line-compare /> -->
     <!-- <f2-line-anchor /> -->
     <!-- <f2-line-connect-null /> -->
