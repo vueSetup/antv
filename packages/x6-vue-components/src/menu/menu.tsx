@@ -52,12 +52,12 @@ const Menu = defineComponent({
 
             const baseClassName = `${prefixCls}-menu`
 
-            const classNames = [baseClassName, { [`${baseClassName}-has-icon`]: hasIcon }]
+            const className = [baseClassName, { [`${baseClassName}-has-icon`]: hasIcon }]
 
             const children = slots.default?.()
 
             return (
-                <div class={classNames}>
+                <div class={className}>
                     <MenuContextProvider value={context}>{children}</MenuContextProvider>
                 </div>
             )

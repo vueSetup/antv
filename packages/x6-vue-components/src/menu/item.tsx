@@ -53,7 +53,7 @@ export const MenuItem = defineComponent({
 
             const baseClassName = `${context.prefixCls}-item`
 
-            const classNames = [
+            const className = [
                 baseClassName,
                 {
                     [`${baseClassName}-active`]: active,
@@ -65,7 +65,7 @@ export const MenuItem = defineComponent({
             const children = slots.default?.()
 
             return (
-                <div class={classNames}>
+                <div class={className}>
                     <button type="button" class={`${baseClassName}-button`} onClick={onClick}>
                         {icon && isVNode(icon) && (
                             <span class={`${baseClassName}-icon`}>{icon}</span>
