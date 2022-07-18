@@ -1,0 +1,15 @@
+{
+    "name": "@antv/xflow-vue",
+    "version": "1.0.0",
+    "license": "MIT",
+    "main": "./src/index.ts",
+    "dependencies": {
+        "@antv/layout": "^0.2.5",
+        "@antv/x6": "^1.32.8",
+        "@antv/x6-vue-components": "workspace:*",
+        "@antv/x6-vue-shape": "^1.4.0"
+    },
+    "devDependencies": {
+        "vue": "^3.2.27"
+    }
+}
