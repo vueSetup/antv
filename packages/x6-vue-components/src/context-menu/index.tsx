@@ -1,5 +1,4 @@
-import { defineComponent } from 'vue'
-import type { PropType, VNode, ExtractPropTypes } from 'vue'
+import { defineComponent, type PropType, type VNode, type ExtractPropTypes } from 'vue'
 import { Dropdown, dropdownProps } from '../dropdown'
 
 export const contextMenuProps = {
