@@ -16,7 +16,8 @@ export const menuItemProps = {
     hotkey: String,
     active: Boolean,
     hidden: Boolean,
-    disabled: Boolean
+    disabled: Boolean,
+    onClick: Function as PropType<(name?: string) => void>
 }
 
 export type MenuItemProps = ExtractPropTypes<typeof menuItemProps>
@@ -31,7 +32,7 @@ export const MenuItem = defineComponent({
         const triggerHandler = (e?: MouseEvent) => {
             if (!props.disabled && !props.hidden) {
                 props.name && context.onClick(props.name, e)
-                emit('click')
+                emit('click', props.name)
             }
         }
 
@@ -51,7 +52,7 @@ export const MenuItem = defineComponent({
             const { active, disabled, hidden, text, icon, hotkey } = props
 
             const baseClassName = `${context.prefixCls}-item`
-            
+
             const classNames = [
                 baseClassName,
                 {

@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
-import { MenuItem, menuItemProps } from './Item'
 import { useMenuContext } from './context'
+import { MenuItem, menuItemProps } from './item'
 
 export const MenuSubMenu = defineComponent({
     props: menuItemProps,

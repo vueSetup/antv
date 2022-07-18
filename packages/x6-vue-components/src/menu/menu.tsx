@@ -1,9 +1,8 @@
-import { defineComponent, computed, reactive, watchEffect } from 'vue'
-import type { PropType, ExtractPropTypes, Plugin } from 'vue'
-import { MenuItem } from './item'
-import { MenuDivider } from './Divider'
+import { defineComponent, reactive, watchEffect, type PropType, type ExtractPropTypes } from 'vue'
 import { IMenuContext, MenuContextProvider } from './context'
-import { MenuSubMenu } from './SubMenu'
+import { MenuSubMenu } from './submenu'
+import { MenuItem } from './item'
+import { MenuDivider } from './divider'
 
 export const menuProps = {
     prefixCls: {
@@ -67,7 +66,7 @@ const Menu = defineComponent({
 })
 
 export default Menu as typeof Menu & {
+    readonly SubMenu: typeof MenuSubMenu
     readonly Item: typeof MenuItem
     readonly Divider: typeof MenuDivider
-    readonly SubMenu: typeof MenuSubMenu
 }
