@@ -5,7 +5,6 @@
     "clean": "rimraf -rf packages/*/node_modules && rimraf node_modules",
     "commit": "git-cz",
     "start": "pnpm --filter playground start",
-    "test": "jest",
     "build": "father build"
   },
   "dependencies": {
