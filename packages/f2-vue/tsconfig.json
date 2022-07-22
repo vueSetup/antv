@@ -1,16 +1,6 @@
 {
+    "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "esModuleInterop": true,
-        "target": "esnext",
-        "declaration": true,
-        "jsx": "react",
-        "jsxFactory": "jsx",
-        "jsxFragmentFactory": "Fragment",
-        "moduleResolution": "node",
-        "useDefineForClassFields": false,
-        "resolveJsonModule": true,
-        "skipLibCheck": true,
-        "allowJs": true
-    },
-    "exclude": ["scripts", "node_modules"]
+        "jsx": "preserve"
+    }
 }
