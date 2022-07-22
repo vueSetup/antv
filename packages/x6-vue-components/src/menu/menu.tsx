@@ -1,4 +1,5 @@
-import { defineComponent, reactive, watchEffect, type PropType, type ExtractPropTypes } from 'vue'
+import { defineComponent, reactive, watchEffect } from 'vue'
+import type { PropType, ExtractPropTypes } from 'vue'
 import { IMenuContext, MenuContextProvider } from './context'
 import { MenuSubMenu } from './submenu'
 import { MenuItem } from './item'

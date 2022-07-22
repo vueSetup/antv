@@ -1,4 +1,5 @@
-import { defineComponent, computed, reactive, type ExtractPropTypes } from 'vue'
+import { defineComponent, computed, reactive } from 'vue'
+import type { ExtractPropTypes } from 'vue'
 import { useMenubarContext } from './context'
 
 export const menubarItemProps = {

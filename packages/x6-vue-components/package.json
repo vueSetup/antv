@@ -1,12 +1,70 @@
 {
-    "name": "@antv/x6-vue-components",
-    "version": "1.0.0",
-    "license": "MIT",
-    "main": "./src/index.ts",
-    "devDependencies": {
-        "ant-design-vue": "^3.2.10"
-    },
-    "peerDependencies": {
-        "ant-design-vue": ">=3.2.0"
-    }
+  "name": "@antv/x6-vue-components",
+  "version": "1.0.0",
+  "description": "Vue3 components for building x6 editors",
+  "main": "src/index.ts",
+  "files": [
+    "dist",
+    "es",
+    "lib"
+  ],
+  "sideEffects": [
+    "es/**/style/*",
+    "lib/**/style/*",
+    "*.less"
+  ],
+  "scripts": {},
+  "keywords": [
+    "component",
+    "components",
+    "vue-components",
+    "x6",
+    "x6-editor",
+    "editor",
+    "ui",
+    "antv"
+  ],
+  "peerDependencies": {
+    "ant-design-vue": ">=3.2.0",
+    "vue": ">=3.2.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-replace": "^4.0.0",
+    "@rollup/plugin-typescript": "^8.3.3",
+    "@vant/cli": "^4.0.3",
+    "@vitejs/plugin-vue-jsx": "^2.0.0",
+    "@vue/babel-plugin-jsx": "^1.1.1",
+    "ant-design-vue": "^3.2.10",
+    "child_process": "^1.0.2",
+    "fs-extra": "^10.1.0",
+    "less": "^3.13.1",
+    "rollup": "^2.77.0",
+    "rollup-plugin-filesize": "^9.1.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "vue": "^3.2.27"
+  },
+  "author": {
+    "name": "shadow",
+    "email": "buzzlightear@qq.com"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "homepage": "https://github.com/antvis/x6",
+  "bugs": {
+    "url": "https://github.com/antvis/x6/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/antvis/x6.git",
+    "directory": "packages/x6-vue-components"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
 }

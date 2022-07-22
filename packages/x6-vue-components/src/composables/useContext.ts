@@ -1,14 +1,6 @@
 // Fork from https://github.com/vueComponent/pro-components/blob/next/packages/pro-layout/src/hooks/context/index.ts
-import {
-    defineComponent,
-    provide,
-    inject,
-    readonly,
-    type DefineComponent,
-    type VNode,
-    type InjectionKey,
-    type PropType
-} from 'vue'
+import { defineComponent, provide, inject, readonly } from 'vue'
+import type { DefineComponent, VNode, InjectionKey, PropType } from 'vue'
 
 export type ContextType<T> = any
 

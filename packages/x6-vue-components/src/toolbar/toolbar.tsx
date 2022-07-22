@@ -1,11 +1,5 @@
-import {
-    defineComponent,
-    reactive,
-    watchEffect,
-    type PropType,
-    type VNodeChild,
-    type ExtractPropTypes
-} from 'vue'
+import { defineComponent, reactive, watchEffect } from 'vue'
+import type { PropType, VNodeChild, ExtractPropTypes } from 'vue'
 import { IToolbarContext, ToolbarContextProvider } from './context'
 import { ToolbarItem } from './item'
 import { ToolbarGroup } from './group'

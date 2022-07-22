@@ -1,4 +1,5 @@
-import { defineComponent, cloneVNode, type ExtractPropTypes } from 'vue'
+import { defineComponent, cloneVNode } from 'vue'
+import type { ExtractPropTypes } from 'vue'
 import { Dropdown as RcDropdown } from 'ant-design-vue'
 import { dropdownProps as props } from 'ant-design-vue/es/dropdown/props'
 
