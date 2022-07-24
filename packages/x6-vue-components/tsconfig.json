@@ -1,9 +1,10 @@
 {
   "extends": "../../tsconfig.x6.json",
   "compilerOptions": {
+    "module": "CommonJS",
     "baseUrl": ".",
     "jsx": "preserve"
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "scripts"]
 }

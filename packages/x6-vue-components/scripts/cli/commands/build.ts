@@ -82,7 +82,7 @@ const buildTypeDeclarations = async () => {
   await Promise.all([preCompileDir(ES_DIR), preCompileDir(LIB_DIR)]);
   const tsConfig = join(process.cwd(), 'tsconfig.declaration.json');
   if (existsSync(tsConfig)) {
-    await execa('tsc', ['-p', tsConfig]);
+    await execa('vue-tsc', ['-p', tsConfig]);
   }
 };
 
