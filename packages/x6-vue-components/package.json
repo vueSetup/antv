@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "prepare": "cd ./scripts && yarn",
-    "build": "ts-node ./scripts/src/cli.ts build"
+    "build": "node ./scripts/bin.js build"
   },
   "keywords": [
     "component",
@@ -32,9 +32,13 @@
     "vue": ">=3.2.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@vue/babel-plugin-jsx": "^1.1.1",
     "ant-design-vue": "^3.2.10",
     "ts-node": "^10.9.1",
     "vue": "^3.2.27",
+    "vue-tsc": "^0.38.5",
     "vue-types": "^3.0.2"
   },
   "author": {

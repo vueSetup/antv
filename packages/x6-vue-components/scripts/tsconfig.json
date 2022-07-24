@@ -4,6 +4,6 @@
     "baseUrl": ".",
     "outDir": "./lib"
   },
-  "include": ["src/**/*.ts"],
+  "include": ["cli/**/*.ts"],
   "exclude": ["node_modules"]
 }
