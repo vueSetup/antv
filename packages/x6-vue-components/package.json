@@ -2,6 +2,7 @@
   "name": "@antv/x6-vue-components",
   "version": "1.0.0",
   "description": "Vue3 components for building x6 editors",
+  "type": "module",
   "main": "src/index.ts",
   "files": [
     "dist",
@@ -13,7 +14,10 @@
     "lib/**/style/*",
     "*.less"
   ],
-  "scripts": {},
+  "scripts": {
+    "prepare": "cd ./scripts && rimraf ./lib && tsc",
+    "build": "pnpm prepare && node ./scripts/bin.js build"
+  },
   "keywords": [
     "component",
     "components",
@@ -29,6 +33,7 @@
     "vue": ">=3.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.9",
     "@babel/preset-env": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@rollup/plugin-babel": "^5.3.1",
@@ -36,16 +41,25 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-replace": "^4.0.0",
     "@rollup/plugin-typescript": "^8.3.3",
+    "@types/babel__core": "^7.1.19",
+    "@types/fs-extra": "^9.0.13",
     "@vant/cli": "^4.0.3",
     "@vitejs/plugin-vue-jsx": "^2.0.0",
     "@vue/babel-plugin-jsx": "^1.1.1",
     "ant-design-vue": "^3.2.10",
     "child_process": "^1.0.2",
+    "commander": "^9.4.0",
+    "consola": "^2.15.3",
+    "esbuild": "^0.14.49",
+    "execa": "^6.1.0",
     "fs-extra": "^10.1.0",
     "less": "^3.13.1",
+    "nanospinner": "^1.1.0",
+    "ora": "^6.1.2",
     "rollup": "^2.77.0",
     "rollup-plugin-filesize": "^9.1.2",
     "rollup-plugin-terser": "^7.0.2",
+    "ts-node": "^10.9.1",
     "vue": "^3.2.27"
   },
   "author": {

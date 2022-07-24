@@ -4,8 +4,8 @@ import { createContext, useContext } from '../composables'
 export interface IMenuContext {
     prefixCls?: string
     onClick: (name: string, e?: MouseEvent) => void
-    registerHotkey: (hotkey: string, handler: () => any) => void
-    unregisterHotkey: (hotkey: string, handler: () => any) => void
+    registerHotkey: (hotkey: string, handler: () => unknown) => void
+    unregisterHotkey: (hotkey: string, handler: () => unknown) => void
 }
 
 const contextKey: InjectionKey<IMenuContext> = Symbol('Menu')

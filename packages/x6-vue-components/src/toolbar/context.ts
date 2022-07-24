@@ -3,7 +3,7 @@ import { createContext, useContext } from '../composables'
 
 export interface IToolbarContext {
     prefixCls?: string
-    onClick: (key: string, value?: any) => void
+    onClick: (key: string, value?: unknown) => void
 }
 
 const contextKey: InjectionKey<IToolbarContext> = Symbol('Toolbar')
