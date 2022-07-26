@@ -57,9 +57,13 @@ export default defineComponent({
 
     onMounted(() => {
       const container = containerRef.value;
-      if (container === undefined) throw new Error(`The Antv f2 chart's container wasn't mounted.`);
-      if (container.tagName !== 'CANVAS')
+      
+      if (container === undefined) {
+        throw new Error(`The Antv f2 chart's container wasn't mounted.`);
+      }
+      if (container.tagName !== 'CANVAS') {
         throw new Error(`The Antv f2 chart's container must be Canvas.`);
+      }
 
       state.context = container.getContext('2d');
 

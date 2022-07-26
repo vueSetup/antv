@@ -4,34 +4,38 @@ import type { DefineComponent, VNode, InjectionKey, PropType } from 'vue'
 
 export type ContextType<T> = any
 
-export type CreateContext<T> = DefineComponent<{}, () => VNode | VNode[] | undefined, any>
+export type CreateContext<T> = DefineComponent<
+  {},
+  () => VNode | VNode[] | undefined,
+  any
+>
 
 export const createContext = <T>(
-    contextKey: InjectionKey<ContextType<T>> = Symbol(),
-    componentName: string = 'Context.Provider'
+  contextKey: InjectionKey<ContextType<T>> = Symbol(),
+  componentName: string = 'Context.Provider',
 ): CreateContext<T> => {
-    const ContextProvider = defineComponent({
-        name: componentName,
-        props: {
-            value: {
-                type: Object as PropType<ContextType<T>>,
-                required: true
-            }
-        },
-        setup(props: { value: ContextType<T> }, { slots }) {
-            provide(contextKey, readonly(props.value))
-            return () => slots.default?.()
-        }
-    })
+  const ContextProvider = defineComponent({
+    name: componentName,
+    props: {
+      value: {
+        type: Object as PropType<ContextType<T>>,
+        required: true,
+      },
+    },
+    setup(props: { value: ContextType<T> }, { slots }) {
+      provide(contextKey, readonly(props.value))
+      return () => slots.default?.()
+    },
+  })
 
-    return ContextProvider as any
+  return ContextProvider as any
 }
 
 export const useContext = <T>(
-    contextKey: string | InjectionKey<ContextType<T>> = Symbol(),
-    defaultValue?: ContextType<T>
+  contextKey: string | InjectionKey<ContextType<T>> = Symbol(),
+  defaultValue?: ContextType<T>,
 ): T => {
-    return inject(contextKey, defaultValue ?? ({} as T))
+  return inject(contextKey, defaultValue ?? ({} as T))
 }
 
 // :: examples ::

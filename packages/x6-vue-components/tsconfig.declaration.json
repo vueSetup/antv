@@ -2,13 +2,12 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "declarationDir": ".",
+    "declarationDir": "dist",
     "emitDeclarationOnly": true,
     "paths": {
       // TODO :: this fixed vue-types ERROR.
       // TS2742: The inferred type of 'component-x' cannot be named without a reference to `vue-types`
       "vue-types": ["node_modules/vue-types"]
     }
-  },
-  "include": ["es/**/*", "lib/**/*"]
+  }
 }
