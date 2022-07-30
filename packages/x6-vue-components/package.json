@@ -32,14 +32,6 @@
     "ui",
     "antv"
   ],
-  "lint-staged": {
-    "src/**/*.ts": [
-      "eslint --fix"
-    ],
-    "src/**/*.less": [
-      "stylelint --syntax less --fix"
-    ]
-  },
   "inherits": [
     "@antv/x6-package-json/cli.json",
     "@antv/x6-package-json/less.json",

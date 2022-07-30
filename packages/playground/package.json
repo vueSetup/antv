@@ -8,18 +8,18 @@
     },
     "dependencies": {
         "@ant-design/icons-vue": "^6.0.1",
-        "@antv/f2": "^4.0.25",
-        "@antv/f2-vue": "workspace:*",
-        "@antv/x6-vue-components": "workspace:*",
+        "@antv/f2": "^4.0.26",
+        "@antv/f2-vue": "workspace:^",
+        "@antv/x6-vue-components": "workspace:^",
         "ant-design-vue": "^3.2.10"
     },
     "devDependencies": {
         "@vitejs/plugin-legacy": "^2.0.0",
-        "@vitejs/plugin-vue": "^3.0.0",
+        "@vitejs/plugin-vue": "^3.0.1",
         "@vitejs/plugin-vue-jsx": "^2.0.0",
         "less": "^3.13.1",
         "less-loader": "^10.2.0",
-        "vite": "^3.0.0",
-        "vue-tsc": "^0.38.5"
+        "vite": "^3.0.4",
+        "vue-tsc": "^0.39.2"
     }
 }

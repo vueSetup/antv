@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import { ref } from 'vue';
+import { ref } from "vue"
 import {
   X6Menu,
   X6Menubar,
@@ -9,16 +9,15 @@ import {
   X6Toolbar,
   X6ContextMenu,
   F2Vue,
-  F2CanvasGraphic,
-} from './views';
+} from "./views"
 
-const count = ref(0);
-const prefixCls = ref('x6');
+const count = ref(0)
+const prefixCls = ref("x6")
 
 const onClick = () => {
-  count.value += 1;
-  prefixCls.value = prefixCls.value === 'x6' ? 'antdv' : 'x6';
-};
+  count.value += 1
+  prefixCls.value = prefixCls.value === "x6" ? "antdv" : "x6"
+}
 </script>
 
 <template>
@@ -31,13 +30,12 @@ const onClick = () => {
     </a>
   </div>
   <button @click="onClick">{{ count }}</button>
-  <F2Vue />
-  <!-- <F2CanvasGraphic /> -->
-  <!-- <x6-menu />
-    <x6-dropdown />
-    <x6-toolbar />
-    <x6-context-menu />
-    <x6-menubar /> -->
+  <!-- <F2Vue /> -->
+  <x6-menu />
+  <x6-dropdown />
+  <x6-toolbar />
+  <x6-context-menu />
+  <x6-menubar />
 </template>
 
 <style scoped>

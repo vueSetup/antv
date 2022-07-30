@@ -1,7 +1,7 @@
 import { defineComponent, isVNode, cloneVNode } from "vue"
 import type { PropType, VNode, VNodeChild, ExtractPropTypes } from "vue"
 import { Tooltip, TooltipProps, Menu } from "ant-design-vue"
-import { Dropdown, DropdownProps } from "../dropdown"
+import Dropdown, { type DropdownProps } from "../dropdown"
 import { useToolbarContext } from "./context"
 
 import "ant-design-vue/es/tooltip/style/index"
