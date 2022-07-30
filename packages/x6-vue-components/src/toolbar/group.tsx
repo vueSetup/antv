@@ -1,16 +1,16 @@
 import { defineComponent } from 'vue'
 import { useToolbarContext } from './context'
 
-export const ToolbarGroup = defineComponent({
-    setup(props, { slots }) {
-        const context = useToolbarContext()
+export default defineComponent({
+  setup(props, { slots }) {
+    const context = useToolbarContext()
 
-        return () => {
-            const baseClassName = [`${context.prefixCls}-group`]
+    return () => {
+      const baseClassName = [`${context.prefixCls}-group`]
 
-            const children = slots.default?.()
+      const children = slots.default?.()
 
-            return <div class={baseClassName}>{children}</div>
-        }
+      return <div class={baseClassName}>{children}</div>
     }
+  },
 })

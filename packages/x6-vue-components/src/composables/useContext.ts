@@ -5,14 +5,14 @@ import type { DefineComponent, VNode, InjectionKey, PropType } from 'vue'
 export type ContextType<T> = any
 
 export type CreateContext<T> = DefineComponent<
-  {},
+  Record<string, unknown>,
   () => VNode | VNode[] | undefined,
   any
 >
 
 export const createContext = <T>(
-  contextKey: InjectionKey<ContextType<T>> = Symbol(),
-  componentName: string = 'Context.Provider',
+  contextKey: InjectionKey<ContextType<T>> = Symbol('context'),
+  componentName = 'Context.Provider',
 ): CreateContext<T> => {
   const ContextProvider = defineComponent({
     name: componentName,
@@ -32,7 +32,7 @@ export const createContext = <T>(
 }
 
 export const useContext = <T>(
-  contextKey: string | InjectionKey<ContextType<T>> = Symbol(),
+  contextKey: string | InjectionKey<ContextType<T>> = Symbol('context'),
   defaultValue?: ContextType<T>,
 ): T => {
   return inject(contextKey, defaultValue ?? ({} as T))

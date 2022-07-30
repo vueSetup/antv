@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import type { PropType, VNode, ExtractPropTypes } from 'vue'
-import Dropdown, { dropdownProps } from '../dropdown'
+import { defineComponent } from "vue"
+import type { PropType, VNode, ExtractPropTypes } from "vue"
+import Dropdown, { dropdownProps } from "../dropdown"
 
 export const contextMenuProps = {
   ...dropdownProps,
@@ -9,7 +9,7 @@ export const contextMenuProps = {
 
 export type ContextMenuProps = ExtractPropTypes<typeof contextMenuProps>
 
-const ContextMenu = defineComponent({
+export default defineComponent({
   props: contextMenuProps,
   setup(props, { slots }) {
     return () => (
@@ -23,5 +23,3 @@ const ContextMenu = defineComponent({
     )
   },
 })
-
-export default ContextMenu

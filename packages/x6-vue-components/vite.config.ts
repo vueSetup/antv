@@ -6,21 +6,11 @@ import { fileURLToPath, URL } from 'node:url'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), vueJsx()],
-  css: {
-    preprocessorOptions: {
-      less: {
-        // DO NOT REMOVE THIS LINE
-        javascriptEnabled: true,
-        // modifyVars: {
-        //   hack: `true; @import 'ant-design-vue/es/style/themes/default.less'`,
-        // }
-      },
-    },
-  },
   build: {
     lib: {
       entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
-      name: 'ProLayout',
+      name: 'X6VueComponents',
+      formats: ['es', 'cjs', 'umd'],
     },
     rollupOptions: {
       external: [
@@ -38,7 +28,7 @@ export default defineConfig({
         globals: {
           vue: 'Vue',
           'vue-router': 'VueRouter',
-          'ant-design-vue': 'antd',
+          'ant-design-vue': 'antdv',
           '@ant-design/icons-vue': 'iconsVue',
           '@ant-design/icons-svg': 'iconsSvg',
           'vue-types': 'vueTypes',

@@ -1,12 +1,12 @@
-import { defineComponent, isVNode, cloneVNode } from 'vue';
-import type { PropType, VNode, VNodeChild, ExtractPropTypes } from 'vue';
-import { Tooltip, TooltipProps, Menu } from 'ant-design-vue';
-import Dropdown, { DropdownProps } from '../dropdown';
-import { useToolbarContext } from './context';
+import { defineComponent, isVNode, cloneVNode } from "vue"
+import type { PropType, VNode, VNodeChild, ExtractPropTypes } from "vue"
+import { Tooltip, TooltipProps, Menu } from "ant-design-vue"
+import { Dropdown, DropdownProps } from "../dropdown"
+import { useToolbarContext } from "./context"
 
-import 'ant-design-vue/es/tooltip/style/index';
+import "ant-design-vue/es/tooltip/style/index"
 
-const toolbarItemProps = {
+export const toolbarItemProps = {
   name: String,
   icon: [String, Object] as PropType<VNodeChild>,
   text: [String, Object] as PropType<string | VNodeChild>,
@@ -20,28 +20,28 @@ const toolbarItemProps = {
   dropdownArrow: Boolean,
   dropdownProps: Object as PropType<DropdownProps>,
   onClick: Function as PropType<(name?: string) => void>,
-};
+}
 
-export type ToolbarItemProps = ExtractPropTypes<typeof toolbarItemProps>;
+export type ToolbarItemProps = ExtractPropTypes<typeof toolbarItemProps>
 
-export const ToolbarItem = defineComponent({
+export default defineComponent({
   props: toolbarItemProps,
-  emits: ['click'],
+  emits: ["click"],
   setup(props, { slots, emit }) {
-    const context = useToolbarContext();
+    const context = useToolbarContext()
 
     const processClick = (name = props.name, dropdown = props.dropdown) => {
       if (!props.disabled && !dropdown) {
-        name && context.onClick(name);
-        emit('click', name);
+        name && context.onClick(name)
+        emit("click", name)
       }
-    };
+    }
 
-    const onClick = () => processClick();
+    const onClick = () => processClick()
 
     const onDropdownItemClick = (name?: string) => {
-      processClick(name, undefined);
-    };
+      processClick(name, undefined)
+    }
 
     return () => {
       const {
@@ -56,11 +56,11 @@ export const ToolbarItem = defineComponent({
         tooltip,
         tooltipAsTitle,
         tooltipProps,
-      } = props;
+      } = props
 
-      const children = slots.default?.();
+      const children = slots.default?.()
 
-      const baseClassName = `${context.prefixCls}-item`;
+      const baseClassName = `${context.prefixCls}-item`
 
       const className = [
         baseClassName,
@@ -70,16 +70,22 @@ export const ToolbarItem = defineComponent({
           [`${baseClassName}-disabled`]: disabled,
           [`${baseClassName}-dropdown`]: dropdown,
         },
-      ];
+      ]
 
       const renderButton = () => {
         const button = (
           <button type="button" class={className} onClick={onClick}>
-            {icon && isVNode(icon) && <span class={`${baseClassName}-icon`}>{icon}</span>}
-            {(text ?? children) && <span class={`${baseClassName}-text`}>{text ?? children}</span>}
-            {dropdown && dropdownArrow && <span class={`${baseClassName}-dropdown-arrow`} />}
+            {icon && isVNode(icon) && (
+              <span class={`${baseClassName}-icon`}>{icon}</span>
+            )}
+            {(text ?? children) && (
+              <span class={`${baseClassName}-text`}>{text ?? children}</span>
+            )}
+            {dropdown && dropdownArrow && (
+              <span class={`${baseClassName}-dropdown-arrow`} />
+            )}
           </button>
-        );
+        )
 
         if (tooltip && !tooltipAsTitle && !disabled) {
           return (
@@ -92,13 +98,13 @@ export const ToolbarItem = defineComponent({
             >
               {button}
             </Tooltip>
-          );
+          )
         }
 
-        return button;
-      };
+        return button
+      }
 
-      const content = renderButton();
+      const content = renderButton()
 
       if (dropdown != null && !disabled) {
         const overlay = (
@@ -109,23 +115,23 @@ export const ToolbarItem = defineComponent({
                 })
               : dropdown}
           </div>
-        );
+        )
 
         return (
           <Dropdown
             trigger="click"
             {...{
               ...dropdownProps,
-              disabled: disabled,
+              disabled,
               overlay,
             }}
           >
             {content}
           </Dropdown>
-        );
+        )
       }
 
-      return content;
-    };
+      return content
+    }
   },
-});
+})

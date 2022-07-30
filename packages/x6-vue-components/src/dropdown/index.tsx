@@ -1,34 +1,36 @@
-import { defineComponent, cloneVNode } from 'vue';
-import type { ExtractPropTypes } from 'vue';
-import { Dropdown as RcDropdown } from 'ant-design-vue';
-import { dropdownProps as props } from 'ant-design-vue/es/dropdown/props';
+import { defineComponent, cloneVNode } from "vue"
+import type { ExtractPropTypes } from "vue"
+import { Dropdown as RcDropdown } from "ant-design-vue"
+import { dropdownProps as props } from "ant-design-vue/es/dropdown/props"
 
 export const dropdownProps = {
   ...props(),
   prefixCls: {
     type: String,
-    default: 'x6',
+    default: "x6",
   },
-};
+}
 
-export type DropdownProps = ExtractPropTypes<typeof dropdownProps>;
+export type DropdownProps = ExtractPropTypes<typeof dropdownProps>
 
-const Dropdown = defineComponent({
+export default defineComponent({
   props: dropdownProps,
   setup(props, { slots }) {
     return () => {
-      const { prefixCls = 'x6', disabled, overlay } = props;
+      const { prefixCls = "x6", disabled, overlay } = props
 
-      const baseClassName = `${prefixCls}-dropdown`;
+      const baseClassName = `${prefixCls}-dropdown`
 
-      const fixedOverlay = <div class={`${baseClassName}-overlay`}>{overlay}</div>;
+      const fixedOverlay = (
+        <div class={`${baseClassName}-overlay`}>{overlay}</div>
+      )
 
-      const children = slots.default?.();
+      const children = slots.default?.()
 
-      const child = children && children.length === 1 ? children[0] : null;
+      const child = children && children.length === 1 ? children[0] : null
 
       if (child === null) {
-        throw Error(`Vue.Children.only`);
+        throw Error(`Vue.Children.only`)
       }
 
       const dropdownTrigger = cloneVNode(
@@ -38,15 +40,13 @@ const Dropdown = defineComponent({
           disabled,
         },
         true
-      );
+      )
 
       return (
         <RcDropdown {...props} prefixCls={baseClassName} overlay={fixedOverlay}>
           {dropdownTrigger}
         </RcDropdown>
-      );
-    };
+      )
+    }
   },
-});
-
-export default Dropdown;
+})

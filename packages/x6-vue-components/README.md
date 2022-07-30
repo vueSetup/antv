@@ -1,18 +1,21 @@
 # x6-vue-components
 
-> Vue components for building x6 editors
+> Vue3 components for building x6 editors
+
+[![Language](https://img.shields.io/badge/language-typescript-blue.svg?style=flat-square)](https://www.typescriptlang.org)
+[![Vue Support](https://img.shields.io/badge/support-Vue3-green?style=flat)](./package.json) 
+[![Vue Grammar Level](https://img.shields.io/badge/full-Composition%20API-blue?style=flat)](https://v3.vuejs.org/guide/composition-api-introduction.html)
+[![MIT License](https://img.shields.io/github/license/antvis/x6?style=flat-square)](/LICENSE) 
+[![NPM Package](https://img.shields.io/npm/v/@antv/x6-vue-components.svg?style=flat-square)](https://www.npmjs.com/package/@antv/x6-react-components) 
+[![NPM Downloads](http://img.shields.io/npm/dm/@antv/x6-vue-components.svg?style=flat-square)](https://www.npmjs.com/package/@antv/x6-react-components) 
 
 ## Components
 
--   Menu
--   Dropdown
--   ContextMenu
--   Menubar
--   Toolbar
--   SplitBox
--   ScrollBox
--   AutoScrollBox
--   ColorPicker
+- Menu
+- Dropdown
+- ContextMenu
+- Menubar
+- Toolbar
 
 ## Installation
 
@@ -22,6 +25,10 @@ $ npm install @antv/x6-vue-components --save
 
 # yarn
 $ yarn add @antv/x6-vue-components
+```
+
+# pnpm
+$ pnpm add @antv/x6-vue-components
 ```
 
 ## Usage
@@ -36,7 +43,7 @@ import '@antv/x6-vue-components/es/menu/style'
 import '@antv/x6-vue-components/es/menu/style/index.css'
 ```
 
-We strongly recommend using [babel-plugin-import](https://github.com/ant-design/babel-plugin-import), which can convert the following code to the '@antv/x6-react-components/es/xxx' way:
+We strongly recommend using [babel-plugin-import](https://github.com/ant-design/babel-plugin-import), which can convert the following code to the '@antv/x6-vue-components/es/xxx' way:
 
 ```ts
 import { Menu } from '@antv/x6-vue-components'

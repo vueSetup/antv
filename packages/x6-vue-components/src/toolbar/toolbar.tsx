@@ -1,70 +1,67 @@
-import { defineComponent, reactive, watchEffect } from 'vue';
-import type { PropType, VNodeChild, ExtractPropTypes } from 'vue';
-import { IToolbarContext, ToolbarContextProvider } from './context';
-import { ToolbarItem } from './item';
-import { ToolbarGroup } from './group';
+import { defineComponent, reactive, watchEffect } from "vue"
+import type { PropType, VNodeChild, ExtractPropTypes } from "vue"
+import { IToolbarContext, ToolbarContextProvider } from "./context"
 
-const toolbarProps = {
+export const toolbarProps = {
   prefixCls: {
     type: String,
-    default: 'x6',
+    default: "x6",
   },
   extra: [Object, Array] as PropType<VNodeChild>,
-  size: String as PropType<'small' | 'big'>,
+  size: String as PropType<"small" | "big">,
   hoverEffect: Boolean,
-  align: String as PropType<'left' | 'right'>,
+  align: String as PropType<"left" | "right">,
   onClick: Function as PropType<(name: string, value?: unknown) => void>,
-};
+}
 
-export type ToolbarProps = ExtractPropTypes<typeof toolbarProps>;
+export type ToolbarProps = ExtractPropTypes<typeof toolbarProps>
 
-const Toolbar = defineComponent({
+export default defineComponent({
   props: toolbarProps,
-  emits: ['click'],
+  emits: ["click"],
   setup(props, { slots, emit }) {
     const onClick = (name: string, value?: any) => {
-      emit('click', name, value);
-    };
+      emit("click", name, value)
+    }
 
     const context = reactive<IToolbarContext>({
       onClick,
-    });
+    })
 
     watchEffect(() => {
-      context.prefixCls = `${props.prefixCls}-toolbar`;
-    });
+      context.prefixCls = `${props.prefixCls}-toolbar`
+    })
 
     return () => {
-      const { prefixCls, size, align, hoverEffect, extra } = props;
+      const { prefixCls, size, align, hoverEffect, extra } = props
 
-      const baseClassName = `${prefixCls}-toolbar`;
+      const baseClassName = `${prefixCls}-toolbar`
 
       const classNames = [
         baseClassName,
         {
           [`${baseClassName}-${size}`]: size,
-          [`${baseClassName}-align-right`]: align === 'right',
+          [`${baseClassName}-align-right`]: align === "right",
           [`${baseClassName}-hover-effect`]: hoverEffect,
         },
-      ];
+      ]
 
-      const children = slots.default?.();
+      const children = slots.default?.()
 
       return (
         <div class={classNames}>
           <div class={`${baseClassName}-content`}>
             <div class={`${baseClassName}-content-inner`}>
-              <ToolbarContextProvider value={context}>{children}</ToolbarContextProvider>
+              <ToolbarContextProvider value={context}>
+                {children}
+              </ToolbarContextProvider>
             </div>
-            {extra && <div class={`${baseClassName}-content-extras`}>{extra}</div>}
+            {extra && (
+              <div class={`${baseClassName}-content-extras`}>{extra}</div>
+            )}
           </div>
         </div>
-      );
-    };
+      )
+    }
   },
-});
-
-export default Toolbar as typeof Toolbar & {
-  readonly Item: typeof ToolbarItem;
-  readonly Group: typeof ToolbarGroup;
-};
+})
