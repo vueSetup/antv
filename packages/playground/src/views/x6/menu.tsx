@@ -22,14 +22,14 @@ export default defineComponent({
     const onMenuClick = (name: string) => {
       message.success(`${name} clicked`, 10)
     }
-    const onMenuItemClick = () => {
+    const onItemClick = () => {
       onMenuClick("undo")
     }
     return () => (
       <div style={{ padding: "24px 0 210px 24px" }}>
         <div style={{ display: "inline-block" }}>
           <Menu onClick={onMenuClick}>
-            <Item onClick={onMenuItemClick} name="undo" hotkey="Cmd+Z">
+            <Item onClick={onItemClick} name="undo" hotkey="Cmd+Z">
               Undo
             </Item>
             <Item name="redo" hotkey="Cmd+Shift+Z">
@@ -67,41 +67,41 @@ export default defineComponent({
         </div>
         <div style={{ display: "inline-block", marginLeft: "32px" }}>
           <Menu hasIcon={true} onClick={onMenuClick}>
-            <MenuItem
-              onClick={onMenuItemClick}
+            <Item
+              onClick={onItemClick}
               name="undo"
               icon={<UndoOutlined />}
               hotkey="Cmd+Z"
               text="Undo"
               active={true}
             />
-            <MenuItem
+            <Item
               name="redo"
               icon={<RedoOutlined />}
               hotkey="Cmd+Shift+Z"
               text="Redo"
             />
             <Divider />
-            <MenuItem
+            <Item
               name="cut"
               icon={<ScissorOutlined />}
               hotkey="Cmd+X"
               text="Cut"
             />
-            <MenuItem
+            <Item
               name="copy"
               icon={<CopyOutlined />}
               hotkey="Cmd+C"
               text="Copy"
             />
-            <MenuItem
+            <Item
               name="paste"
               icon={<SnippetsOutlined />}
               hotkey="Cmd+V"
               disabled={true}
               text="Paste"
             />
-            <MenuItem
+            <Item
               name="delete"
               icon={<DeleteOutlined />}
               hotkey="Delete"
@@ -109,24 +109,24 @@ export default defineComponent({
             />
             <Divider />
             <SubMenu text="Appearance" icon={<ControlOutlined />} active={true}>
-              <MenuItem
+              <Item
                 name="zen"
                 icon={<DesktopOutlined />}
                 hotkey="Cmd+K Z"
                 text="Zen Mode"
               />
-              <MenuItem
+              <Item
                 name="fullscreen"
                 icon={<FullscreenOutlined />}
                 hotkey="Cmd+Shift+F"
                 text="Full Screen"
               />
               <Divider />
-              <MenuItem name="side-bar" text="Show Side Bar" />
-              <MenuItem name="status-bar" text="Show Status Bar" />
-              <MenuItem name="activity-bar" text="Show Activity Bar" />
-              <MenuItem name="editor-area" text="Show Editor Area" />
-              <MenuItem name="show-panel" text="Show Panel" />
+              <Item name="side-bar" text="Show Side Bar" />
+              <Item name="status-bar" text="Show Status Bar" />
+              <Item name="activity-bar" text="Show Activity Bar" />
+              <Item name="editor-area" text="Show Editor Area" />
+              <Item name="show-panel" text="Show Panel" />
             </SubMenu>
           </Menu>
         </div>

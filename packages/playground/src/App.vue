@@ -31,10 +31,10 @@ const onClick = () => {
   </div>
   <button @click="onClick">{{ count }}</button>
   <!-- <F2Vue /> -->
-  <x6-menu />
-  <x6-dropdown />
-  <x6-toolbar />
-  <x6-context-menu />
+  <!-- <x6-menu /> -->
+  <!-- <x6-dropdown /> -->
+  <!-- <x6-toolbar /> -->
+  <!-- <x6-context-menu /> -->
   <x6-menubar />
 </template>
 
