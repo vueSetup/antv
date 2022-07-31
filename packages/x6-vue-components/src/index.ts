@@ -6,27 +6,27 @@ import { Dropdown } from "./dropdown"
 import { default as Toolbar, ToolbarItem, ToolbarGroup } from "./toolbar"
 import { ContextMenu } from "./context-menu"
 
-export const install = (app: App) => {
-  const components = [
-    Menu,
-    MenuItem,
-    MenuSubMenu,
-    MenuDivider,
-    Menubar,
-    MenubarItem,
-    Dropdown,
-    Toolbar,
-    ToolbarItem,
-    ToolbarGroup,
-    ContextMenu,
-  ]
+// export const install = (app: App) => {
+//   const components = [
+//     Menu,
+//     MenuItem,
+//     MenuSubMenu,
+//     MenuDivider,
+//     Menubar,
+//     MenubarItem,
+//     Dropdown,
+//     Toolbar,
+//     ToolbarItem,
+//     ToolbarGroup,
+//     ContextMenu,
+//   ]
 
-  components.forEach((component) => {
-    if (component.install) {
-      app.use(component)
-    }
-  })
-}
+//   components.forEach((component) => {
+//     if (component.install) {
+//       app.use(component)
+//     }
+//   })
+// }
 
 export {
   Menu,
