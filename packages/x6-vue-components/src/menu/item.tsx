@@ -1,6 +1,13 @@
-import { defineComponent, onMounted, onUnmounted, isVNode } from 'vue'
-import type { PropType, VNodeChild, ExtractPropTypes } from 'vue'
-import { useMenuContext } from './context'
+import {
+  defineComponent,
+  onMounted,
+  onUnmounted,
+  isVNode,
+  type PropType,
+  type VNodeChild,
+  type ExtractPropTypes,
+} from "vue"
+import { useMenuContext } from "./context"
 
 export const menuItemProps = {
   name: String,
@@ -15,17 +22,17 @@ export const menuItemProps = {
 
 export type MenuItemProps = ExtractPropTypes<typeof menuItemProps>
 
-export default defineComponent({
+export const MenuItem = defineComponent({
   props: menuItemProps,
-  emits: ['click'],
-  slots: ['innerExtra', 'outerExtra'],
+  emits: ["click"],
+  slots: ["innerExtra", "outerExtra"],
   setup(props, { slots, emit }) {
     const context = useMenuContext()
 
     const triggerHandler = (e?: MouseEvent) => {
       if (!props.disabled && !props.hidden) {
         props.name && context.onClick(props.name, e)
-        emit('click')
+        emit("click")
       }
     }
 

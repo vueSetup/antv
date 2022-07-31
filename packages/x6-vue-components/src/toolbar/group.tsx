@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue'
-import { useToolbarContext } from './context'
+import { defineComponent } from "vue"
+import { useToolbarContext } from "./context"
 
-export default defineComponent({
+export const ToolbarGroup = defineComponent({
   setup(props, { slots }) {
     const context = useToolbarContext()
 

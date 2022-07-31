@@ -1,8 +1,8 @@
 import type { App, Plugin } from "vue"
-import { default as Menu, menuProps, type MenuProps } from "./menu"
+import { Menu, menuProps, type MenuProps } from "./menu"
 import { MenuSubMenu } from "./submenu"
-import MenuItem, { menuItemProps, type MenuItemProps } from "./item"
-import MenuDivider from "./divider"
+import { MenuItem, menuItemProps, type MenuItemProps } from "./item"
+import { MenuDivider } from "./divider"
 
 Menu.install = (app: App) => {
   app.component(Menu.name, Menu)

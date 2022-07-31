@@ -1,7 +1,7 @@
 import { defineComponent, isVNode, cloneVNode } from "vue"
 import type { PropType, VNode, VNodeChild, ExtractPropTypes } from "vue"
 import { Tooltip, TooltipProps, Menu } from "ant-design-vue"
-import Dropdown, { type DropdownProps } from "../dropdown"
+import { Dropdown, type DropdownProps } from "../dropdown"
 import { useToolbarContext } from "./context"
 
 import "ant-design-vue/es/tooltip/style/index"
@@ -24,7 +24,7 @@ export const toolbarItemProps = {
 
 export type ToolbarItemProps = ExtractPropTypes<typeof toolbarItemProps>
 
-export default defineComponent({
+export const ToolbarItem = defineComponent({
   props: toolbarItemProps,
   emits: ["click"],
   setup(props, { slots, emit }) {

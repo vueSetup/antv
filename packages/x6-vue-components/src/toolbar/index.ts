@@ -1,7 +1,7 @@
 import type { App, Plugin } from "vue"
-import { default as Toolbar, toolbarProps, type ToolbarProps } from "./toolbar"
-import ToolbarItem, { toolbarItemProps, type ToolbarItemProps } from "./item"
-import ToolbarGroup from "./group"
+import { Toolbar, toolbarProps, type ToolbarProps } from "./toolbar"
+import { ToolbarItem, toolbarItemProps, type ToolbarItemProps } from "./item"
+import { ToolbarGroup } from "./group"
 
 Toolbar.install = (app: App) => {
   app.component(Toolbar.name, Toolbar)

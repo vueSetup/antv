@@ -16,7 +16,7 @@ export const toolbarProps = {
 
 export type ToolbarProps = ExtractPropTypes<typeof toolbarProps>
 
-export default defineComponent({
+export const Toolbar = defineComponent({
   props: toolbarProps,
   emits: ["click"],
   setup(props, { slots, emit }) {

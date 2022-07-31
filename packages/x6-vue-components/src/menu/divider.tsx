@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import { useMenuContext } from './context'
 
-export default defineComponent({
+export const MenuDivider = defineComponent({
   setup() {
     const context = useMenuContext()
 

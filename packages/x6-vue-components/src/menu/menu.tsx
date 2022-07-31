@@ -1,5 +1,10 @@
-import { defineComponent, reactive, watchEffect } from "vue"
-import type { PropType, ExtractPropTypes } from "vue"
+import {
+  defineComponent,
+  reactive,
+  watchEffect,
+  type PropType,
+  type ExtractPropTypes,
+} from "vue"
 import { IMenuContext, MenuContextProvider } from "./context"
 
 export const menuProps = {
@@ -20,7 +25,7 @@ export const menuProps = {
 
 export type MenuProps = ExtractPropTypes<typeof menuProps>
 
-export default defineComponent({
+export const Menu = defineComponent({
   props: menuProps,
   emits: ["click"],
   setup(props, { slots, emit }) {

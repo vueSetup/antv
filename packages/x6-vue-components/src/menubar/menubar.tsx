@@ -12,7 +12,7 @@ export const menubarProps = {
 
 export type MenubarProps = ExtractPropTypes<typeof menubarProps>
 
-export default defineComponent({
+export const Menubar = defineComponent({
   props: menubarProps,
   setup(props, { slots }) {
     const state = reactive<{

@@ -13,7 +13,7 @@ export const dropdownProps = {
 
 export type DropdownProps = ExtractPropTypes<typeof dropdownProps>
 
-export default defineComponent({
+export const Dropdown = defineComponent({
   props: dropdownProps,
   setup(props, { slots }) {
     return () => {
