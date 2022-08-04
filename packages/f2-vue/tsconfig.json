@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.f2.json",
+  "extends": "../../configs/f2/tsconfig.json",
   "compilerOptions": {
     "jsx": "preserve"
   }

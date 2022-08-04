@@ -1,5 +1,4 @@
 export default {
-    pkgs: ['f2-vue'],
     cjs: {
         type: 'babel'
     },

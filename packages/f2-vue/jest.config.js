@@ -1,10 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const config = require('../../jest.config');
+const config = require('../../configs/f2/jest.config');
 
 module.exports = {
   ...config,
   testPathIgnorePatterns: [],
-  setupFilesAfterEnv: ['../../jest-setup.js'],
+  setupFilesAfterEnv: ['../../configs/f2/jest-setup.js'],
   transform: {
     '^.+\\.(ts|tsx)$': [
       'babel-jest',
