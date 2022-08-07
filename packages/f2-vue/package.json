@@ -4,6 +4,9 @@
     "description": "F2 for Vue.js",
     "main": "./src/index.ts",
     "scripts": {
+        "build": "father build",
+        "build-watch": "CI=true father build -w",
+        "build-ci": "CI=true npm run build",
         "test": "jest",
         "test-watch": "DEBUG_MODE=1 jest --watch",
         "coverage": "jest --coverage",
