@@ -2,7 +2,7 @@
 /** @jsxImportSource @antv/f2 */
 import Canvas from '../../src';
 import { Component } from '@antv/f2';
-import { createContext } from '../util';
+import { createContext, delay } from '../util';
 
 class Text extends Component {
   width: number;
@@ -16,7 +16,7 @@ class Text extends Component {
 
 describe('Theme', () => {
   describe('字体主题设置', () => {
-    it('默认主题', () => {
+    it('默认主题', async () => {
       const textRef = { current: null };
       const App = (
         <Canvas pixelRatio={1}>
@@ -24,26 +24,26 @@ describe('Theme', () => {
         </Canvas>
       );
 
-      const context = createContext(App);
-
-      expect(textRef.current.width).toBeCloseTo(30.02);
+      createContext(App);
+      await delay(100);
+      expect(textRef.current.width).toBeCloseTo(30.029);
     });
 
-    it('自定义设置', () => {
+    it('自定义设置', async () => {
       const textRef = { current: null };
       const App = (
         <Canvas
           pixelRatio={1}
           theme={{
-            fontFamily: '"Heiti SC"',
+            fontFamily: '"Heiti SC","STXIHEI"',
           }}
         >
           <Text ref={textRef} />
         </Canvas>
       );
 
-      const context = createContext(App);
-
+      createContext(App);
+      await delay(100);
       expect(textRef.current.width).toBeCloseTo(29.9159);
     });
   });
