@@ -29,13 +29,12 @@ const onClick = () => {
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <button @click="onClick">{{ count }}</button>
-  <!-- <F2Vue /> -->
+  <F2Vue />
   <!-- <x6-menu /> -->
   <!-- <x6-dropdown /> -->
   <!-- <x6-toolbar /> -->
   <!-- <x6-context-menu /> -->
-  <x6-menubar />
+  <!-- <x6-menubar /> -->
 </template>
 
 <style scoped>

@@ -1,50 +1,38 @@
-import { defineComponent, onMounted, ref } from "vue"
-import { Canvas, Chart, Interval, Axis, Tooltip, Legend } from "@antv/f2"
-import { jsx as _jsx } from "@antv/f2/jsx-runtime"
-import { jsxs as _jsxs } from "@antv/f2/jsx-runtime"
+// @ts-nocheck
+/** @jsxImportSource @antv/f2 */
+import { defineComponent, onMounted } from "vue"
+import Canvas from "@antv/f2-vue"
+import { Component } from "@antv/f2"
 
-const data = [
-  { genre: "Sports", sold: 275 },
-  { genre: "Strategy", sold: 115 },
-  { genre: "Action", sold: 120 },
-  { genre: "Shooter", sold: 350 },
-  { genre: "Other", sold: 150 },
-]
+class Text extends Component {
+  width: number
+
+  constructor(props, context) {
+    super(props, context)
+    const { width } = this.context.measureText("0.123", {})
+    this.width = width
+  }
+}
 
 export default defineComponent({
   setup() {
-    const containerRef = ref<HTMLCanvasElement>()
+    const textRef = { current: null }
 
     onMounted(() => {
-      const context = containerRef.value!.getContext('2d')
-      const { props } = _jsx(Canvas, {
-        context: context,
-        pixelRatio: window.devicePixelRatio,
-        children: _jsxs(Chart, {
-          data: data,
-          children: [
-            _jsx(Legend, {}),
-            _jsx(Axis, {
-              field: "genre",
-            }),
-            _jsx(Axis, {
-              field: "sold",
-            }),
-            _jsx(Tooltip, {
-              showTooltipMarker: true,
-            }),
-            _jsx(Interval, {
-              x: "genre",
-              y: "sold",
-              color: "genre",
-            }),
-          ],
-        }),
-      })
-      const canvas = new Canvas(props)
-      canvas.render()
+      console.log(textRef.current)
     })
 
-    return () => <canvas ref={containerRef} />
+    return () => {
+      return (
+        <Canvas
+          pixelRatio={1}
+          theme={{
+            fontFamily: '"STXIHEI"',
+          }}
+        >
+          <Text ref={textRef} />
+        </Canvas>
+      )
+    }
   },
 })
