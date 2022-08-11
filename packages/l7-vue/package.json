@@ -1,0 +1,8 @@
+{
+    "name": "@antv/l7-vue",
+    "version": "0.1.0",
+    "main": "src/index.ts",
+    "scripts": {},
+    "dependencies": {},
+    "devDependencies": {}
+}
