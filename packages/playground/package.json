@@ -11,10 +11,13 @@
         "@ant-design/icons-vue": "^6.0.1",
         "@antv/f2": "^4.0.26",
         "@antv/f2-vue": "workspace:^",
+        "@antv/util": "^3.2.5",
         "@antv/x6-vue-components": "workspace:^",
-        "ant-design-vue": "^3.2.10"
+        "ant-design-vue": "^3.2.10",
+        "lodash-es": "^4.17.21"
     },
     "devDependencies": {
+        "@types/lodash-es": "^4.17.6",
         "@vitejs/plugin-legacy": "^2.0.0",
         "@vitejs/plugin-vue": "^3.0.1",
         "@vitejs/plugin-vue-jsx": "^2.0.0",
