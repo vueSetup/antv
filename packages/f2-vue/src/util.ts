@@ -19,8 +19,7 @@ export const toRawChildren = (slots: VNode | VNodeNormalizedChildren) => {
     // vnode
     if (isVNode(element)) {
       const { type, key, ref, props, children } = element;
-
-      if (typeof type === 'function' && !type.prototype.isF2Component) {
+      if (typeof type === 'function' && !type.prototype?.isF2Component) {
         return {
           type: toRawView(type),
           key,

@@ -3,7 +3,7 @@
     <Canvas>
       <Chart :data="data">
         <Grahpic :year="year" />
-        <Legend />
+        <Legend marker="line-circle" />
         <Axis field="genre" />
         <Axis field="sold" />
         <Tooltip :showTooltipMarker="true" />
@@ -16,8 +16,8 @@
 import { defineComponent, shallowReactive, onMounted, toRefs } from 'vue';
 import Canvas from '@antv/f2-vue';
 import { Chart, Interval, Axis, Tooltip } from '@antv/f2';
-import Grahpic from './components/grahpic'
-import Legend from './components/legend';
+import Grahpic from './components/grahpic';
+import Legend from './components/custom-legend';
 
 const data1 = [
   { genre: 'Sports', sold: 275 },
@@ -54,17 +54,17 @@ export default defineComponent({
       year: 2021,
     });
 
-    onMounted(() => {
-      setInterval(() => {
-        if (state.year % 2 === 0) {
-          state.year = 2021;
-          state.data = data1;
-        } else {
-          state.year = 2022;
-          state.data = data2;
-        }
-      }, 1000);
-    });
+    // onMounted(() => {
+    //   setInterval(() => {
+    //     if (state.year % 2 === 0) {
+    //       state.year = 2021;
+    //       state.data = data1;
+    //     } else {
+    //       state.year = 2022;
+    //       state.data = data2;
+    //     }
+    //   }, 1000);
+    // });
 
     return { ...toRefs(state) };
   },
