@@ -1,5 +1,3 @@
-import type { App } from "vue"
-
 import { default as Menu, MenuItem, MenuSubMenu, MenuDivider } from "./menu"
 import { default as Menubar, MenubarItem } from "./menubar"
 import { Dropdown } from "./dropdown"
