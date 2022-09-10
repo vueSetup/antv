@@ -10,6 +10,7 @@
     "lib": ["esnext", "dom"],
     "paths": {
       "@antv/f2-vue": ["./packages/f2-vue/src"],
+      "@antv/l7-vue": ["./packages/l7-vue/src"],
       "@antv/x6-vue-components": ["./packages/x6-vue-components/src"]
     }
   }
