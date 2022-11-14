@@ -4,14 +4,16 @@
   "scripts": {
     "clean": "rimraf -rf packages/*/{node_modules,dist,es,lib} && rimraf node_modules",
     "commit": "git-cz",
-    "start": "pnpm --filter playground start"
+    "start": "pnpm --filter playground start",
+    "spread": "pnpm --filter s2-spread start"
   },
   "dependencies": {
-    "vue": "^3.2.38"
+    "vue": "^3.2.41"
   },
   "devDependencies": {
+    "@vue/tsconfig": "^0.1.3",
     "commitizen": "^4.2.5",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.4"
   },
   "config": {
     "commitizen": {

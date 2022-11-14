@@ -1,13 +1,6 @@
 {
+  "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "jsx": "preserve",
-    "lib": ["esnext", "dom"],
     "paths": {
       "@antv/f2-vue": ["./packages/f2-vue/src"],
       "@antv/l7-vue": ["./packages/l7-vue/src"],
