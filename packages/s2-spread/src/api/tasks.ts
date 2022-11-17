@@ -27,18 +27,17 @@ export const fetchDataConfig = async (columns: Column[]) => {
 const transformFields = (list: Task[], rootId: number = 0) => {
   const values: string[] = []
 
-  const transformTreeItems = (
-    parentId: number,
-    sn: string = ""
-  ): CustomTreeItem[] =>
+  const transformTreeItems = (parentId: number): CustomTreeItem[] =>
     list
       .filter((item) => item.parentid === parentId)
       .map((item, index) => {
         values.push(item.id.toString())
+        const children = transformTreeItems(item.id)
         return {
           ...item,
           key: item.id.toString(),
-          children: transformTreeItems(item.id, sn),
+          collapsed: item.parentid !== 0,
+          children: children,
         }
       })
 
