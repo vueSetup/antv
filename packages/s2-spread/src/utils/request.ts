@@ -25,7 +25,7 @@ export type Error = AxiosError<
 const requestHandler = (config: AxiosRequestConfig) => {
   const REQUEST_TOKEN_KEY = "X-Access-Token"
   const token =
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njg1ODkyNDMsInVzZXJuYW1lIjoiemhlbmdqaWFtZW5nIn0.U7a0aKIJkAWp0gcdvZUezyJTH0cYtplx5AERN0LwH2Q"
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njg2NzAyMjYsInVzZXJuYW1lIjoiemhlbmdqaWFtZW5nIn0.QefevIkd7ilDdX_qi9BLC7fOWX01ZHGPnlsm3k84r0A"
   config.headers = {
     ...config.headers,
     [REQUEST_TOKEN_KEY]: token,
