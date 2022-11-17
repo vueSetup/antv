@@ -55,7 +55,7 @@ const columns: Column[] = [
     title: "负责人",
   },
   {
-    dataIndex: "remark",
+    dataIndex: "tcurrent",
     title: "当前进展",
   },
   {
