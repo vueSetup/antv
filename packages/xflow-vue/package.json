@@ -10,6 +10,6 @@
         "@antv/x6-vue-shape": "^1.4.0"
     },
     "devDependencies": {
-        "vue": "^3.2.27"
+        "vue": "^3.2.41"
     }
 }

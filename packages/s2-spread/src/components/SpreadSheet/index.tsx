@@ -3,13 +3,26 @@ import {
   shallowRef,
   type ExtractPropTypes,
   type PropType,
-  type CSSProperties,
 } from "vue"
 import { useExpose, SheetComponent } from "@antv/s2-vue"
-import type { S2DataConfig, S2Options, Data, Fields, Meta } from "@antv/s2"
 import { useFormItem } from "./useFormItem"
-import { Input, Button } from "ant-design-vue"
-import "ant-design-vue/es/input/style"
+import { Input } from "ant-design-vue"
+import type {
+  S2DataConfig,
+  S2Options,
+  Data,
+  Fields,
+  Meta,
+  ViewMeta,
+  BaseCell,
+} from "@antv/s2"
+
+export type SheetType =
+  | "pivot"
+  | "table"
+  | "gridAnalysis"
+  | "strategy"
+  | "editable"
 
 export const spreadSheetProps = {
   data: {
@@ -26,31 +39,25 @@ export const spreadSheetProps = {
 
 export type SpreadSheetProps = ExtractPropTypes<typeof spreadSheetProps>
 
+/**
+ * https://vuejs.org/api/options-state.html#emits
+ */
 const SpreadSheet = defineComponent({
   name: "SpreadSheet",
+  emits: ["dataChange", "cellSelected"],
   props: spreadSheetProps,
-  setup(props, { expose }) {
+  setup(props, { attrs, emit, expose }) {
     const containerRef = shallowRef<HTMLElement>()
 
     const sheetRef = useExpose(expose)
 
-    const { positionRef, visibleRef, valueRef, setCellValue } =
-      useFormItem(sheetRef)
+    const { styleRef, visibleRef, valueRef, setValue } = useFormItem(
+      sheetRef,
+      (data: Data[]) => emit("dataChange", data)
+    )
 
     return () => {
       const { data = [], fields = {}, meta, options } = props
-
-      const { left, top, width, height } = positionRef.value
-
-      const style: CSSProperties = {
-        left: `${left}px`,
-        top: `${top}px`,
-        width: `${width}px`,
-        height: `${height}px`,
-        position: "absolute",
-        textAlign: "right",
-        zIndex: 1000,
-      }
 
       const dataConfig: S2DataConfig = {
         data,
@@ -64,18 +71,27 @@ const SpreadSheet = defineComponent({
         getContainer: () => containerRef.value!,
       }
 
+      const onCellSelected = (cell: unknown) => {
+        emit("cellSelected", cell)
+      }
+
       return (
         <>
           <div ref={containerRef} style={{ position: "relative" }}>
-            {visibleRef.value && (
-              <Input v-model:value={valueRef.value} style={style} />
-            )}
+            {/* {visibleRef.value && (
+              <Input
+                v-model:value={valueRef.value}
+                style={styleRef.value}
+                onPressEnter={setValue}
+              />
+            )} */}
             <SheetComponent
-              sheetType="table"
               ref={sheetRef}
+              sheetType={attrs.sheetType as SheetType}
               adaptive={adaptive}
               dataCfg={dataConfig}
               options={options}
+              onSelected={onCellSelected}
             />
           </div>
         </>

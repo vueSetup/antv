@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
-import { getThemeVariables } from 'ant-design-vue/dist/theme';
-import { join } from 'node:path';
+import { defineConfig } from "vite"
+import vue from "@vitejs/plugin-vue"
+import vueJsx from "@vitejs/plugin-vue-jsx"
+import { getThemeVariables } from "ant-design-vue/dist/theme"
+import { join } from "node:path"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,7 +10,7 @@ export default defineConfig({
     vue({
       template: {
         compilerOptions: {
-          isCustomElement: tag => /^micro-app/.test(tag),
+          isCustomElement: (tag) => /^micro-app/.test(tag),
         },
       },
     }),
@@ -18,7 +18,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': join(__dirname, './src'),
+      "@": join(__dirname, "./src"),
     },
   },
   css: {
@@ -33,4 +33,15 @@ export default defineConfig({
       },
     },
   },
-});
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://11.11.160.93:51003", // 测试环境
+        // target: "https://group-jsc.dw.cnpc.com.cn",   // 生产环境 hosts: 11.11.237.224    group-jsc.dw.cnpc.com.cn
+        changeOrigin: true,
+        secure: false,
+        // rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
+})

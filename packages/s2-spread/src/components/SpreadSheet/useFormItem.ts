@@ -1,35 +1,22 @@
 import {
-  reactive,
+  shallowRef,
+  shallowReactive,
   watch,
   watchEffect,
-  onScopeDispose,
-  shallowReactive,
-  shallowRef,
+  computed,
   type ShallowRef,
-  toRefs,
-  type ComponentPublicInstance,
+  type CSSProperties,
 } from "vue"
 import {
   BaseCell,
   S2Event,
   GEvent,
-  type SpreadSheet,
+  type Data,
+  type ViewMeta,
   type ScrollOffset,
 } from "@antv/s2"
-import { isEqual, pick } from "lodash-es"
+import { isEqual } from "lodash-es"
 import type { SheetExpose } from "@antv/s2-vue"
-
-type Meta = {
-  x: number
-  y: number
-  width: number
-  height: number
-
-  rowIndex: number
-  valueField: string
-
-  fieldValue: unknown
-}
 
 type Position = {
   top: number
@@ -38,8 +25,11 @@ type Position = {
   height: number
 }
 
-export const useFormItem = (spreadRef: ShallowRef<SheetExpose>) => {
-  const cellRef = shallowRef<BaseCell<Meta>>()
+export const useFormItem = (
+  spreadRef: ShallowRef<SheetExpose>,
+  onDataChange?: (data: Data[]) => void | Promise<void>
+) => {
+  const cellRef = shallowRef<BaseCell<ViewMeta>>()
 
   const valueRef = shallowRef<unknown>()
 
@@ -51,6 +41,16 @@ export const useFormItem = (spreadRef: ShallowRef<SheetExpose>) => {
     width: 0,
     height: 0,
   })
+
+  const styleRef = computed<CSSProperties>(() => ({
+    left: `${positionRef.value.left}px`,
+    top: `${positionRef.value.top}px`,
+    width: `${positionRef.value.width}px`,
+    height: `${positionRef.value.height}px`,
+    position: "absolute",
+    textAlign: "right",
+    zIndex: 1000,
+  }))
 
   const state = shallowReactive<{
     scroll: ScrollOffset
@@ -64,19 +64,19 @@ export const useFormItem = (spreadRef: ShallowRef<SheetExpose>) => {
   /**
    * setPosition => style = { top, left, width, height }
    */
-  const setCellPosition = (cell: BaseCell<Meta>) => {
-    const spreadsheet = spreadRef.value?.instance
-    if (spreadsheet) {
+  const setPosition = (cell: BaseCell<ViewMeta>) => {
+    const spreadSheet = spreadRef.value?.instance
+    if (spreadSheet) {
       const meta = cell.getMeta()
 
-      const colCellHeight = (spreadsheet.getColumnNodes()[0] || { width: 0 })
+      const colCellHeight = (spreadSheet.getColumnNodes()[0] || { width: 0 })
         .height
 
       meta.x -= state.scroll.scrollX || 0
       meta.y -= (state.scroll.scrollY || 0) - colCellHeight
 
       positionRef.value = {
-        left: meta.x,
+        left: meta.x + 200,
         top: meta.y,
         width: meta.width,
         height: meta.height,
@@ -89,7 +89,7 @@ export const useFormItem = (spreadRef: ShallowRef<SheetExpose>) => {
    */
   watch(cellRef, (cell) => {
     if (cell) {
-      setCellPosition(cell)
+      setPosition(cell)
       visibleRef.value = true
       valueRef.value = cell.getMeta().fieldValue
     }
@@ -98,13 +98,25 @@ export const useFormItem = (spreadRef: ShallowRef<SheetExpose>) => {
   /**
    * setValue, setVisible,
    */
-  const setCellValue = (value: unknown) => {
-    const spreadsheet = spreadRef.value?.instance
+  const setValue = () => {
+    const spreadSheet = spreadRef.value?.instance
     const cell = cellRef.value
-    if (spreadsheet && cell) {
-      const { rowIndex, valueField } = cell.getMeta()
-      spreadsheet.dataSet.originData[rowIndex][valueField] = value
-      spreadsheet.render(true)
+    if (spreadSheet && cell) {
+      const { rowIndex, rowQuery, colQuery, valueField } = cell.getMeta()
+
+      if (spreadSheet.isTableMode()) {
+        spreadSheet.dataSet.originData[rowIndex][valueField] = valueRef.value
+        spreadSheet.render()
+      } else {
+        const query = { ...rowQuery, ...colQuery }
+        const data = spreadSheet.dataSet.getCellData({ query })
+        if (data && !Array.isArray(data)) {
+          Reflect.set(data, valueField, valueRef.value)
+        } else {
+          console.error(`spreadSheet.dataSet.getCellData has fail:`, query)
+        }
+      }
+      onDataChange?.(spreadSheet.dataSet.originData)
       visibleRef.value = false
     }
   }
@@ -113,15 +125,16 @@ export const useFormItem = (spreadRef: ShallowRef<SheetExpose>) => {
    * setCellRef
    */
   const handleClick = (e: GEvent) => {
-    setCellValue(valueRef.value)
-    cellRef.value = e.target.cfg.parent as BaseCell<Meta>
+    setValue()
+    cellRef.value = e.target.cfg.parent as BaseCell<ViewMeta>
+    console.log("cellRef.value.getMeta()", cellRef.value.getMeta())
   }
 
   watchEffect((onCleanup) => {
-    const spreadsheet = spreadRef.value?.instance
-    spreadsheet?.on(S2Event.DATA_CELL_CLICK, handleClick)
+    const spreadSheet = spreadRef.value?.instance
+    spreadSheet?.on(S2Event.DATA_CELL_CLICK, handleClick)
     onCleanup(() => {
-      spreadsheet?.off(S2Event.DATA_CELL_CLICK, handleClick)
+      spreadSheet?.off(S2Event.DATA_CELL_CLICK, handleClick)
     })
   })
 
@@ -130,20 +143,20 @@ export const useFormItem = (spreadRef: ShallowRef<SheetExpose>) => {
    * setVisible, setScroll
    */
   const handleScroll = () => {
-    const spreadsheet = spreadRef.value?.instance
-    if (spreadsheet) {
-      const newScroll = spreadsheet.facet.getScrollOffset()
+    const spreadSheet = spreadRef.value?.instance
+    if (spreadSheet) {
+      const newScroll = spreadSheet.facet.getScrollOffset()
       if (!isEqual(newScroll, state.scroll)) {
-        const colCellHeight = (spreadsheet.getColumnNodes()[0] || { height: 0 })
+        const colCellHeight = (spreadSheet.getColumnNodes()[0] || { height: 0 })
           .height
 
         const inView = (x: number, y: number) => {
           const inX =
             x > state.scroll.scrollX! &&
-            x < state.scroll.scrollX! + spreadsheet.options.height!
+            x < state.scroll.scrollX! + spreadSheet.options.height!
           const inY =
             y > state.scroll.scrollY! + colCellHeight &&
-            y < state.scroll.scrollY! + spreadsheet.options.height!
+            y < state.scroll.scrollY! + spreadSheet.options.height!
           return inX && inY
         }
 
@@ -155,7 +168,7 @@ export const useFormItem = (spreadRef: ShallowRef<SheetExpose>) => {
           visibleRef.value = false
         }
 
-        state.scroll = spreadsheet.facet.getScrollOffset()
+        state.scroll = spreadSheet.facet.getScrollOffset()
       }
     }
   }
@@ -170,9 +183,9 @@ export const useFormItem = (spreadRef: ShallowRef<SheetExpose>) => {
   })
 
   return {
-    positionRef,
-    visibleRef,
     valueRef,
-    setCellValue,
+    visibleRef,
+    styleRef,
+    setValue,
   }
 }

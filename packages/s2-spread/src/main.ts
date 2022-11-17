@@ -1,26 +1,10 @@
-import { createApp } from 'vue';
-import store from './store';
-import router from './router';
-import Antdv from 'ant-design-vue';
-import ProLayout, { PageContainer } from '@ant-design-vue/pro-layout';
+import { createApp } from "vue"
+import store from "./store"
+import router from "./router"
 
-import App from './App.vue';
+import Antdv from "ant-design-vue"
+import "ant-design-vue/dist/antd.css"
 
-createApp(App)
-  .use(store)
-  .use(router)
-  .use(Antdv)
-  .use(ProLayout)
-  .use(PageContainer)
-  .mount('#app');
+import App from "./App.vue"
 
-const defaultRequestHandler = ()=>{}
-
-const requestHandler = (customHandler?:()=>void)=>{
-
-  if(customHandler){
-    axios.use(customHandler)
-  }else{
-    axios.use(defaultRequestHandler)
-  }
-}
+createApp(App).use(store).use(router).use(Antdv).mount("#app")

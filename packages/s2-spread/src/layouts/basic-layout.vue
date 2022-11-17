@@ -71,13 +71,13 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive, ref, watchEffect, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { computed, reactive, ref, watchEffect, onMounted } from "vue"
+import { useRouter } from "vue-router"
 import {
   UserOutlined,
   SmileOutlined,
   CrownOutlined,
-} from '@ant-design/icons-vue';
+} from "@ant-design/icons-vue"
 import {
   message,
   Button,
@@ -88,76 +88,79 @@ import {
   Space,
   Badge,
   Menu,
-} from 'ant-design-vue';
-import {
+} from "ant-design-vue"
+import ProLayout, {
+  PageContainer,
   getMenuData,
   clearMenuItem,
   type RouteContextProps,
-} from '@ant-design-vue/pro-layout';
+} from "@ant-design-vue/pro-layout"
 
-import '@ant-design-vue/pro-layout/dist/style.less';
+import "@ant-design-vue/pro-layout/dist/style.less"
 
-const i18n = (t: string) => t;
+const i18n = (t: string) => t
 
-const watermarkContent = ref('Pro Layout');
-const loading = ref(false);
-const router = useRouter();
-const { menuData } = getMenuData(clearMenuItem(router.getRoutes()));
+const watermarkContent = ref("Pro Layout")
+const loading = ref(false)
+const router = useRouter()
+const { menuData } = getMenuData(clearMenuItem(router.getRoutes()))
 
-const baseState = reactive<Omit<RouteContextProps, 'menuData'>>({
+const baseState = reactive<Omit<RouteContextProps, "menuData">>({
   selectedKeys: [],
   openKeys: [],
   // default
   collapsed: false,
-});
+})
 
 const state = reactive({
   menuData,
   splitMenus: true,
   // title: 'ProLayout',
   // logo: 'https://alicdn.antdv.com/v2/assets/logo.1ef800a8.svg',
-  navTheme: 'realDark',
-  layout: 'mix',
+  navTheme: "realDark",
+  layout: "mix",
   fixSiderbar: true,
   fixedHeader: true,
-});
+})
 
 const breadcrumb = computed(() =>
-  router.currentRoute.value.matched.concat().map(item => {
+  router.currentRoute.value.matched.concat().map((item) => {
     return {
       path: item.path,
-      breadcrumbName: item.meta.title || '',
-    };
-  }),
-);
+      breadcrumbName: item.meta.title || "",
+    }
+  })
+)
 
 watchEffect(() => {
   if (router.currentRoute) {
-    const matched = router.currentRoute.value.matched.concat();
-    baseState.selectedKeys = matched.filter(r => r.name !== 'index').map(r => r.path);
+    const matched = router.currentRoute.value.matched.concat()
+    baseState.selectedKeys = matched
+      .filter((r) => r.name !== "index")
+      .map((r) => r.path)
     baseState.openKeys = matched
-      .filter(r => r.path !== router.currentRoute.value.path)
-      .map(r => r.path);
+      .filter((r) => r.path !== router.currentRoute.value.path)
+      .map((r) => r.path)
   }
-});
+})
 
 const handleCollapsed = (collapsed?: boolean) => {
-  baseState.collapsed = collapsed;
-};
+  baseState.collapsed = collapsed
+}
 const handlePageLoadingClick = () => {
-  loading.value = true;
+  loading.value = true
   setTimeout(() => {
-    loading.value = false;
-  }, 2000);
-};
+    loading.value = false
+  }, 2000)
+}
 
 onMounted(() => {
   setTimeout(() => {
-    watermarkContent.value = 'New Mark';
-  }, 2000);
-});
+    watermarkContent.value = "New Mark"
+  }, 2000)
+})
 
 const handleSearch = () => {
-  message.info('search..');
-};
+  message.info("search..")
+}
 </script>
