@@ -37,6 +37,7 @@ export default defineConfig({
     proxy: {
       "/api": {
         target: "http://11.11.160.93:51003", // 测试环境
+        // target: "http://11.2.251.19:10001", // 任雨亭本地
         // target: "https://group-jsc.dw.cnpc.com.cn",   // 生产环境 hosts: 11.11.237.224    group-jsc.dw.cnpc.com.cn
         changeOrigin: true,
         secure: false,

@@ -8,18 +8,25 @@ type PagedTasks = {
   total: number
 }
 
-export const fetchDataConfig = async (columns: Column[]) => {
+export const fetchDataConfig = async (
+  columns: Column[],
+  group: string = ""
+) => {
   const api = `/api/tasks/list`
   const params = {
     pageSize: 500,
     t: Date.now(),
   }
   const {
-    data: { records: list },
+    data: { records },
   } = await request.get<PagedTasks>(api, { params })
 
+  const list = records.filter(
+    (item) => !item.assignedto || item.assignedto.includes(group)
+  )
+
   return {
-    data: transformData(list, columns),
+    data: transformData(list as Record<string, string | number>[], columns),
     fields: transformFields(list),
   }
 }
